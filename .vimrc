@@ -31,3 +31,8 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 " automatically reload vimrc when its saved
 au BufWritePost .vimrc so ~/.vimrc
+
+" load pathogen
+execute pathogen#infect()
+" oepn NERDTree automatically when vim starts
+autocmd vimenter * NERDTree
