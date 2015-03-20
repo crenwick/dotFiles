@@ -6,9 +6,9 @@ execute pathogen#infect()
 
 " enable syntax highlighting
 syntax enable
-filetype plugin indent on
+" filetype plugin indent on
 
-set title hlsearch history=1000
+set title hlsearch history=500
 set smartindent
 set autoindent
 set autoread          " reload files when changed on disk, i.e. via `git checkout`
@@ -25,13 +25,13 @@ set scrolloff=5       " show context above/below cursor line
 set sidescroll=1
 set shiftwidth=2      " normal mode indentation commands uses 2 spaces
 set softtabstop=2     " insert mode tab and backspace uses 2 spaces
-set tabstop=8         " actual tab uses 8 spaces
+set tabstop=2         " actual tab uses 8 spaces
 set showmatch         " highlight matching on {[()]}
 set list              " show trailing whitespace
 set listchars=""
 set listchars=tab:\ \
 set listchars+=trail:.
-set tabpagemax=50
+set tabpagemax=30
 set showcmd           " show current command going on
 set wildignore=log/**,node_modules/**,target/**,tmp/**,.meteor/**,tmp/**
 set wildmenu          " show a navigable menu for tab completion
@@ -48,6 +48,7 @@ let mapleader=','
 nnoremap <leader>; $a;<Esc>
 
 " keyboard shortcuts
+" hjkl keys navigate buffer splits
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
