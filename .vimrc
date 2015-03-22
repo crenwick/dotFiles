@@ -58,6 +58,10 @@ noremap <C-l> <C-w>l
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
+" markdown with fenced code gets marked
+au BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html', 'sh']
+
 " automatically reload vimrc when its saved
 au BufWritePost .vimrc so ~/.vimrc
 
