@@ -11,6 +11,7 @@ syntax enable
 set title hlsearch history=500
 set smartindent
 set autoindent
+set mouse=a           " click tabs, drag tabs, and drag split bars
 set autoread          " reload files when changed on disk, i.e. via `git checkout`
 set clipboard=unnamed " yank and paste with the system clipboard
 set directory-=.      " don't store swapfiles in the current directory
@@ -36,6 +37,14 @@ set showcmd           " show current command going on
 set wildignore=log/**,node_modules/**,target/**,tmp/**,.meteor/**,tmp/**
 set wildmenu          " show a navigable menu for tab completion
 set wildmode=longest,list,full
+
+" persistent undo
+if exists("&undodir")
+  set undofile
+  let &undodir=&directory
+  set undolevels=500
+  set undoreload=500
+endif
 
 " highlight last inserted text
 nnoremap gV `[v`]
