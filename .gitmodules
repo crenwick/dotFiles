@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/vim-jsx"]
 	path = .vim/bundle/vim-jsx
 	url = git@github.com:mxw/vim-jsx.git
+[submodule ".vim/bundle/vim-autocomplpop"]
+	path = .vim/bundle/vim-autocomplpop
+	url = git@github.com:othree/vim-autocomplpop.git
