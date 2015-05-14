@@ -1,11 +1,8 @@
-To install recursively:
-```sh
-$ git clone --recursive git@github.com:crenwick/bash-and-vim-rc.git
-```
+v2
 
-To install non-recursively:
-```sh
-$ git clone git@github.com:crenwick/bash-and-vim-rc.git
-$ git submodule init
-$ git submodule update
-```
+Make sure NeoBundle is installed before running vim with this .vimrc and .gvimrc.
+
+Will require a vim and macvim restart after the bundles are loaded for the first time.
+
+Current bugs:
+airline is loading incorrectly and spews a bunch of errors on the command line. I'm not really looking to get rid of airline through...

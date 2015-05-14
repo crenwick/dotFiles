@@ -1,6 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/crenwick/Documents/Codefellows'
-let g:netrw_dirhist_2='/Users/crenwick/Documents/Codefellows/sea-b24-notes/test'
-let g:netrw_dirhist_3='/Users/crenwick/Documents/Codefellows/sea-b24-notes/node_modules'
-let g:netrw_dirhist_4='/Users/crenwick/Documents/react-cassette-player/__tests__'
+let g:netrw_dirhist_cnt =0
