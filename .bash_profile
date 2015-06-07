@@ -5,7 +5,8 @@ alias cdg='cd ~/Grove'
 
 alias smeteor='source config/development/env.sh; meteor'
 alias sourceOS='source config/development/env.sh'
-alias tmeteor='source config/development/env.sh; meteor test-packages --velocity --driver-package respondly:test-reporter'
+alias tmeteor='source config/testing.sh; meteor test-packages --velocity --driver-package velocity:console-reporter -p 10015'
+alias tmeteorC='source config/testing.sh; meteor test-packages --velocity -p 10015'
 
 alias twit='source ~/Documents/venv/bin/activate; rainbowstream'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
@@ -21,3 +22,6 @@ alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 
 export VISUAL='/Applications/MacVim.app/Contents/MacOS/Vim -g -f'
 export EDITOR="$VISUAL"
+
+export NVM_DIR="/Users/crenwick/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

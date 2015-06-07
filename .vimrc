@@ -1,4 +1,4 @@
-"NeoBundle Scripts-----------------------------
+"Nundle Scripts-----------------------------
 if has('vim_starting')
   if &compatible
     set nocompatible               " Be iMproved
@@ -20,21 +20,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle "jordwalke/VimCleanColors"
 " =========================== Bootstrap for Vim ================================
 NeoBundle "tpope/vim-sensible"
-" ==============================================================================
-
 " ======================= AutoMakeDirectory if needed ==========================
 NeoBundle "jordwalke/VimAutoMakeDirectory"
-" ==============================================================================
-
 " ======================= Custom Resizing for SplitBalancer ====================
 NeoBundle "git://github.com/jordwalke/VimSplitBalancer.git"
-" ==============================================================================
-
 " ================== Allow plugins to tap into repeating =======================
 NeoBundle "git://github.com/tpope/vim-repeat.git"
-" ==============================================================================
 NeoBundle 'tpope/vim-fugitive'
-
 " ========== Use arrow keys in block mode to move things around ================
 NeoBundle "git://github.com/gavinbeatty/dragvisuals.vim.git"
 vmap  <expr>  <LEFT>   DVB_Drag('left')
@@ -44,20 +36,12 @@ vmap  <expr>  <UP>     DVB_Drag('up')
 " vmap  <expr>  D        DVB_Duplicate() (Causes hanving on linewise visual mode)
 " Remove any introduced trailing whitespace after moving..
 let g:DVB_TrimWS = 1
-" ==============================================================================
-
 " ====================== Vim Surround ==========================================
 NeoBundle "git://github.com/tpope/vim-surround.git"
-" ==============================================================================
-
 " =============================== Thumbnail ===================================
 NeoBundle "https://github.com/itchyny/thumbnail.vim.git"
-" ==============================================================================
-
 " =============================== Better Markdown ==============================
 NeoBundle "https://github.com/tpope/vim-markdown.git"
-" ==============================================================================
-
 " =========================== Unite.vim uses ===================================
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
@@ -70,38 +54,30 @@ NeoBundle 'Shougo/vimproc', {
 "
 NeoBundle "git://github.com/Shougo/unite.vim.git"
 " source ~/.vim/pluginRc/uniteVimRc
-
 " =================================== Closer  ==================================
 " Go to Left when closing like everything else in the world
 NeoBundle "jordwalke/VimCloser"
-" ==============================================================================
-
 " =============================== SmartGUITabs =================================
 NeoBundle "jordwalke/MacVimSmartGUITabs"
 " Make sure to have `set guioptions+=e` in your `.gvimrc`.
 map <D-Cr> :SmartGUITabsToggleFullScreen<CR>
 imap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
 nmap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
-" ==============================================================================
-
 " =================================== NERDTree =================================
 " Q : How can I open a NERDTree automatically when vim starts up if no files
 " were specified?  A : NerdTreeTabs handles this
 NeoBundle "https://github.com/scrooloose/nerdtree"
-" source ~/.vim/pluginRc/nerdTreeVimRc
-" Also see ~/.vim/nerdtree_plugin/myMappings.vim (NERDTree requires mappings
-" exist there)
-" ==============================================================================
-
-
+" autocmd vimenter * NERDTree
 " ============================= NERDTreeSideBar ================================
 NeoBundle "https://github.com/jistr/vim-nerdtree-tabs"
+" don't auto open NERDTree
+let g:nerdtree_tabs_open_on_gui_startup = 0
 " source ~/.vim/pluginRc/nerdTreeTabsVimRc
-" ==============================================================================
-
+NeoBundle "https://github.com/terryma/vim-expand-region"
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 " ============================ OCaml ===========================================
 " Bundles installed with OPAM:
-" ==============================================================================
 "Merlin AutoComplete:
 "Just install OCaml/OPAM
 " # wget http://www.ocamlpro.com/pub/opam_installer.sh
@@ -120,9 +96,6 @@ if !empty(system('which opam'))
 else
   " TODO: figure out opam for windows
 endif
-
-" ==============================================================================
-
 " =================== Web Dev Icons ===========================================
 NeoBundle "https://github.com/ryanoasis/vim-webdevicons"
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -130,16 +103,12 @@ let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 " Doesn't work
 " let g:WebDevIconsUnicodeDecorateFolderNodeDefaultSymbol = ' '
-" =============================================================================
-
 " ======================= A lighterweight Powerline ============================
 NeoBundle "https://github.com/jordwalke/vim-airline"
 let g:airline_powerline_fonts = 1
 set laststatus=2
 " Disable truncation
 let g:airline#extensions#default#section_truncate_width = {}
-" ==============================================================================
-
 " ============================== Smooth-Scroll =================================
 NeoBundle "git://github.com/terryma/vim-smooth-scroll.git"
 "Normal mode
@@ -149,12 +118,8 @@ noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
 " smooth_scroll is broken in visual mode currently - unmap
 vnoremap <silent> <c-u> <c-u>
 vnoremap <silent> <c-d> <c-d>
-" ==============================================================================
-
 " ================================ Flatlandia ==================================
 NeoBundle "git://github.com/jordwalke/flatlandia"
-" ==============================================================================
-
 " ================================= Solarized ==================================
 NeoBundle "git://github.com/altercation/vim-colors-solarized"
 "default value is 1
@@ -166,19 +131,13 @@ let g:solarized_contrast="high"
 "default value is normal
 let g:solarized_visibility="high"
 " ==============================================================================
-
-" ================================= Ctrl-p =====================================
 " See ~/.gvimrc as well
 NeoBundle "git://github.com/kien/ctrlp.vim.git"
 " source ~/.vim/pluginRc/ctrlPVimRc
-" ==============================================================================
-
 " ============================= ACP Forked =========================
 " Check out snippets in ~/.vim/personalSnippets/
 NeoBundle "https://github.com/jordwalke/AutoComplPop"
 let g:acp_ignorecaseOption = 1
-" ==============================================================================
-
 " ============================= UltiSnips ======================================
 "See corresponding entries in `.keysVimRc`.
 NeoBundle "git://github.com/SirVer/ultisnips.git"
@@ -189,53 +148,34 @@ else
   let g:UltiSnipsSnippetsDir="~/.vim"
   let g:UltiSnipsSnippetDirectories=["myUltiSnippets"]
 endif
-" ==============================================================================
-
 " ======== Combine Previous Plugins For Modern Completion Experience ===========
 NeoBundle "jordwalke/VimCompleteLikeAModernEditor"
-" ==============================================================================
-
 " ============================= Commenter ======================================
 NeoBundle "https://github.com/tomtom/tcomment_vim"
-" ==============================================================================
-
 " =============================Javascript-Indent================================
 " I suspect this is doing nothing since JavaScript-Indent overwrites the
 " indentation hooks, but I cannot prove it.
 NeoBundle "https://github.com/pangloss/vim-javascript"
-" ==============================================================================
-
 " =============================Javascript-Indent================================
 NeoBundle "git://github.com/vim-scripts/JavaScript-Indent.git"
-" ==============================================================================
-
 " ================================= Less========================================
 NeoBundle "git://github.com/groenewege/vim-less.git"
-" ==============================================================================
-
 " ======================= Parameter Text Objects ===============================
 " ciP  (change in paramater  - changes the single argument under cursor!
 NeoBundle "git://github.com/vim-scripts/Parameter-Text-Objects.git"
-" ==============================================================================
-
 " ============================ GUndo ===========================================
 " Visualize a tree of your document history
 NeoBundle "http://github.com/sjl/gundo.vim.git"
 nnoremap <D-U> :GundoToggle<CR>
 let g:gundo_close_on_revert=1
-" ==============================================================================
-
 " ========================== Undo Quit of a window =============================
 NeoBundle "https://github.com/AndrewRadev/undoquit.vim"
 map <D-T> <Esc>:Undoquit<CR>
-" ==============================================================================
-
 " =======================GUI File Browser like CMD+T ===========================
 " NeoBundle "https://github.com/twe4ked/vim-peepopen"
 " if has("gui_macvim")
 "   map <D-t> <Plug>PeepOpen
 " end
-" ==============================================================================
 
 NeoBundle "https://github.com/mxw/vim-jsx"
 
@@ -292,13 +232,17 @@ set listchars=tab:\ \
 set listchars+=trail:.
 set tabpagemax=30
 set showcmd           " show current command going on
-set wildignore=log/**,node_modules/**,target/**,tmp/**,.meteor/**,tmp/**
+set wildignore=log/**,target/**
 set wildmenu          " show a navigable menu for tab completion
 set wildmode=longest,list,full
 
 " Mac Support bootstrap
 set wildignore+=*.DS_Store
 set wildignore+=*/_build**
+set wildignore+=node_modules/**
+set wildignore+=target/**
+set wildignore+=tmp/**
+set wildignore+=.meteor/**
 " Remove ugly folds
 set nofoldenable
 " nofoldenable doesn't work in diff mode so do something similar
@@ -355,7 +299,8 @@ nnoremap gV `[v`]
 " allow buffer to be hideen within writing to disk
 set hidden
 
-let mapleader=','
+" let mapleader=','
+let mapleader = "\<Space>"
 " append a semicolon to the line
 nnoremap <leader>; $a;<Esc>
 
@@ -371,6 +316,11 @@ nnoremap <leader>b :ls<CR>
 nnoremap <leader>j :bn<CR>
 nnoremap <leader>k :bp<CR>
 
+" to save all files
+nnoremap <Leader>w :wa<CR>
+" enter visual line mode:
+nmap <Leader><Leader> V
+
 " highlight the 81st character in each line
 highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
 call matchadd('MyLineTooLongMarker', '\%81v', 100)
@@ -382,11 +332,11 @@ let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascr
 " automatically reload vimrc when its saved
 au BufWritePost .vimrc so ~/.vimrc
 
-" open NERDTree automatically when vim starts
-autocmd vimenter * NERDTree
-nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
-" requires :Ctrl
+" requires :NERDTree and :NERDTreeTabs
+nnoremap <leader>d :NERDTreeTabsToggle<CR>
+nnoremap <leader>f :NERDTreeTabsFind<CR>
+
+" requires :CtrlP
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 
