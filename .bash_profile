@@ -21,3 +21,7 @@ export EDITOR="$VISUAL"
 
 export NVM_DIR="/Users/crenwick/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
+export DOCKER_CERT_PATH=/Users/crenwick/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
