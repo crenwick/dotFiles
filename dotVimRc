@@ -181,8 +181,8 @@ noremap <C-l> <C-w>l
 
 " buffer nav shortcuts
 nnoremap <leader>b :ls<CR>
-nnoremap <leader>j :bn<CR>
-nnoremap <leader>k :bp<CR>
+nnoremap <leader>H :bn<CR>
+nnoremap <leader>L :bp<CR>
 
 " to save all files
 nnoremap <Leader>w :wa<CR>
