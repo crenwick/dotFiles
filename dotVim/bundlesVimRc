@@ -95,7 +95,7 @@ let g:NERDChristmasTree = 0
 " NERDTreeSideBar
 NeoBundle "https://github.com/jistr/vim-nerdtree-tabs"
 " don't auto open NERDTree
-let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:nerdtree_tabs_open_on_gui_startup = 1
 
 NeoBundle "https://github.com/terryma/vim-expand-region"
 vmap v <Plug>(expand_region_expand)

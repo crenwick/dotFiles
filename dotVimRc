@@ -189,9 +189,10 @@ nnoremap <Leader>w :wa<CR>
 " enter visual line mode:
 nmap <Leader><Leader> V
 
-" highlight the 81st character in each line
+" highlight the 80st character in each line
 highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-call matchadd('MyLineTooLongMarker', '\%81v', 100)
+autocmd WinEnter * match MyLineTooLongMarker '\%81v.\+'
+" call matchadd('MyLineTooLongMarker', '\%80v', 100)
 
 " requires :NERDTree and :NERDTreeTabs
 nnoremap <leader>d :NERDTreeTabsToggle<CR>
@@ -210,6 +211,9 @@ nnoremap <leader>gs :Gstatus<CR>
 vmap <D-/> <c-_><c-_>
 vmap <D-s-/> <c-_>b
 nmap <D-/> gc$
+
+" Get rid of trailing whitespace
+nnoremap <leader>WW :%s/\s\+$//<CR>
 
 " source ~/.vim/customFunctions.vim
 
