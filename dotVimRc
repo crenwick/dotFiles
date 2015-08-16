@@ -1,5 +1,18 @@
+" crenwick dotVimRc
+"
+" Mac ProTips:
+"  To further improve the text rendering on Mac OSX:
+"  1. From the shell:
+"    defaults write org.vim.MacVim MMCellWidthMultiplier 0.9
+"  2. Opens all files from other apps in vert split:
+"    defaults write org.vim.MacVim MMVerticalSplit YES
+"  3. If when changing monitors, your fonts go from nice and thin to ugly and
+"  bold: This should fix it:
+"   defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
+
 filetype plugin on
 filetype indent on
+
 " Vundle Scripts
 if has('vim_starting')
   if &compatible
@@ -57,8 +70,9 @@ set wildignore+=*/node_modules/**
 set wildignore+=target/**
 set wildignore+=tmp/**
 set wildignore+=.meteor/local/**
-" Remove ugly folds
-set nofoldenable
+
+set foldmethod=indent
+set nofoldenable      " Remove ugly folds
 " nofoldenable doesn't work in diff mode so do something similar
 set diffopt=filler,context:9999
 
@@ -91,6 +105,7 @@ set switchbuf+=usetab,newtab
 
 " set es to javascript syntax
 au BufNewFile,BufReadPost *.es6 set filetype=javascript
+au BufNewFile,BufReadPost *.json set filetype=javascript
 
 " markdown with fenced code gets marked
 au BufNewFile,BufReadPost *.md set filetype=markdown
@@ -111,53 +126,28 @@ au BufWritePost .vimrc so ~/.vimrc
 
 call neobundle#begin(expand('~/.vim/bundle'))
 
-" Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
+
+" temp until neobundle stops asking to hit enter for more
+if has("gui_macvim")
+  set guifont=Monaco:h10
+  set columns=195
+endif
 
 set t_Co=256
 
 " SOURCE THE NEOBUNDLE FILE HERE
 source ~/.vim/bundlesVimRc
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
 call neobundle#end()
 NeoBundleCheck
 
-" source ~/.vim/guiSettingsVimRc
-if has("gui_running") " all this for gui use
-  " ugly MacVim Cruft
-  set guioptions-=r "remove scrollbars
-  set guioptions-=R "remove scrollbars
-  set guioptions-=l "remove scrollbars
-  set guioptions-=L "remove scrollbars
-  set guioptions-=T " Remove toolbars
+source ~/.vim/guiSettingsVimRc
 
-  " Pro Tips:
-  " Make sure to turn off anti-aliasing in general preferences panel.
-  if has("gui_macvim") || has("gui_vimr")
-    " Don't remove tabs on MacVim because VimGUITabs plugin makes them get out
-    " of the way when we want them to get out of the way (in full screen mode).
-    " set guioptions-=e
-    " set guifont=Menlo:h12.00
-    " like A CSS Reset:
-    let macvim_skip_colorscheme = 1
-    set transparency=0
-    set fuoptions=maxvert,maxhorz
-    set lines=65
-    set guifont=Monaco:h13
-    set columns=285
-    set nolazyredraw
-    " Change to `1` if your font is patched with webdev icons.
-    let g:webdevicons_enable = 0
-    autocmd VimEnter * exec ":set columns=85"
-    autocmd VimEnter * exec ":set guifont=Inconsolata-dz\\ for\\ Powerline:h14"
-    set linespace=-4
+" highlight the 81st character in each line
+highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
+call matchadd('MyLineTooLongMarker', '\%81v', 100)
 
-  endif
-endif
 " source ~/.vim/keysVimRc
 
 " highlight last inserted text

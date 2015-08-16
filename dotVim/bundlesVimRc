@@ -50,22 +50,18 @@ NeoBundle "https://github.com/tpope/vim-markdown.git"
 " UltiSnips
 "See corresponding entries in `.keysVimRc`.
 NeoBundle "SirVer/ultisnips"
-if has('gui_win32')
-  let g:UltiSnipsSnippetsDir=$HOME
-  let g:UltiSnipsSnippetDirectories=["myUltiSnippets"]
-else
-  let g:UltiSnipsSnippetsDir="~/.vim"
-  let g:UltiSnipsSnippetDirectories=["myUltiSnippets"]
-endif
+let g:UltiSnipsSnippetsDir="~/.vim"
+let g:UltiSnipsSnippetDirectories=["myUltiSnippets"]
 
 " VimJSDocSnippets
 NeoBundle 'jordwalke/VimJSDocSnippets'
-if has('gui_win32')
-  let g:JSDocSnippetsMapping='<S-M-c>'
-else
-  let g:JSDocSnippetsMapping='<D-C>'
-endif
+let g:JSDocSnippetsMapping='<D-C>'
 
+" splitjoin
+NeoBundle "https://github.com/AndrewRadev/splitjoin.vim"
+" `gS` to split one line into multiple
+" `gJ` (with cursor on the first line) to join a block into 1 line
+"
 " Go to Left when closing like everything else in the world
 NeoBundle "jordwalke/VimCloser"
 
@@ -97,10 +93,6 @@ NeoBundle "https://github.com/jistr/vim-nerdtree-tabs"
 " don't auto open NERDTree
 let g:nerdtree_tabs_open_on_gui_startup = 1
 
-NeoBundle "https://github.com/terryma/vim-expand-region"
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " OCaml
 " Bundles installed with OPAM:
 "Merlin AutoComplete:
@@ -125,7 +117,7 @@ endif
 
 " Web Dev Icons
 NeoBundle "https://github.com/ryanoasis/vim-webdevicons"
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 " Doesn't work
@@ -137,6 +129,7 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 " Disable truncation
 let g:airline#extensions#default#section_truncate_width = {}
+
 
 " Smooth-Scroll
 NeoBundle "git://github.com/terryma/vim-smooth-scroll.git"
@@ -203,12 +196,12 @@ NeoBundle "https://github.com/pangloss/vim-javascript"
 " Javascript-Indent
 NeoBundle "git://github.com/vim-scripts/JavaScript-Indent.git"
 
-" Less
-NeoBundle "git://github.com/groenewege/vim-less.git"
-
 " jsx
 NeoBundle "https://github.com/mxw/vim-jsx"
 let g:jsx_ext_required = 0
+
+" Less
+NeoBundle "git://github.com/groenewege/vim-less.git"
 
 " Parameter Text Objects
 " ciP  (change in paramater  - changes the single argument under cursor!
@@ -229,3 +222,12 @@ map <D-T> <Esc>:Undoquit<CR>
 " if has("gui_macvim")
 "   map <D-t> <Plug>PeepOpen
 " end
+
+NeoBundle "junegunn/rainbow_parentheses.vim"
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+augroup rainbow_js
+  autocmd!
+  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
+augroup END
+
+NeoBundle "https://github.com/unblevable/quick-scope"

@@ -27,7 +27,6 @@ if has('gui')
     macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-c-f>
     macmenu &Tools.Make key=<nop>
 
-
     " From subvim:
     " Disable print shortcut for 'goto anything...'
     macmenu File.Print key=<nop>
@@ -40,11 +39,3 @@ if has('gui')
 
   endif
 endif
-
-syntax enable
-set background=dark
-colorscheme spacegray
-
-" highlight the 81st character in each line
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-call matchadd('MyLineTooLongMarker', '\%81v', 100)
