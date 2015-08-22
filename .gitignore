@@ -1,3 +1,2 @@
 .DS_Store
-dotVim/bundle
-!dotVim/bundle/neobundle.vim
+dotVim/plugged/
