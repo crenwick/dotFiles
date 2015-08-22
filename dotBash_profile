@@ -1,7 +1,7 @@
 source ~/.git-prompt.sh
 
-alias cl='clear'
-alias g='git status'
+alias c='clear'
+alias g='git'
 alias cdg='cd ~/Grove'
 alias cdd='cd ~/Documents/'
 
@@ -18,7 +18,7 @@ alias showDesktopFiles='defaults write com.apple.finder CreateDesktop -bool true
 alias showAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 
-export VISUAL='mvim -f --nomru -c'
+export VISUAL='mvim -f -v'
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
 
