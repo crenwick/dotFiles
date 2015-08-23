@@ -14,7 +14,9 @@ brew install bash-git-prompt
 
 # dev tools
 brew install git
-brew install macvim --override-system-vim --with-cscope --python
+brew install macvim --override-system-vim --with-cscope --python --HEAD
+brew install reattach-to-user-namespace
+brew install tmux
 brew install nvm
 
 # install neovim

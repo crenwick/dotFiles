@@ -1,82 +1,59 @@
 call plug#begin()
 
-Plug 'jordwalke/VimCleanColors'
+" -----------------------------------------------------
+" Language agnostic plugins
+" -----------------------------------------------------
 
-" Bootstrap for Vim
-Plug 'tpope/vim-sensible'
-
-" AutoMakeDirectory if Needed
-Plug 'jordwalke/VimAutoMakeDirectory'
-
-" Custom Resizing for SplitBalancer
-Plug 'jordwalke/VimSplitBalancer'
-
-" Allow plugins to tap into repeating
-Plug 'git://github.com/tpope/vim-repeat.git'
-
-" Git
-Plug 'tpope/vim-fugitive'
-
-" Use arrow keys in block mode to move things around
-Plug 'git://github.com/gavinbeatty/dragvisuals.vim.git'
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-" vmap  <expr>  D      DVB_Duplicate() (Causes hanving on linewise visual mode)
-" Remove any introduced trailing whitespace after moving
-let g:DVB_TrimWS = 1
-
-" Vim Surround
-Plug 'git://github.com/tpope/vim-surround.git'
-
-" Unite.vim uses
-Plug 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-'
-Plug 'git://github.com/Shougo/unite.vim.git'
-" source ~/.vim/pluginRc/uniteVimRc
-
-" Thumbnail
-Plug 'https://github.com/itchyny/thumbnail.vim.git'
-
-" Better Markdown
-Plug 'https://github.com/tpope/vim-markdown.git'
-
-" UltiSnips
-" See corresponding entries in `.keysVimRc`.
+" Snippets support
+" Snippets live in `/myUltiSnippets`
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsSnippetsDir='~/.vim'
 let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
+" Commenter
+Plug 'https://github.com/tomtom/tcomment_vim'
+" splitjoin (`gS` and `gJ`)
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'
+" ACP Forked
+Plug 'https://github.com/jordwalke/AutoComplPop'
+let g:acp_ignorecaseOption = 1
 
+" -----------------------------------------------------
+" Javascript
+" -----------------------------------------------------
+
+" Javascript-Indent
+Plug 'https://github.com/pangloss/vim-javascript'
+" Javascript-Indent
+Plug 'git://github.com/vim-scripts/JavaScript-Indent.git'
+" jsx
+Plug 'https://github.com/mxw/vim-jsx'
+let g:jsx_ext_required = 0
 " VimJSDocSnippets
 Plug 'jordwalke/VimJSDocSnippets'
 let g:JSDocSnippetsMapping='<D-C>'
+" rainbow parantheses
+Plug 'junegunn/rainbow_parentheses.vim'
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+augroup rainbow_js
+  autocmd!
+  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
+augroup END
 
-" splitjoin
-Plug 'https://github.com/AndrewRadev/splitjoin.vim'
-" `gS` to split one line into multiple
-" `gJ` (with cursor on the first line) to join a block into 1 line
-'
-" Go to Left when closing like everything else in the world
-Plug 'jordwalke/VimCloser'
+" -----------------------------------------------------
+" HTML/CSS
+" -----------------------------------------------------
 
-" SmartGUITabs
-Plug 'jordwalke/MacVimSmartGUITabs'
-" Make sure to have `set guioptions+=e` in your `.gvimrc`.
-map <D-Cr> :SmartGUITabsToggleFullScreen<CR>
-imap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
-nmap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
+" Less
+Plug 'git://github.com/groenewege/vim-less.git'
+" Better Markdown
+Plug 'https://github.com/tpope/vim-markdown.git'
+
+" -----------------------------------------------------
+" Interface improvement
+" -----------------------------------------------------
 
 " NERDTree
-Plug 'https://github.com/scrooloose/nerdtree'
-" autocmd vimenter * NERDTree
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " nice arrow
 let g:NERDTreeDirArrows = 1
 " not so much cruft
@@ -87,75 +64,27 @@ hi def link NERDTreePart StatusLine
 hi def link NERDTreeDirSlash Directory
 hi def link NERDTreeCurrentNode Search
 hi def link NERDTreeCWD Normal
-
 " Not so much color
 let g:NERDChristmasTree = 0
 " NERDTreeSideBar
 Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 " don't auto open NERDTree
 let g:nerdtree_tabs_open_on_gui_startup = 1
-
-" OCaml
-" Bundles installed with OPAM:
-" Merlin AutoComplete:
-" Just install OCaml/OPAM
-" # wget http://www.ocamlpro.com/pub/opam_installer.sh
-" # sh ./opam_installer.sh /usr/local/bin 4.00.1
-'
-" > To find the 'share_dir', do: `opam config var share`
-" < ~/.opam/4.00.1/share
-'
-" Hacked ACP to support this and haxe.
-if !empty(system('which opam'))
-  " Merlin
-  let s:ocamlmerlin=substitute(system(
-        \ 'opam config var share'),'\n$','','') . '/merlin'
-  execute 'set rtp+='.s:ocamlmerlin.'/vim'
-  execute 'set rtp+='.s:ocamlmerlin.'/vimbufsync'
-  let g:syntastic_ocaml_checkers=['merlin']
-else
-  " TODO: figure out opam for windows
-endif
-
-" Web Dev Icons
-Plug 'https://github.com/ryanoasis/vim-webdevicons'
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
-" Doesn't work
-" let g:WebDevIconsUnicodeDecorateFolderNodeDefaultSymbol = ' '
-
+" Unite (Files, Buffers, Commands, etc. fuzzy searcher)
+Plug 'Shougo/unite.vim'
 " A lighterweight Powerline
 Plug 'https://github.com/jordwalke/vim-airline'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 " Disable truncation
 let g:airline#extensions#default#section_truncate_width = {}
-
-
-" Smooth-Scroll
-Plug 'git://github.com/terryma/vim-smooth-scroll.git'
-" Normal mode
-noremap <silent> <c-u> :call smooth_scroll#up(40, 20, 6)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
-" smooth_scroll is broken in visual mode currently - unmap
-vnoremap <silent> <c-u> <c-u>
-vnoremap <silent> <c-d> <c-d>
-
-" Flatlandia
-Plug 'git://github.com/jordwalke/flatlandia'
-
-" Solarized
-Plug 'git://github.com/altercation/vim-colors-solarized'
-" default value is 1
-let g:solarized_underline=0
-" default value is 16
-let g:solarized_termcolors=256
-" default value is normal
-let g:solarized_contrast='high'
-" default value is normal
-let g:solarized_visibility='high'
-
+" Custom Resizing for SplitBalancer
+Plug 'jordwalke/VimSplitBalancer'
+" GUndo
+" Visualize a tree of your document history
+Plug 'http://github.com/sjl/gundo.vim.git'
+nnoremap <D-U> :GundoToggle<CR>
+let g:gundo_close_on_revert=1
 " Ctrl-p
 Plug 'git://github.com/kien/ctrlp.vim.git'
 " splliting right after helps preserver left nav
@@ -178,59 +107,100 @@ let g:ctrlp_mruf_max = 250
 let g:ctrlp_max_depth = 7
 let g:ctrlp_max_files = 30000
 
-" ACP Forked
-" Check out snippets in ~/.vim/personalSnippets/
-Plug 'https://github.com/jordwalke/AutoComplPop'
-let g:acp_ignorecaseOption = 1
+" -----------------------------------------------------
+" External tools intergration plugins
+" -----------------------------------------------------
+
+" FuGITive
+Plug 'tpope/vim-fugitive'
+
+" -----------------------------------------------------
+" Text insertion/manipulation
+" -----------------------------------------------------
+
+" Surround (cs"')
+Plug 'tpope/vim-surround'
+" Use arrow keys in block mode to move things around
+Plug 'gavinbeatty/dragvisuals.vim'
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+" Remove any introduced trailing whitespace after moving
+let g:DVB_TrimWS = 1
+
+" -----------------------------------------------------
+" Colorschemes
+" -----------------------------------------------------
+
+" Collection of Clean Vim ColorSchemes with Airline Themes
+Plug 'jordwalke/VimCleanColors'
+" Solarized
+Plug 'git://github.com/altercation/vim-colors-solarized'
+" default value is 1
+let g:solarized_underline=0
+" default value is 16
+let g:solarized_termcolors=256
+" default value is normal
+let g:solarized_contrast='high'
+" default value is normal
+let g:solarized_visibility='high'
+" Flatlandia (for MacVim)
+Plug 'git://github.com/jordwalke/flatlandia'
+" Web Dev Icons
+Plug 'https://github.com/ryanoasis/vim-webdevicons'
+let g:WebDevIconsUnicodeDecorateFolderNodes = 0
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+
+" -----------------------------------------------------
+" Dependencies
+" -----------------------------------------------------
+
+" Async processing (for Unite)
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Allow plugins to tap into repeating
+Plug 'tpope/vim-repeat'
+
+" -----------------------------------------------------
+" Other
+" -----------------------------------------------------
+
+" Bootstrap for Vim
+Plug 'tpope/vim-sensible'
+" AutoMakeDirectory if Needed
+Plug 'jordwalke/VimAutoMakeDirectory'
+" Thumbnail
+Plug 'itchyny/thumbnail.vim'
+" Go to Left when closing like everything else in the world
+Plug 'jordwalke/VimCloser'
+" SmartGUITabs
+Plug 'jordwalke/MacVimSmartGUITabs'
+" Make sure to have `set guioptions+=e` in your `.gvimrc`.
+map <D-Cr> :SmartGUITabsToggleFullScreen<CR>
+imap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
+nmap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
+
+" Smooth-Scroll
+Plug 'terryma/vim-smooth-scroll'
+" Normal mode
+noremap <silent> <c-u> :call smooth_scroll#up(40, 20, 6)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
+" smooth_scroll is broken in visual mode currently - unmap
+vnoremap <silent> <c-u> <c-u>
+vnoremap <silent> <c-d> <c-d>
 
 " Combine Previous Plugins For Modern Completion Experience
 Plug 'jordwalke/VimCompleteLikeAModernEditor'
 " tells the snippet system to look for custom snippets in ~/.vim/myUltiSnippets
 
-" Commenter
-Plug 'https://github.com/tomtom/tcomment_vim'
-
-" Javascript-Indent
-" I suspect this is doing nothing since JavaScript-Indent overwrites the
-" indentation hooks, but I cannot prove it.
-Plug 'https://github.com/pangloss/vim-javascript'
-
-" Javascript-Indent
-Plug 'git://github.com/vim-scripts/JavaScript-Indent.git'
-
-" jsx
-Plug 'https://github.com/mxw/vim-jsx'
-let g:jsx_ext_required = 0
-
-" Less
-Plug 'git://github.com/groenewege/vim-less.git'
-
 " Parameter Text Objects
 " ciP  (change in paramater  - changes the single argument under cursor!
 Plug 'git://github.com/vim-scripts/Parameter-Text-Objects.git'
 
-" GUndo
-" Visualize a tree of your document history
-Plug 'http://github.com/sjl/gundo.vim.git'
-nnoremap <D-U> :GundoToggle<CR>
-let g:gundo_close_on_revert=1
-
 " Undo Quit of a window
 Plug 'https://github.com/AndrewRadev/undoquit.vim'
 map <D-T> <Esc>:Undoquit<CR>
-
-" GUI File Browser like CMD+T
-" Plug 'https://github.com/twe4ked/vim-peepopen'
-" if has('gui_macvim')
-"   map <D-t> <Plug>PeepOpen
-" end
-
-Plug 'junegunn/rainbow_parentheses.vim'
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-augroup rainbow_js
-  autocmd!
-  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
-augroup END
 
 Plug 'https://github.com/unblevable/quick-scope'
 
