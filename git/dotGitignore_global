@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.AppleDouble
+.LSOverride
+Icon
+
+._*
+.Splotlight-V100
+.Trashes
+.vimrc.local
+tscommand*.txt

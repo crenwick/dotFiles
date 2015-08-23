@@ -1,31 +1,33 @@
-source ~/.git-prompt.sh
-
 alias c='clear'
 alias g='git'
+alias ls='ls -GFh'
+
 alias cdg='cd ~/Grove'
 alias cdd='cd ~/Documents/'
-
 alias twit='source ~/Documents/venv/bin/activate; rainbowstream'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -v'
 
-export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\$(__git_ps1)\[\033[m\]$ "
-export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:$PATH"
-
-alias ls='ls -GFh'
 alias mongoRunning='ps -ax | grep mongo'
 alias hideDesktopFiles='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias showDesktopFiles='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 alias showAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 
+# nvm
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 export VISUAL='mvim -f -v'
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
 
-export NVM_DIR="/Users/crenwick/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:$PATH"
+export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
-# Docker stuff
-export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
-export DOCKER_CERT_PATH=/Users/crenwick/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
+# Gitprompt configuration
+GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_THEME=Single_line
+
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
