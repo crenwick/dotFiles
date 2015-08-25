@@ -1,16 +1,7 @@
-call plug#begin()
-
 " -----------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------
 
-" Snippets support
-" Snippets live in `/myUltiSnippets`
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsSnippetsDir='~/.vim'
-let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
-" Commenter
-Plug 'https://github.com/tomtom/tcomment_vim'
 " splitjoin (`gS` and `gJ`)
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 " ACP Forked
@@ -18,58 +9,9 @@ Plug 'https://github.com/jordwalke/AutoComplPop'
 let g:acp_ignorecaseOption = 1
 
 " -----------------------------------------------------
-" Javascript
-" -----------------------------------------------------
-
-" Javascript-Indent
-Plug 'https://github.com/pangloss/vim-javascript'
-" Javascript-Indent
-Plug 'git://github.com/vim-scripts/JavaScript-Indent.git'
-" jsx
-Plug 'https://github.com/mxw/vim-jsx'
-let g:jsx_ext_required = 0
-" VimJSDocSnippets
-Plug 'jordwalke/VimJSDocSnippets'
-let g:JSDocSnippetsMapping='<D-C>'
-" rainbow parantheses
-Plug 'junegunn/rainbow_parentheses.vim'
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-augroup rainbow_js
-  autocmd!
-  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
-augroup END
-
-" -----------------------------------------------------
-" HTML/CSS
-" -----------------------------------------------------
-
-" Less
-Plug 'git://github.com/groenewege/vim-less.git'
-" Better Markdown
-Plug 'https://github.com/tpope/vim-markdown.git'
-
-" -----------------------------------------------------
 " Interface improvement
 " -----------------------------------------------------
 
-" NERDTree
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-" nice arrow
-let g:NERDTreeDirArrows = 1
-" not so much cruft
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowBookmarks = 1
-hi def link NERDTreeRO Normal
-hi def link NERDTreePart StatusLine
-hi def link NERDTreeDirSlash Directory
-hi def link NERDTreeCurrentNode Search
-hi def link NERDTreeCWD Normal
-" Not so much color
-let g:NERDChristmasTree = 0
-" NERDTreeSideBar
-Plug 'https://github.com/jistr/vim-nerdtree-tabs'
-" don't auto open NERDTree
-let g:nerdtree_tabs_open_on_gui_startup = 1
 " Unite (Files, Buffers, Commands, etc. fuzzy searcher)
 Plug 'Shougo/unite.vim'
 " A lighterweight Powerline
@@ -86,7 +28,7 @@ Plug 'http://github.com/sjl/gundo.vim.git'
 nnoremap <D-U> :GundoToggle<CR>
 let g:gundo_close_on_revert=1
 " Ctrl-p
-Plug 'git://github.com/kien/ctrlp.vim.git'
+Plug 'kien/ctrlp.vim'
 " splliting right after helps preserver left nav
 set splitright
 " jump to exisiting buffer on any open command
@@ -106,28 +48,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_mruf_max = 250
 let g:ctrlp_max_depth = 7
 let g:ctrlp_max_files = 30000
-
-" -----------------------------------------------------
-" External tools intergration plugins
-" -----------------------------------------------------
-
-" FuGITive
-Plug 'tpope/vim-fugitive'
-
-" -----------------------------------------------------
-" Text insertion/manipulation
-" -----------------------------------------------------
-
-" Surround (cs"')
-Plug 'tpope/vim-surround'
-" Use arrow keys in block mode to move things around
-Plug 'gavinbeatty/dragvisuals.vim'
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-" Remove any introduced trailing whitespace after moving
-let g:DVB_TrimWS = 1
 
 " -----------------------------------------------------
 " Colorschemes
@@ -152,6 +72,7 @@ Plug 'https://github.com/ryanoasis/vim-webdevicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+Plug 'https://github.com/ajh17/Spacegray.vim'
 
 " -----------------------------------------------------
 " Dependencies
@@ -159,8 +80,6 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 
 " Async processing (for Unite)
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Allow plugins to tap into repeating
-Plug 'tpope/vim-repeat'
 
 " -----------------------------------------------------
 " Other
@@ -203,5 +122,3 @@ Plug 'https://github.com/AndrewRadev/undoquit.vim'
 map <D-T> <Esc>:Undoquit<CR>
 
 Plug 'https://github.com/unblevable/quick-scope'
-
-call plug#end()

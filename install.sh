@@ -16,11 +16,13 @@ ln -s `pwd`/git/dotGitconfig ~/.gitconfig
 # vim
 ln -s `pwd`/vim/dotVim ~/.vim
 ln -s `pwd`/vim/dotVimRc ~/.vimrc
+
+# macvim
 ln -s `pwd`/vim/dotGVimRc ~/.gvimrc
 
 # neovim
 ln -s `pwd`/vim/dotVim ~/.nvim
-ln -s `pwd`/vim/dotVimRc ~/.nvimrc
+ln -s `pwd`/vim/dotNVimRc ~/.nvimrc
 
 if [ "$(uname)" == "Darwin" ]; then
   echo "Running on OSX"

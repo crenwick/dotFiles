@@ -1,0 +1,58 @@
+" -----------------------------------------------------
+" Colorschemes
+" -----------------------------------------------------
+
+Plug 'chriskempson/base16-vim'
+
+" -----------------------------------------------------
+" Language agnostic plugins
+" -----------------------------------------------------
+
+Plug 'SirVer/ultisnips'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-surround'
+Plug 'gavinbeatty/dragvisuals.vim'
+
+" -----------------------------------------------------
+" External tools intergration plugins
+" -----------------------------------------------------
+
+Plug 'tpope/vim-fugitive'
+
+" -----------------------------------------------------
+" Javascript
+" -----------------------------------------------------
+
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'vim-scripts/JavaScript-Indent'
+Plug 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+Plug 'jordwalke/VimJSDocSnippets'
+let g:JSDocSnippetsMapping='<D-C>'
+Plug 'junegunn/rainbow_parentheses.vim'
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+augroup rainbow_js
+  autocmd!
+  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
+augroup END
+
+" -----------------------------------------------------
+" HTML/CSS
+" -----------------------------------------------------
+
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+
+" -----------------------------------------------------
+" Interface improvement
+" -----------------------------------------------------
+
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
+Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
+Plug 'kien/ctrlp.vim'
+
+" -----------------------------------------------------
+" Dependencies
+" -----------------------------------------------------
+
+Plug 'tpope/vim-repeat'

@@ -1,13 +1,13 @@
 # DotFiles
-v3.0
+v3.1
 
 ## Contents
 
 - bashrc configuration
-- vim configuration
 - git configuration
-- Node.js / iojs setup (nvm)
-- Homebrew files (+ cask)
+- vim configuration (macvim and neovim)
+- nvm configuration (node.js and iojs)
+- homebrew files (+ cask)
 
 ## Install
 
@@ -18,7 +18,7 @@ v3.0
 ## Vim Setup
 
 1. Install plugins:
-  - run `vim +PlugInstall`.
+  - run `vim +PlugInstall` (or `nvim +PlugInstall`).
   - Vim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug).
 1. Install the [Inconsolata + Powerline + NerdFile + webDev Icons](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/Inconsolata%20for%20Powerline%20Plus%20Nerd%20File%20Types%20Mono%20Plus%20Font%20Awesome%20Plus%20Octicons%20Plus%20Pomicons.otf) font.
 1. Make your MacVim use the [VimBox](https://github.com/jordwalke/VimBox) icon.

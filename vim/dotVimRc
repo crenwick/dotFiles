@@ -124,8 +124,11 @@ let g:markdown_fenced_languages = [
 " automatically reload vimrc when its saved
 au BufWritePost .vimrc so ~/.vimrc
 
+call plug#begin()
 " SOURCE THE BUNDLE FILE HERE
+source ~/.vim/bundlesBothVimRc
 source ~/.vim/bundlesVimRc
+call plug#end()
 
 source ~/.vim/guiSettingsVimRc
 
@@ -140,8 +143,6 @@ nnoremap gV `[v`]
 
 " let mapleader=','
 let mapleader = "\<Space>"
-" append a semicolon to the line
-nnoremap <leader>; $a;<Esc>
 
 " keyboard shortcuts
 " hjkl keys navigate buffer splits
