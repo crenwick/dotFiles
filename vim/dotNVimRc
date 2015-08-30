@@ -1,7 +1,7 @@
 call plug#begin()
 
-source ~/.vim/bundlesBothVimRc
-source ~/.vim/bundlesNeoVimRc
+source $HOME/.vim/bundlesBothVimRc
+source $HOME/.vim/bundlesNeoVimRc
 
 call plug#end()
 
@@ -15,7 +15,7 @@ set autoread          " reload files when changed on disk
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
-set title             " Set terminal title              " Set terminal title
+set title             " Set terminal title
 set history=500
 
 " Tab control
@@ -28,12 +28,20 @@ set clipboard=unnamed " yank and paste with the system clipboard
 " Code folding settings
 set foldmethod=indent
 set nofoldenable      " Remove ugly folds
+set diffopt=filler,context:9999 "nofold in diff mode
 
 " -----------------------------------------------------
 " User Interface
 " -----------------------------------------------------
 set wildmenu          " enhanced command line completion
 set wildmode=longest,list,full
+set wildignore=log/**,target/**
+set wildignore+=*.DS_Store
+set wildignore+=*/_build**
+set wildignore+=*/node_modules/**
+set wildignore+=target/**
+set wildignore+=tmp/**
+set wildignore+=.meteor/local/**
 set hidden            " allow buffer to be hidden when writing to disk
 set scrolloff=5       " show context above/below cursor line
 set shell=$SHELL
@@ -94,45 +102,81 @@ noremap <C-l> <C-w>l
 
 " to save all files
 nnoremap <Leader>w :wa<CR>
-" enter visual line mode:
+
+" enter visual line mode
 nmap <Leader><Leader> V
+
+" Get rid of trailing whitespace
+nnoremap <leader>WW :%s/\s\+$//<CR>
 
 " -----------------------------------------------------
 " Plugins
 " -----------------------------------------------------
+" :Neomake
+let g:neomake_error_sign = {
+    \ 'text': '✕',
+    \ 'texthl': 'ErrorMsg',
+    \ }
+
+let g:neomake_warning_sign = {
+    \ 'text': '▵',
+    \ 'texthl': 'WarningMsg',
+    \ }
+hi WarningMsg ctermfg=3 ctermbg=18
+hi ErrorMsg ctermfg=1 ctermbg=18
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWritePost * Neomake
 
 " :ultisnips
-let g:UltiSnipsSnippetsDir='~/.vim'
+let g:UltiSnipsSnippetsDir=$HOME . '/.vim'
 let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
 
-" :NERDTree and :NERDTreeTabs
-nnoremap <leader>d :NERDTreeTabsToggle<CR>
-nnoremap <leader>f :NERDTreeTabsFind<CR>
-" nice arrow
-let g:NERDTreeDirArrows = 1
-" not so much cruft
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowBookmarks = 1
-hi def link NERDTreeRO Normal
-hi def link NERDTreePart StatusLine
-hi def link NERDTreeDirSlash Directory
-hi def link NERDTreeCurrentNode Search
-hi def link NERDTreeCWD Normal
-" Not so much color
-let g:NERDChristmasTree = 0
-
-" :NERDTreeTabs
-" don't auto open NERDTree
-let g:nerdtree_tabs_open_on_gui_startup = 1
-
-" :CtrlP
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+" :TComment
+vmap <D-/> <c-_><c-_>
+vmap <D-s-/> <c-_>b
+" mapping to `gc` doesn't toggle one visually selected line - only multiples.
+nmap <D-/> gc$
 
 " :dragvisuals
 vmap  <expr>  <LEFT>   DVB_Drag('left')
 vmap  <expr>  <RIGHT>  DVB_Drag('right')
 vmap  <expr>  <DOWN>   DVB_Drag('down')
 vmap  <expr>  <UP>     DVB_Drag('up')
-" Remove any introduced trailing whitespace after moving
-let g:DVB_TrimWS = 1
+let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
+
+" :fugitive
+nnoremap <leader>gs :Gstatus<CR>
+
+" :vim-jsx
+let g:jsx_ext_required = 0
+
+" :VimJSDocSnippets
+let g:JSDocSnippetsMapping='<D-C>'
+
+" :rainbow_parentheses
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+augroup rainbow_js
+  autocmd!
+  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
+augroup END
+
+" :NERDTree
+let g:NERDTreeDirArrows = 1 " nice arrow
+let g:NERDTreeMinimalUI = 1 " not so much cruft
+let g:NERDTreeShowBookmarks = 1
+hi def link NERDTreeRO Normal
+hi def link NERDTreePart StatusLine
+hi def link NERDTreeDirSlash Directory
+hi def link NERDTreeCurrentNode Search
+hi def link NERDTreeCWD Normal
+let g:NERDChristmasTree = 0 " Not so much color
+
+" :NERDTreeTabs
+nnoremap <leader>d :NERDTreeTabsToggle<CR>
+nnoremap <leader>f :NERDTreeTabsFind<CR>
+" don't auto open NERDTree
+let g:nerdtree_tabs_open_on_gui_startup = 1
+
+" :CtrlP
+nnoremap <leader>t :CtrlP<CR>
+nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>

@@ -1,9 +1,36 @@
 " -----------------------------------------------------
+" Colorschemes
+" -----------------------------------------------------
+
+" Collection of Clean Vim ColorSchemes with Airline Themes
+Plug 'jordwalke/VimCleanColors'
+
+" Solarized
+Plug 'git://github.com/altercation/vim-colors-solarized'
+" default value is 1
+let g:solarized_underline=0
+" default value is 16
+let g:solarized_termcolors=256
+" default value is normal
+let g:solarized_contrast='high'
+" default value is normal
+let g:solarized_visibility='high'
+
+" Flatlandia (for MacVim)
+Plug 'git://github.com/jordwalke/flatlandia'
+
+" Web Dev Icons
+Plug 'https://github.com/ryanoasis/vim-webdevicons'
+let g:WebDevIconsUnicodeDecorateFolderNodes = 0
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+
+Plug 'https://github.com/ajh17/Spacegray.vim'
+
+" -----------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------
 
-" splitjoin (`gS` and `gJ`)
-Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 " ACP Forked
 Plug 'https://github.com/jordwalke/AutoComplPop'
 let g:acp_ignorecaseOption = 1
@@ -14,21 +41,23 @@ let g:acp_ignorecaseOption = 1
 
 " Unite (Files, Buffers, Commands, etc. fuzzy searcher)
 Plug 'Shougo/unite.vim'
+
 " A lighterweight Powerline
 Plug 'https://github.com/jordwalke/vim-airline'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 " Disable truncation
 let g:airline#extensions#default#section_truncate_width = {}
+
 " Custom Resizing for SplitBalancer
 Plug 'jordwalke/VimSplitBalancer'
-" GUndo
+
 " Visualize a tree of your document history
 Plug 'http://github.com/sjl/gundo.vim.git'
 nnoremap <D-U> :GundoToggle<CR>
 let g:gundo_close_on_revert=1
-" Ctrl-p
-Plug 'kien/ctrlp.vim'
+
+" :Ctrl-p
 " splliting right after helps preserver left nav
 set splitright
 " jump to exisiting buffer on any open command
@@ -48,31 +77,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_mruf_max = 250
 let g:ctrlp_max_depth = 7
 let g:ctrlp_max_files = 30000
-
-" -----------------------------------------------------
-" Colorschemes
-" -----------------------------------------------------
-
-" Collection of Clean Vim ColorSchemes with Airline Themes
-Plug 'jordwalke/VimCleanColors'
-" Solarized
-Plug 'git://github.com/altercation/vim-colors-solarized'
-" default value is 1
-let g:solarized_underline=0
-" default value is 16
-let g:solarized_termcolors=256
-" default value is normal
-let g:solarized_contrast='high'
-" default value is normal
-let g:solarized_visibility='high'
-" Flatlandia (for MacVim)
-Plug 'git://github.com/jordwalke/flatlandia'
-" Web Dev Icons
-Plug 'https://github.com/ryanoasis/vim-webdevicons'
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
-Plug 'https://github.com/ajh17/Spacegray.vim'
 
 " -----------------------------------------------------
 " Dependencies
@@ -111,14 +115,8 @@ vnoremap <silent> <c-d> <c-d>
 
 " Combine Previous Plugins For Modern Completion Experience
 Plug 'jordwalke/VimCompleteLikeAModernEditor'
-" tells the snippet system to look for custom snippets in ~/.vim/myUltiSnippets
 
-" Parameter Text Objects
 " ciP  (change in paramater  - changes the single argument under cursor!
 Plug 'git://github.com/vim-scripts/Parameter-Text-Objects.git'
-
-" Undo Quit of a window
-Plug 'https://github.com/AndrewRadev/undoquit.vim'
-map <D-T> <Esc>:Undoquit<CR>
 
 Plug 'https://github.com/unblevable/quick-scope'

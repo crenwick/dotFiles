@@ -1,5 +1,10 @@
-" crenwick dotVimRc
-"
+call plug#begin()
+
+source $HOME/.vim/bundlesBothVimRc
+source $HOME/.vim/bundlesVimRc
+
+call plug#end()
+
 " Mac ProTips:
 "  To further improve the text rendering on Mac OSX:
 "  1. From the shell:
@@ -10,60 +15,38 @@
 "  bold: This should fix it:
 "   defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
 
-filetype plugin on
-filetype indent on
+" -----------------------------------------------------
+" General
+" -----------------------------------------------------
 
-" Vundle Scripts
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" sourcing before custom scripts can go here
-
-set noswapfile        " Don't make backups.
-set nowritebackup     " Even if you did make a backup, don't keep it around.
-set nobackup
-
-syntax on             " enable syntax highlighting
-
-set title hlsearch history=500
-set smartindent
-set autoindent
-set mouse=a           " click tabs, drag tabs, and drag split bars
+set nocompatible      " not compatible with vi
 set autoread          " reload files when changed on disk,
-                      " i.e. via `git checkout`
-set clipboard=unnamed " yank and paste with the system clipboard
-set directory-=.      " don't store swapfiles in the current directory
-set expandtab         " expand tabs to spaces
-set ignorecase        " case-insensitive search
-set smartcase         " case-sensitive search if any caps
-set incsearch         " search as you type
-" set laststatus=2      " always show status
-set number            " show line numbers
-set ruler             " show where you are
-set scrolloff=5       " show context above/below cursor line
-set sidescroll=1
-set shiftwidth=2      " normal mode indentation commands uses 2 spaces
+
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+set title             " Set terminal title
+set history=500
+
+" Tab control
 set softtabstop=2     " insert mode tab and backspace uses 2 spaces
-set tabstop=2         " actual tab uses 8 spaces
-set showmatch         " highlight matching on {[()]}
-set list              " show trailing whitespace
-set listchars=""
-set listchars=tab:\ \
-set listchars+=trail:.
-set tabpagemax=30
-set showcmd           " show current command going on
-set wildignore=log/**,target/**
+set shiftwidth=2      " normal mode indentation commands uses 2 spaces
+
+set mouse=a           " click tabs, drag tabs, and drag split bars
+set clipboard=unnamed " yank and paste with the system clipboard
+
+" code folding settings
+set foldmethod=indent
+set nofoldenable      " Remove ugly folds
+set diffopt=filler,context:9999 "nofold in diff mode
+
+" -----------------------------------------------------
+" User Interface
+" -----------------------------------------------------
+
 set wildmenu          " show a navigable menu for tab completion
 set wildmode=longest,list,full
-set hidden            " allow buffer to be hidden when writing to disk
-
-" Mac Support bootstrap
+set wildignore=log/**,target/**
 set wildignore+=*.DS_Store
 set wildignore+=*/_build**
 set wildignore+=*/node_modules/**
@@ -71,16 +54,166 @@ set wildignore+=target/**
 set wildignore+=tmp/**
 set wildignore+=.meteor/local/**
 
-set foldmethod=indent
-set nofoldenable      " Remove ugly folds
-" nofoldenable doesn't work in diff mode so do something similar
-set diffopt=filler,context:9999
+set hidden            " allow buffer to be hidden when writing to disk
+set scrolloff=5       " show context above/below cursor line
+set sidescroll=1
+
+set shell=/bin/bash\ -li
+" fix shell?
+if &shell =~# 'fish$'
+  set shell=sh
+endif
+
+" Searching
+set ignorecase        " case-insensitive search
+set smartcase         " case-sensitive search if any caps
+set hlsearch
+set incsearch         " search as you type
+
+set showmatch         " highlight matching on {[()]}
+
+" Error bells
+set noerrorbells
+set visualbell
+
+syntax on             " enable syntax highlighting
+
+set number            " show line numbers
+
+set autoindent
+set smartindent
+
+" highlight the 81st character in each line
+highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
+autocmd WinEnter * match MyLineTooLongMarker '\%81v'
+
+" -----------------------------------------------------
+" Files, backups and undo
+" -----------------------------------------------------
+
+set noswapfile        " Don't make backups.
+set nowritebackup     " Even if you did make a backup, don't keep it around.
+set nobackup
+
+" -----------------------------------------------------
+" Statusline
+" -----------------------------------------------------
+
+" set laststatus=2      " always show status
+
+" -----------------------------------------------------
+" Mappings
+" -----------------------------------------------------
+
+" hjkl keys navigate buffer splits
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" to save all files
+nnoremap <Leader>w :wa<CR>
+
+" enter visual line mode:
+nmap <Leader><Leader> V
+
+" Get rid of trailing whitespace
+nnoremap <leader>WW :%s/\s\+$//<CR>
+
+" buffer nav shortcuts
+nnoremap <leader>b :ls<CR>
+nnoremap <leader>H :bn<CR>
+nnoremap <leader>L :bp<CR>
+
+" -----------------------------------------------------
+" Plugins
+" -----------------------------------------------------
+
+" :ultisnips
+let g:UltiSnipsSnippetsDir=$HOME . '/.vim'
+let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
+
+" :TComment
+vmap <D-/> <c-_><c-_>
+vmap <D-s-/> <c-_>b
+" mapping to `gc` doesn't toggle one visually selected line - only multiples.
+nmap <D-/> gc$
+
+" :dragvisuals
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
+
+" :fugitive
+nnoremap <leader>gs :Gstatus<CR>
+
+" :vim-jsx
+let g:jsx_ext_required = 0
+
+" :VimJSDocSnippets
+let g:JSDocSnippetsMapping='<D-C>'
+
+" :rainbow_parentheses
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+augroup rainbow_js
+  autocmd!
+  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
+augroup END
+
+" :NERDTree
+let g:NERDTreeDirArrows = 1 " nice arrow
+let g:NERDTreeMinimalUI = 1 " not so much cruft
+let g:NERDTreeShowBookmarks = 1
+hi def link NERDTreeRO Normal
+hi def link NERDTreePart StatusLine
+hi def link NERDTreeDirSlash Directory
+hi def link NERDTreeCurrentNode Search
+hi def link NERDTreeCWD Normal
+let g:NERDChristmasTree = 0 " Not so much color
+
+" :NERDTreeTabs
+nnoremap <leader>d :NERDTreeTabsToggle<CR>
+nnoremap <leader>f :NERDTreeTabsFind<CR>
+
+" :CtrlP
+nnoremap <leader>t :CtrlP<CR>
+nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+
+
+
+
+
+
+
+
+
+
+" -----------------------------------------------------
+" -----------------------------------------------------
+filetype plugin on
+filetype indent on
+
+" sourcing before custom scripts can go here
+
+set directory-=.      " don't store swapfiles in the current directory
+set expandtab         " expand tabs to spaces
+set ruler             " show where you are
+set tabstop=2         " actual tab uses 8 spaces
+set list              " show trailing whitespace
+set listchars=""
+set listchars=tab:\ \
+set listchars+=trail:.
+set tabpagemax=30
+set showcmd           " show current command going on
 
 " Configure as Privacy Plugin
 " All sensitive data is not stored in your ~/.vimrc folder
 " Configure the spelling language and file.
 set spelllang=en
 set spellfile=$HOME/vim_spell/en.utf-8.add
+
 " UndoDir:
 let s:homeFolder = $HOME
 let s:undoDir = s:homeFolder . '/vimUndo'
@@ -95,10 +228,6 @@ endif
 execute "set undodir=".s:undoDir
 " Since your file/folder history may show up in a git commit!
 let g:netrw_dirhistmax=0
-" FIX SHELL
-if &shell =~# 'fish$'
-    set shell=sh
-endif
 
 " stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
 set switchbuf+=usetab,newtab
@@ -122,73 +251,6 @@ let g:markdown_fenced_languages = [
   \ 'sh' ]
 
 " automatically reload vimrc when its saved
-au BufWritePost .vimrc so ~/.vimrc
+au BufWritePost .vimrc so $HOME/.vimrc
 
-call plug#begin()
-" SOURCE THE BUNDLE FILE HERE
-source ~/.vim/bundlesBothVimRc
-source ~/.vim/bundlesVimRc
-call plug#end()
-
-source ~/.vim/guiSettingsVimRc
-
-" highlight the 81st character in each line
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-call matchadd('MyLineTooLongMarker', '\%81v', 100)
-
-" source ~/.vim/keysVimRc
-
-" highlight last inserted text
-nnoremap gV `[v`]
-
-" let mapleader=','
-let mapleader = "\<Space>"
-
-" keyboard shortcuts
-" hjkl keys navigate buffer splits
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
-" buffer nav shortcuts
-nnoremap <leader>b :ls<CR>
-nnoremap <leader>H :bn<CR>
-nnoremap <leader>L :bp<CR>
-
-" to save all files
-nnoremap <Leader>w :wa<CR>
-" enter visual line mode:
-nmap <Leader><Leader> V
-
-" highlight the 80st character in each line
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-autocmd WinEnter * match MyLineTooLongMarker '\%81v'
-" call matchadd('MyLineTooLongMarker', '\%80v', 100)
-
-" requires :NERDTree and :NERDTreeTabs
-nnoremap <leader>d :NERDTreeTabsToggle<CR>
-nnoremap <leader>f :NERDTreeTabsFind<CR>
-
-" requires :CtrlP
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-
-" requires fugitive
-nnoremap <leader>gs :Gstatus<CR>
-
-" TComment
-"Toggle comment
-"mapping to `gc` doesn't toggle one visually selected line - only multiples.
-vmap <D-/> <c-_><c-_>
-vmap <D-s-/> <c-_>b
-nmap <D-/> gc$
-
-" Get rid of trailing whitespace
-nnoremap <leader>WW :%s/\s\+$//<CR>
-
-" source ~/.vim/customFunctions.vim
-
-" source ~/.vim/vimrc.custom.after
-
-set shell=/bin/bash\ -li
+source $HOME/.vim/guiSettingsVimRc

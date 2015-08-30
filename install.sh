@@ -5,26 +5,27 @@ echo "Installing dotfiles"
 echo "Initializing submodule(s)"
 git submodule update --init --recursive
 
-echo "creating symlinks"
-# bash
-ln -s `pwd`/bash/dotBash_profile ~/.bash_profile
-
-# git
-ln -s `pwd`/git/dotGitignore_global ~/.gitignore_global
-ln -s `pwd`/git/dotGitconfig ~/.gitconfig
-
-# vim
-ln -s `pwd`/vim/dotVim ~/.vim
-ln -s `pwd`/vim/dotVimRc ~/.vimrc
-
-# macvim
-ln -s `pwd`/vim/dotGVimRc ~/.gvimrc
-
-# neovim
-ln -s `pwd`/vim/dotVim ~/.nvim
-ln -s `pwd`/vim/dotNVimRc ~/.nvimrc
-
 if [ "$(uname)" == "Darwin" ]; then
+  echo "creating symlinks"
+
+  # bash
+  ln -s `pwd`/bash/dotBash_profile $HOME/.bash_profile
+
+  # git
+  ln -s `pwd`/git/dotGitignore_global $HOME/.gitignore_global
+  ln -s `pwd`/git/dotGitconfig $HOME/.gitconfig
+
+  # vim
+  ln -s `pwd`/vim/dotVim $HOME/.vim
+  ln -s `pwd`/vim/dotVimRc $HOME/.vimrc
+
+  # macvim
+  ln -s `pwd`/vim/dotGVimRc $HOME/.gvimrc
+
+  # neovim
+  ln -s `pwd`/vim/dotVim $HOME/.nvim
+  ln -s `pwd`/vim/dotNVimRc $HOME/.nvimrc
+
   echo "Running on OSX"
 
   echo "Brewing..."

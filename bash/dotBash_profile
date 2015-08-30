@@ -12,6 +12,10 @@ alias showDesktopFiles='defaults write com.apple.finder CreateDesktop -bool true
 alias showAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # nvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
