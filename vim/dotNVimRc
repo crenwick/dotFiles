@@ -114,17 +114,18 @@ nnoremap <leader>WW :%s/\s\+$//<CR>
 " -----------------------------------------------------
 " :Neomake
 let g:neomake_error_sign = {
-    \ 'text': '✕',
+    \ 'text': '💩',
     \ 'texthl': 'ErrorMsg',
     \ }
 
 let g:neomake_warning_sign = {
-    \ 'text': '▵',
+    \ 'text': '😷',
     \ 'texthl': 'WarningMsg',
     \ }
 hi WarningMsg ctermfg=3 ctermbg=18
 hi ErrorMsg ctermfg=1 ctermbg=18
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
 
 " :ultisnips

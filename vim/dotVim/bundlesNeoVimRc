@@ -8,4 +8,5 @@ Plug 'tomasr/molokai'
 " -----------------------------------------------------
 " Language agnoustic
 " -----------------------------------------------------
+
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
