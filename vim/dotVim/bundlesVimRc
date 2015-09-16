@@ -32,8 +32,6 @@ Plug 'https://github.com/ajh17/Spacegray.vim'
 " -----------------------------------------------------
 
 " ACP Forked
-Plug 'https://github.com/jordwalke/AutoComplPop'
-let g:acp_ignorecaseOption = 1
 
 " -----------------------------------------------------
 " Interface improvement
@@ -43,7 +41,8 @@ let g:acp_ignorecaseOption = 1
 Plug 'Shougo/unite.vim'
 
 " A lighterweight Powerline
-Plug 'https://github.com/jordwalke/vim-airline'
+Plug 'bling/vim-airline'
+" Plug 'https://github.com/jordwalke/vim-airline'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 " Disable truncation
@@ -57,26 +56,7 @@ Plug 'http://github.com/sjl/gundo.vim.git'
 nnoremap <D-U> :GundoToggle<CR>
 let g:gundo_close_on_revert=1
 
-" :Ctrl-p
-" splliting right after helps preserver left nav
-set splitright
-" jump to exisiting buffer on any open command
-let g:ctrlp_switch_buffer='ETVH'
-" search for nearest ancestor like .git, .hg,
-" else the directory of the current file
-let g:ctrlp_working_path_mode = 'a'
-" show the match window at the top of the screen
-let g:ctrlp_match_window_bottom = 1
-" enable caching
-let g:ctrlp_use_caching = 1
-" speed up by not removing clearing cache evertime
-let g:ctrlp_clear_cache_on_exit=0
-" show me dotfiles
-let g:ctrlp_show_hidden = 1
-" number of recently opened files
-let g:ctrlp_mruf_max = 250
-let g:ctrlp_max_depth = 7
-let g:ctrlp_max_files = 30000
+Plug 'terryma/vim-smooth-scroll'
 
 " -----------------------------------------------------
 " Dependencies
@@ -104,19 +84,9 @@ map <D-Cr> :SmartGUITabsToggleFullScreen<CR>
 imap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
 nmap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
 
-" Smooth-Scroll
-Plug 'terryma/vim-smooth-scroll'
-" Normal mode
-noremap <silent> <c-u> :call smooth_scroll#up(40, 20, 6)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
-" smooth_scroll is broken in visual mode currently - unmap
-vnoremap <silent> <c-u> <c-u>
-vnoremap <silent> <c-d> <c-d>
 
 " Combine Previous Plugins For Modern Completion Experience
-Plug 'jordwalke/VimCompleteLikeAModernEditor'
 
 " ciP  (change in paramater  - changes the single argument under cursor!
 Plug 'git://github.com/vim-scripts/Parameter-Text-Objects.git'
 
-Plug 'https://github.com/unblevable/quick-scope'

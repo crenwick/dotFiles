@@ -1,5 +1,5 @@
 # DotFiles
-v3.1
+v3.2
 
 ## Contents
 

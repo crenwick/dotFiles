@@ -146,6 +146,9 @@ vmap  <expr>  <DOWN>   DVB_Drag('down')
 vmap  <expr>  <UP>     DVB_Drag('up')
 let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
 
+" :AutoComplPop
+let g:acp_ignorecaseOption = 1
+
 " :fugitive
 nnoremap <leader>gs :Gstatus<CR>
 
@@ -180,6 +183,33 @@ nnoremap <leader>f :NERDTreeTabsFind<CR>
 " :CtrlP
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+" splliting right after helps preserver left nav
+set splitright
+" jump to exisiting buffer on any open command
+let g:ctrlp_switch_buffer='ETVH'
+" search for nearest ancestor like .git, .hg,
+" else the directory of the current file
+let g:ctrlp_working_path_mode = 'a'
+" show the match window at the top of the screen
+let g:ctrlp_match_window_bottom = 1
+" enable caching
+let g:ctrlp_use_caching = 1
+" speed up by not removing clearing cache evertime
+let g:ctrlp_clear_cache_on_exit=0
+" show me dotfiles
+let g:ctrlp_show_hidden = 1
+" number of recently opened files
+let g:ctrlp_mruf_max = 250
+let g:ctrlp_max_depth = 7
+let g:ctrlp_max_files = 30000
+
+" :vim-smooth-scroll
+" Normal mode
+noremap <silent> <c-u> :call smooth_scroll#up(40, 20, 6)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
+" smooth_scroll is broken in visual mode currently - unmap
+vnoremap <silent> <c-u> <c-u>
+vnoremap <silent> <c-d> <c-d>
 
 
 
@@ -249,8 +279,5 @@ let g:markdown_fenced_languages = [
   \ 'xml',
   \ 'html',
   \ 'sh' ]
-
-" automatically reload vimrc when its saved
-au BufWritePost .vimrc so $HOME/.vimrc
 
 source $HOME/.vim/guiSettingsVimRc

@@ -16,14 +16,23 @@ let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
 set title             " Set terminal title
+set ruler             " show where you are
 set history=500
 
 " Tab control
 set softtabstop=2     " insert mode tab and backspace uses 2 spaces
 set shiftwidth=2      " normal mode indentation commands uses 2 spaces
+set expandtab         " expand tabs to spaces
+set tabstop=2         " actual tab uses 8 spaces
 
 set mouse=a           " click tabs, drag tabs, and drag split bars
 set clipboard=unnamed " yank and paste with the system clipboard
+
+set list              " show trailing whitespace
+set listchars=""
+set listchars=tab:\ \
+set listchars+=trail:.
+set tabpagemax=30
 
 " Code folding settings
 set foldmethod=indent
@@ -34,7 +43,7 @@ set diffopt=filler,context:9999 "nofold in diff mode
 " User Interface
 " -----------------------------------------------------
 set wildmenu          " enhanced command line completion
-set wildmode=longest,list,full
+set wildmode=list:longest,full
 set wildignore=log/**,target/**
 set wildignore+=*.DS_Store
 set wildignore+=*/_build**
@@ -68,7 +77,7 @@ set t_Co=256          " explicitly tell vim the terminal supports 256
 set background=dark
 colorscheme base16-chalk
 
-set number
+set number            " show the current line number
 
 set autoindent        " automatically set indent of new line
 set smartindent
@@ -109,6 +118,13 @@ nmap <Leader><Leader> V
 " Get rid of trailing whitespace
 nnoremap <leader>WW :%s/\s\+$//<CR>
 
+" nvim-terminal-emulator
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+
 " -----------------------------------------------------
 " Plugins
 " -----------------------------------------------------
@@ -144,6 +160,9 @@ vmap  <expr>  <RIGHT>  DVB_Drag('right')
 vmap  <expr>  <DOWN>   DVB_Drag('down')
 vmap  <expr>  <UP>     DVB_Drag('up')
 let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
+
+" :AutoComplPop
+let g:acp_ignorecaseOption = 1
 
 " :fugitive
 nnoremap <leader>gs :Gstatus<CR>
@@ -181,3 +200,4 @@ let g:nerdtree_tabs_open_on_gui_startup = 1
 " :CtrlP
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+noremap <C-h> <C-w>h

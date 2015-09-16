@@ -7,6 +7,9 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gavinbeatty/dragvisuals.vim'
+Plug 'jordwalke/AutoComplPop'
+Plug 'jordwalke/VimCompleteLikeAModernEditor'
+Plug 'unblevable/quick-scope'
 
 " -----------------------------------------------------
 " External tools intergration plugins
@@ -18,11 +21,12 @@ Plug 'tpope/vim-fugitive'
 " Javascript
 " -----------------------------------------------------
 
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'vim-scripts/JavaScript-Indent'
-Plug 'mxw/vim-jsx'
-Plug 'jordwalke/VimJSDocSnippets'
-Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 
 " -----------------------------------------------------
 " HTML/CSS
@@ -38,6 +42,7 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
 Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
+Plug 'bling/vim-airline'
 
 " -----------------------------------------------------
 " Dependencies
