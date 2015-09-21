@@ -1,7 +1,12 @@
 #! /bin/bash
 # see http://jeetworks.org/node/90
-if [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]
+if [[ -f /usr/local/bin/nvim ]]
 then
+    # neovim
+    VIMPATH='nvim -d -O'
+elif [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]
+then
+    # macvim
     # bypass mvim for speed
     VIMPATH='/Applications/MacVim.app/Contents/MacOS/Vim -g -O -f --nomru'
 elif [[ -f /usr/local/bin/mvim ]]
@@ -14,4 +19,3 @@ else
 fi
 
 $VIMPATH '+windo set diff scrollbind scrollopt+=hor nowrap' -c 'au VimLeave * !open -a iTerm' $@
-

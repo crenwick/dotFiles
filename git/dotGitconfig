@@ -5,6 +5,7 @@
     user = crewnick
 [alias]
     s = status
+    c = commit
     co = checkout
     sub = submodule
     br = branch -v
@@ -44,11 +45,11 @@
 [diff]
     tool = default-difftool
 [difftool]
-    promt = false
+    prompt = true
 [difftool "default-difftool"]
-    cmd = "~/.vim/mvimgitdiff.sh " $LOCAL $REMOTE
+    cmd = "~/.vim/vimgitdiff.sh " $LOCAL $REMOTE
 [credential]
     helper = osxkeychain
 [core]
     excludefiles = ~/.gitignore_global
-    editor = vim
+    editor = nvim
