@@ -116,7 +116,7 @@ nnoremap <Leader>w :wa<CR>
 nmap <Leader><Leader> V
 
 " Get rid of trailing whitespace
-nnoremap <leader>WW :%s/\s\+$//<CR>
+nnoremap <Leader>WW :%s/\s\+$//<CR>
 
 " nvim-terminal-emulator
 tnoremap <Esc> <C-\><C-n>
@@ -149,8 +149,8 @@ let g:UltiSnipsSnippetsDir=$HOME . '/.vim'
 let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
 
 " :TComment
-vmap <D-/> <c-_><c-_>
-vmap <D-s-/> <c-_>b
+vmap <Leader>c <c-_><c-_>
+vmap <Leader>C <c-_>b
 " mapping to `gc` doesn't toggle one visually selected line - only multiples.
 nmap <D-/> gc$
 

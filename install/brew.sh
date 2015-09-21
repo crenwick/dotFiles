@@ -10,7 +10,7 @@ echo "Installing homebrew packages..."
 # cli tools
 brew install tree
 brew install wget
-brew install bash-git-prompt
+brew install bash-git-prompt # gross
 
 # dev tools
 brew install git
@@ -22,6 +22,10 @@ brew install nvm
 # install neovim
 brew tap neovim/neovim
 brew install --HEAD neovim
+
+# -----------
+# current `brew list`
+# mongodb; python; redis; sshrc; sqlite; thefuck;
 
 # link the apps
 brew linkapps
