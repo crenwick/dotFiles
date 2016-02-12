@@ -2,6 +2,7 @@
 Thumbs.db
 *~
 *.swp
+*.netrwhist
 .AppleDouble
 .LSOverride
 Icon

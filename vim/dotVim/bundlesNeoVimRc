@@ -2,8 +2,8 @@
 " Colorschemes
 " -----------------------------------------------------
 
-Plug 'chriskempson/base16-vim'
 Plug 'tomasr/molokai'
+Plug 'https://github.com/ajh17/Spacegray.vim'
 
 " -----------------------------------------------------
 " Language agnoustic

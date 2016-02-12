@@ -17,7 +17,8 @@ brew install git
 brew install macvim --override-system-vim --with-cscope --python --HEAD
 brew install reattach-to-user-namespace
 brew install tmux
-brew install nvm
+brew install redis
+brew install carthage
 
 # install neovim
 brew tap neovim/neovim
@@ -25,7 +26,7 @@ brew install --HEAD neovim
 
 # -----------
 # current `brew list`
-# mongodb; python; redis; sshrc; sqlite; thefuck;
+# mongodb; python; sshrc; sqlite; thefuck;
 
 # link the apps
 brew linkapps

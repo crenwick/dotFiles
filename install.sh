@@ -34,8 +34,11 @@ if [ "$(uname)" == "Darwin" ]; then
   echo "Cask brewing..."
   source install/brewCask.sh
 
-  echo "Installing node (from nvm)"
-  source install/nvm.sh
+  echo "Installing node..."
+  source install/node.sh
+
+  # echo "Installing node (from nvm)"
+  # source install/nvm.sh
 fi
 
 echo "Done."
