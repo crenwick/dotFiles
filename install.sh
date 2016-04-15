@@ -9,7 +9,7 @@ if [ "$(uname)" == "Darwin" ]; then
   echo "creating symlinks"
 
   # bash
-  ln -s `pwd`/bash/dotBash_profile $HOME/.bash_profile
+  ln -s `pwd`/bash/dot.bash_profile $HOME/.bash_profile
 
   # git
   ln -s `pwd`/git/dotGitignore_global $HOME/.gitignore_global
@@ -35,10 +35,8 @@ if [ "$(uname)" == "Darwin" ]; then
   source install/brewCask.sh
 
   echo "Installing node..."
+  source install/nvm.sh
   source install/node.sh
-
-  # echo "Installing node (from nvm)"
-  # source install/nvm.sh
 fi
 
 echo "Done."

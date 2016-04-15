@@ -70,6 +70,11 @@ set visualbell
 
 syntax on             " enable syntax highlighting
 
+" set es to javascript syntax
+au BufNewFile,BufReadPost *.es6 set filetype=javascript
+au BufNewFile,BufReadPost *.json set filetype=javascript
+au BufRead,BufNewFile *.bash_profile set filetype=sh
+
 " Theme
 set encoding=utf8
 let base16colorspace=256

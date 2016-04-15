@@ -262,9 +262,6 @@ let g:netrw_dirhistmax=0
 " stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
 set switchbuf+=usetab,newtab
 
-" set es to javascript syntax
-au BufNewFile,BufReadPost *.es6 set filetype=javascript
-au BufNewFile,BufReadPost *.json set filetype=javascript
 
 " markdown with fenced code gets marked
 au BufNewFile,BufReadPost *.md set filetype=markdown
