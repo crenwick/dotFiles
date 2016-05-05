@@ -2,7 +2,7 @@ alias c='clear'
 alias g='git'
 alias ls='ls -GFh'
 
-alias cdg='cd ~/Grove'
+alias cdg='cd ~/Grove && cd ./'
 alias cdd='cd ~/Documents/'
 
 alias npmlist='npm list -g --depth=0'
@@ -32,7 +32,15 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
 fi
 
 # nvm
-# Only loads nvm when `node` or `npm` is called for the first time.
-alias load_nvm='export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
-alias node='unalias node npm && load_nvm && node'
-alias npm='unalias node npm && load_nvm && npm'
+# Only loads nvm when `node` or `npm` is called for the first time:
+# alias load_nvm='export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
+# alias node='unalias node npm && load_nvm && node'
+# alias npm='unalias node npm && load_nvm && npm'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Python imports
+export PYTHONPATH=:$PYTHONPATH
+
+# Swift REPL
+export TOOLCHAINS=swift
