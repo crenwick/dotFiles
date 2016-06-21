@@ -12,19 +12,17 @@ if [ "$(uname)" == "Darwin" ]; then
   ln -s `pwd`/bash/dot.bash_profile $HOME/.bash_profile
 
   # git
-  ln -s `pwd`/git/dotGitignore_global $HOME/.gitignore_global
-  ln -s `pwd`/git/dotGitconfig $HOME/.gitconfig
+  ln -s `pwd`/git/dot.gitignore_global $HOME/.gitignore_global
+  ln -s `pwd`/git/dot.gitconfig $HOME/.gitconfig
 
   # vim
   ln -s `pwd`/vim/dotVim $HOME/.vim
-  ln -s `pwd`/vim/dotVimRc $HOME/.vimrc
-
-  # macvim
-  ln -s `pwd`/vim/dotGVimRc $HOME/.gvimrc
+  ln -s `pwd`/vim/dot.vimrc $HOME/.vimrc
 
   # neovim
-  ln -s `pwd`/vim/dotVim $HOME/.nvim
-  ln -s `pwd`/vim/dotNVimRc $HOME/.nvimrc
+  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  ln -s `pwd`/vim/dotVim $XDG_CONFIG_HOME/nvim
+  ln -s `pwd`/vim/dot.nvimrc $XDG_CONFIG_HOME/nvim/init.vim
 
   echo "Running on OSX"
 

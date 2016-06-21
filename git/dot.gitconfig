@@ -9,6 +9,7 @@
     co = checkout
     sub = submodule
     br = branch -v
+    dt = difftool --no-prompt
 
     # show the last tag
     lt = describe --tags --abbrev=0
@@ -43,16 +44,14 @@
     # set up 'git pull' to rebase instead of merge
     autosetuprebase = always
 [diff]
-    tool = default-difftool
-[difftool]
-    prompt = true
-[difftool "default-difftool"]
+    tool = nvimdiff
+[difftool "nvimdiff"]
     cmd = "~/.vim/vimgitdiff.sh " $LOCAL $REMOTE
 [credential]
     helper = osxkeychain
 [core]
     excludefiles = ~/.gitignore_global
-    editor = nvim
+    editor = subl
 [rerere]
 	enabled = true
 	autoupdate = true

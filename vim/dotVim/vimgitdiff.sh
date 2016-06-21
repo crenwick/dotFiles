@@ -1,18 +1,9 @@
 #! /bin/bash
-# see http://jeetworks.org/node/90
+
 if [[ -f /usr/local/bin/nvim ]]
 then
     # neovim
     VIMPATH='nvim -d -O'
-elif [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]
-then
-    # macvim
-    # bypass mvim for speed
-    VIMPATH='/Applications/MacVim.app/Contents/MacOS/Vim -g -O -f --nomru'
-elif [[ -f /usr/local/bin/mvim ]]
-then
-    # fall back to mvim
-    VIMPATH='mvim -d -f --nomru'
 else
     # fall back to original vim
     VIMPATH='vimdiff'

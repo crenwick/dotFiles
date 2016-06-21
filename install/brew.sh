@@ -8,25 +8,18 @@ fi
 echo "Installing homebrew packages..."
 
 # cli tools
-brew install tree
-brew install wget
-brew install bash-git-prompt # gross
+brew install \
+  tree \
+  wget \
+  bash-git-prompt
 
 # dev tools
-brew install git
-brew install macvim --override-system-vim --with-cscope --python --HEAD
-brew install reattach-to-user-namespace
-brew install tmux
-brew install redis
-brew install carthage
-
-# install neovim
-brew tap neovim/neovim
-brew install --HEAD neovim
-
-# -----------
-# current `brew list`
-# mongodb; python; sshrc; sqlite; thefuck;
+brew install \
+  git \
+  reattach-to-user-namespace \
+  tmux \
+  redis \
+  neovim/neovim/neovim
 
 # link the apps
 brew linkapps
