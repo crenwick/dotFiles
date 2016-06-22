@@ -15,7 +15,10 @@ alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
-# Gitprompt configuration
+# Git configuration
+export EDITOR=nvim
+export VISUAL=code
+
 GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Single_line
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then

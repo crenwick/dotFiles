@@ -51,7 +51,7 @@
     helper = osxkeychain
 [core]
     excludefiles = ~/.gitignore_global
-    editor = subl
+    editor = nvim
 [rerere]
 	enabled = true
 	autoupdate = true

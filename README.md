@@ -6,7 +6,7 @@ v4.0
 - bashrc configuration
 - git configuration
 - vim configuration (neovim + vim)
-- node install + npm (via nvm)
+- node install + npm globals (via nvm)
 - homebrew + cask setup
 
 ## Install
