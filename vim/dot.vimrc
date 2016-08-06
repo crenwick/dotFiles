@@ -1,6 +1,5 @@
 call plug#begin()
 
-source $HOME/.vim/bundlesBothVimRc
 source $HOME/.vim/bundlesVimRc
 
 call plug#end()

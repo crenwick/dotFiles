@@ -22,7 +22,6 @@ if [ "$(uname)" == "Darwin" ]; then
   # neovim
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s `pwd`/vim/dotVim $XDG_CONFIG_HOME/nvim
-  ln -s `pwd`/vim/dot.nvimrc $XDG_CONFIG_HOME/nvim/init.vim
 
   echo "Running on OSX"
 

@@ -10,3 +10,62 @@ Plug 'https://github.com/ajh17/Spacegray.vim'
 " -----------------------------------------------------
 
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
+Plug 'SirVer/ultisnips'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-surround'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'gavinbeatty/dragvisuals.vim'
+" Plug 'jordwalke/AutoComplPop'
+" Plug 'jordwalke/VimCompleteLikeAModernEditor'
+Plug 'unblevable/quick-scope'
+
+" -----------------------------------------------------
+" External tools intergration plugins
+" -----------------------------------------------------
+
+Plug 'tpope/vim-fugitive'
+
+" -----------------------------------------------------
+" Swift
+" -----------------------------------------------------
+
+Plug 'keith/swift.vim', { 'for': 'swift' }
+
+" -----------------------------------------------------
+" Javascript
+" -----------------------------------------------------
+
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
+
+" -----------------------------------------------------
+" HTML/CSS
+" -----------------------------------------------------
+
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+
+" -----------------------------------------------------
+" Elixir
+" -----------------------------------------------------
+
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+
+" -----------------------------------------------------
+" Interface improvement
+" -----------------------------------------------------
+
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
+Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
+Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
+Plug 'bling/vim-airline'
+
+" -----------------------------------------------------
+" Dependencies
+" -----------------------------------------------------
+
+Plug 'tpope/vim-repeat'

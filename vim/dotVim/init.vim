@@ -1,6 +1,5 @@
 call plug#begin()
 
-source $HOME/.vim/bundlesBothVimRc
 source $HOME/.vim/bundlesNeoVimRc
 
 call plug#end()
@@ -77,7 +76,6 @@ syntax on             " enable syntax highlighting
 au BufNewFile,BufReadPost *.es6 set filetype=javascript
 au BufNewFile,BufReadPost *.json set filetype=javascript
 au BufRead,BufNewFile *.bash_profile set filetype=sh
-
 au BufRead,BufNewFile Fastfile set filetype=ruby
 
 " Theme
