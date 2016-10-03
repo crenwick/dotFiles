@@ -124,7 +124,12 @@ nnoremap <Leader>w :wa<CR>
 nmap <Leader><Leader> V
 
 " Get rid of trailing whitespace
-nnoremap <Leader>WW :%s/\s\+$//<CR>
+nnoremap <Leader>WS :%s/\s\+$//<CR>
+
+" buffer nav shortcuts
+nnoremap <leader>b :ls<CR>
+nnoremap <leader>H :bn<CR>
+nnoremap <leader>L :bp<CR>
 
 " nvim-terminal-emulator
 tnoremap <Esc> <C-\><C-n>
@@ -210,3 +215,6 @@ let g:nerdtree_tabs_open_on_gui_startup = 1
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 noremap <C-h> <C-w>h
+
+" :deoplete
+let g:deoplete#enable_at_startup = 1
