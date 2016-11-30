@@ -89,7 +89,7 @@ Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
 Plug 'Shougo/unite.vim'
 
 " A lighterweight Powerline
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Plug 'https://github.com/jordwalke/vim-airline'
 let g:airline_powerline_fonts = 1
 set laststatus=2

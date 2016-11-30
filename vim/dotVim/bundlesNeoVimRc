@@ -63,7 +63,7 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
 Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
-Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline'
 
 " -----------------------------------------------------
 " Dependencies

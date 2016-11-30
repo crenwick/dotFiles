@@ -40,6 +40,8 @@ set foldmethod=indent
 set nofoldenable      " Remove ugly folds
 set diffopt=filler,context:9999 "nofold in diff mode
 
+set inccommand=split
+
 " -----------------------------------------------------
 " User Interface
 " -----------------------------------------------------

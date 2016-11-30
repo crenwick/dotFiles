@@ -11,8 +11,11 @@ alias hideDesktopFiles='defaults write com.apple.finder CreateDesktop -bool fals
 alias showDesktopFiles='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 alias showAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
+alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
 # Git configuration
