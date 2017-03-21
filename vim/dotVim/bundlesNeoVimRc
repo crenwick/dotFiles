@@ -10,14 +10,10 @@ Plug 'https://github.com/ajh17/Spacegray.vim'
 " -----------------------------------------------------
 
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
-Plug 'SirVer/ultisnips'
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gavinbeatty/dragvisuals.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'jordwalke/AutoComplPop'
-" Plug 'jordwalke/VimCompleteLikeAModernEditor'
 Plug 'unblevable/quick-scope'
 
 " -----------------------------------------------------
@@ -62,7 +58,7 @@ Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
-Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
+" Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
 " Plug 'vim-airline/vim-airline'
 
 " -----------------------------------------------------

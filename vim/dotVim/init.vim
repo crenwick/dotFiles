@@ -60,10 +60,25 @@ set scrolloff=5       " show context above/below cursor line
 set shell=$SHELL
 
 " Searching
+" Finding Files
+set path+=**          " Search down into subfolders
+" - Hit tab to :find by partial math
+" - Use * to make it fuzzy
+" - :b lets autocomplete work in any open buffer
+
 set ignorecase        " case-insensitive search
 set smartcase         " case-sensitive search if any caps
 set hlsearch
 set incsearch         " search as you type
+
+" Autocomplete:
+" ^n for anything specified by the 'complete' option
+" ^n and ^p to move up and down the list
+" ^x^n for just this file
+" ^x^f for filenames
+" ^x^[ for tags only
+
+
 
 set showmatch         " highlight matching on {[()]}
 set mat=2             " how many tenths of a second to blink
@@ -125,6 +140,13 @@ nnoremap <Leader>w :wa<CR>
 " enter visual line mode
 nmap <Leader><Leader> V
 
+" Tag Jumping:
+command! MakeTags !ctags -R .
+" Create the `tags` file (requires ctags)
+" - Use ^] to jump to tag under cursor
+" - Use g^] for a list of tags under cursor
+" - Use ^t to jump back up the tag stack
+
 " Get rid of trailing whitespace
 nnoremap <Leader>WS :%s/\s\+$//<CR>
 
@@ -139,6 +161,12 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
+
+" -----------------------------------------------------
+" Snippets
+" -----------------------------------------------------
+
+nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 
 " -----------------------------------------------------
 " Plugins
@@ -159,10 +187,6 @@ hi ErrorMsg ctermfg=1 ctermbg=18
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
-
-" :ultisnips
-let g:UltiSnipsSnippetsDir=$HOME . '/.vim'
-let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
 
 " :TComment
 vmap <Leader>c <c-_><c-_>
@@ -185,9 +209,6 @@ nnoremap <leader>gs :Gstatus<CR>
 
 " :vim-jsx
 let g:jsx_ext_required = 0
-
-" :VimJSDocSnippets
-let g:JSDocSnippetsMapping='<D-C>'
 
 " :rainbow_parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
@@ -213,10 +234,13 @@ nnoremap <leader>f :NERDTreeTabsFind<CR>
 " don't auto open NERDTree
 let g:nerdtree_tabs_open_on_gui_startup = 1
 
+" :vim-markdown
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'yaml', 'haml', 'bash=sh']
+
 " :CtrlP
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-noremap <C-h> <C-w>h
+" nnoremap <leader>t :CtrlP<CR>
+" nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+" noremap <C-h> <C-w>h
 
 " :deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1

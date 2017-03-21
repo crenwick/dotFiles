@@ -1,6 +1,6 @@
 [user]
-    name = Charles Renwick
-    email = charles.srenwick@gmail.com
+	name = Charles Renwick
+	email = charles.srenwick@gmail.com
 [github]
     user = crewnick
 [alias]
@@ -25,6 +25,8 @@
 
     # both initialize your repository and creates an empty root commit in one quick step.
 	it = !git init && git commit -m “root” --allow-empty
+
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 
 [color]
     diff = auto

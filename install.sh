@@ -23,6 +23,9 @@ if [ "$(uname)" == "Darwin" ]; then
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s `pwd`/vim/dotVim $XDG_CONFIG_HOME/nvim
 
+  #tmux
+  ln -s `pwd`/tmux/dot.tmux.conf $HOME/.tmux.conf
+
   echo "Running on OSX"
 
   echo "Brewing..."
