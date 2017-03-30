@@ -38,7 +38,6 @@ Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'jordwalke/AutoComplPop'
-" Plug 'jordwalke/VimCompleteLikeAModernEditor'
 Plug 'unblevable/quick-scope'
 
 " -----------------------------------------------------
@@ -90,7 +89,6 @@ Plug 'Shougo/unite.vim'
 
 " A lighterweight Powerline
 Plug 'vim-airline/vim-airline'
-" Plug 'https://github.com/jordwalke/vim-airline'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 " Disable truncation

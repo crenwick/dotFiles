@@ -26,6 +26,9 @@ if [ "$(uname)" == "Darwin" ]; then
   #tmux
   ln -s `pwd`/tmux/dot.tmux.conf $HOME/.tmux.conf
 
+  #ctags
+  ln -s `pwd`/dot.ctags $HOME/.ctags
+
   echo "Running on OSX"
 
   echo "Brewing..."

@@ -17,6 +17,16 @@ alias gapi='cd ~/Grove/api; source ../.grove_secrets.sh; npm; nvm use 4'
 
 alias wuzz='$GOPATH/bin/wuzz'
 
+# Generates ctags for Python (with packages and libs dir)
+function ctags_pip() {
+  # Make magic
+  ctags -R --exclude=.git --fields=+l --languages=python --python-kinds=-iv -f $1tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
+}
+function ctags_pip3() {
+  # Make magic
+  ctags -R --exclude=.git --fields=+l --languages=python --python-kinds=-iv -f $1tags $(python3 -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
+}
+
 set -o vi # set termainal to vi mode
 
 stty -ixon # enable `ctrl-s`

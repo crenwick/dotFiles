@@ -1,6 +1,6 @@
 [user]
-	name = Charles Renwick
-	email = charles.srenwick@gmail.com
+    name = Charles Renwick
+	  email = charles.srenwick@gmail.com
 [github]
     user = crewnick
 [alias]
@@ -10,24 +10,22 @@
     sub = submodule
     br = branch -v
     dt = difftool --no-prompt
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 
     # show the last tag
     lt = describe --tags --abbrev=0
 
     # show a pretty log graph
     l = log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
- 
+
     # graphic log
     grok = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
 
     # attach any staged files onto the last created commit.
-	commend = commit --amend --no-edit
+    commend = commit --amend --no-edit
 
     # both initialize your repository and creates an empty root commit in one quick step.
-	it = !git init && git commit -m “root” --allow-empty
-
-    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
-
+    it = !git init && git commit -m “root” --allow-empty
 [color]
     diff = auto
     status = auto
@@ -65,9 +63,9 @@
     excludefiles = ~/.gitignore_global
     editor = nvim
 [rerere]
-	enabled = true
-	autoupdate = true
+    enabled = true
+    autoupdate = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
