@@ -9,7 +9,8 @@ if [ "$(uname)" == "Darwin" ]; then
   echo "creating symlinks"
 
   # bash
-  ln -s `pwd`/bash/dot.bash_profile $HOME/.bash_profile
+  ln -s `pwd`/dot.bash_profile $HOME/.bash_profile
+  ln -s `pwd`/dot.bashrc $HOME/.bashrc
 
   # git
   ln -s `pwd`/git/dot.gitignore_global $HOME/.gitignore_global

@@ -78,8 +78,6 @@ set incsearch         " search as you type
 " ^x^f for filenames
 " ^x^[ for tags only
 
-
-
 set showmatch         " highlight matching on {[()]}
 set mat=2             " how many tenths of a second to blink
 
@@ -100,7 +98,7 @@ set encoding=utf8
 let base16colorspace=256
 set t_Co=256          " explicitly tell vim the terminal supports 256
 set background=dark
-colorscheme spacegray
+colorscheme despacio
 
 set number            " show the current line number
 
@@ -177,7 +175,7 @@ let g:neomake_error_sign = {
     \ 'text': '💩',
     \ 'texthl': 'ErrorMsg',
     \ }
-
+ 
 let g:neomake_warning_sign = {
     \ 'text': '😷',
     \ 'texthl': 'WarningMsg',
@@ -239,9 +237,9 @@ let g:nerdtree_tabs_open_on_gui_startup = 1
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'yaml', 'haml', 'bash=sh']
 
 " :CtrlP
-" nnoremap <leader>t :CtrlP<CR>
-" nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-" noremap <C-h> <C-w>h
+nnoremap <leader>t :CtrlP<CR>
+nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+noremap <C-h> <C-w>h
 
 " :deoplete
 " let g:deoplete#enable_at_startup = 1

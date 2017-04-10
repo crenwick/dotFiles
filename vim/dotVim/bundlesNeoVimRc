@@ -2,8 +2,8 @@
 " Colorschemes
 " -----------------------------------------------------
 
-Plug 'tomasr/molokai'
-Plug 'https://github.com/ajh17/Spacegray.vim'
+" Plug 'https://github.com/ajh17/Spacegray.vim'
+Plug 'AlessandroYorba/Despacio'
 
 " -----------------------------------------------------
 " Language agnoustic
@@ -53,12 +53,18 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 
 " -----------------------------------------------------
+" Python
+" -----------------------------------------------------
+
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+
+" -----------------------------------------------------
 " Interface improvement
 " -----------------------------------------------------
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
-" Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
+Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
 " Plug 'vim-airline/vim-airline'
 
 " -----------------------------------------------------

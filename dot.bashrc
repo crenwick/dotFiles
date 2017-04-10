@@ -16,6 +16,9 @@ alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 alias gapi='cd ~/Grove/api; source ../.grove_secrets.sh; npm; nvm use 4'
 
 alias wuzz='$GOPATH/bin/wuzz'
+alias postgres_start='postgres -D /usr/local/var/postgres'
+
+alias watch="fswatch -0 -o . | xargs -n1 -I {} "
 
 # Generates ctags for Python (with packages and libs dir)
 function ctags_pip() {
@@ -89,6 +92,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 # export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
-if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-fi
+# if command -v tmux>/dev/null; then
+#   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+# fi
