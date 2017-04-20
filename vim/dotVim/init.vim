@@ -1,9 +1,3 @@
-call plug#begin()
-
-source $HOME/.vim/bundlesNeoVimRc
-
-call plug#end()
-
 " -----------------------------------------------------
 " General
 " -----------------------------------------------------
@@ -91,15 +85,13 @@ syntax on             " enable syntax highlighting
 au BufNewFile,BufReadPost *.es6 set filetype=javascript
 au BufNewFile,BufReadPost *.json set filetype=javascript
 au BufRead,BufNewFile *.bash_profile set filetype=sh
+au BufRead,BufNewFile *.bashrc set filetype=sh
 au BufRead,BufNewFile Fastfile set filetype=ruby
 
 " Theme
 set encoding=utf8
 let base16colorspace=256
 set t_Co=256          " explicitly tell vim the terminal supports 256
-set background=dark
-colorscheme despacio
-
 set number            " show the current line number
 
 set autoindent        " automatically set indent of new line
@@ -170,76 +162,15 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 " Plugins
 " -----------------------------------------------------
 
-" :Neomake
-let g:neomake_error_sign = {
-    \ 'text': '💩',
-    \ 'texthl': 'ErrorMsg',
-    \ }
- 
-let g:neomake_warning_sign = {
-    \ 'text': '😷',
-    \ 'texthl': 'WarningMsg',
-    \ }
-hi WarningMsg ctermfg=3 ctermbg=18
-hi ErrorMsg ctermfg=1 ctermbg=18
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_python_python_exe = 'python3'
-autocmd! BufWritePost * Neomake
+call plug#begin()
 
-" :TComment
-vmap <Leader>c <c-_><c-_>
-vmap <Leader>C <c-_>b
-" mapping to `gc` doesn't toggle one visually selected line - only multiples.
-nmap <D-/> gc$
+source $HOME/.vim/bundles-neo.vimrc
 
-" :dragvisuals
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
+call plug#end()
 
-" :AutoComplPop
-let g:acp_ignorecaseOption = 1
+" -----------------------------------------------------
+" UI
+" -----------------------------------------------------
 
-" :fugitive
-nnoremap <leader>gs :Gstatus<CR>
-
-" :vim-jsx
-let g:jsx_ext_required = 0
-
-" :rainbow_parentheses
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-augroup rainbow_js
-  autocmd!
-  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
-augroup END
-
-" :NERDTree
-let g:NERDTreeDirArrows = 1 " nice arrow
-let g:NERDTreeMinimalUI = 1 " not so much cruft
-let g:NERDTreeShowBookmarks = 1
-hi def link NERDTreeRO Normal
-hi def link NERDTreePart StatusLine
-hi def link NERDTreeDirSlash Directory
-hi def link NERDTreeCurrentNode Search
-hi def link NERDTreeCWD Normal
-let g:NERDChristmasTree = 0 " Not so much color
-
-" :NERDTreeTabs
-nnoremap <leader>d :NERDTreeTabsToggle<CR>
-nnoremap <leader>f :NERDTreeTabsFind<CR>
-" don't auto open NERDTree
-let g:nerdtree_tabs_open_on_gui_startup = 1
-
-" :vim-markdown
-let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'yaml', 'haml', 'bash=sh']
-
-" :CtrlP
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-noremap <C-h> <C-w>h
-
-" :deoplete
-" let g:deoplete#enable_at_startup = 1
+set background=dark
+colorscheme despacio
