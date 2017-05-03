@@ -97,9 +97,6 @@ set number            " show the current line number
 set autoindent        " automatically set indent of new line
 set smartindent
 
-" highlight the 80st character in each line
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-autocmd WinEnter * match MyLineTooLongMarker '\%81v'
 
 " -----------------------------------------------------
 " Files, backups and undo
@@ -162,7 +159,7 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 " Plugins
 " -----------------------------------------------------
 
-call plug#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 
 source $HOME/.vim/bundles-neo.vimrc
 
@@ -174,3 +171,7 @@ call plug#end()
 
 set background=dark
 colorscheme despacio
+
+" highlight the 80st character in each line
+highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
+autocmd WinEnter * match MyLineTooLongMarker '\%81v'

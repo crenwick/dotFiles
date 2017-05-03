@@ -11,12 +11,12 @@ Plug 'AlessandroYorba/Despacio'
 
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
   let g:neomake_error_sign = {
-      \ 'text': '💩',
+      \ 'text': '⌦',
       \ 'texthl': 'ErrorMsg',
       \ }
 
   let g:neomake_warning_sign = {
-      \ 'text': '😷',
+      \ 'text': '㋡',
       \ 'texthl': 'WarningMsg',
       \ }
   hi WarningMsg ctermfg=3 ctermbg=18
