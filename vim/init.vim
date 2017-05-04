@@ -153,7 +153,9 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 " Snippets
 " -----------------------------------------------------
 
-nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
+nnoremap ,html :-1read $HOME/.vim/snippets/skeleton.html<CR>3jwf>a
+nnoremap ,defmod :-1read $HOME/.vim/snippets/skeleton.defmodule.ex<CR>ela
+nnoremap ,mdoc :-1read $HOME/.vim/snippets/skeleton.moduledoc.ex<CR>jA
 
 " -----------------------------------------------------
 " Plugins
