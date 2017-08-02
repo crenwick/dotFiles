@@ -2,43 +2,46 @@
 " Colorschemes
 " -----------------------------------------------------
 
-" Collection of Clean Vim ColorSchemes with Airline Themes
-Plug 'jordwalke/VimCleanColors'
-
-" Solarized
-Plug 'git://github.com/altercation/vim-colors-solarized'
-" default value is 1
-let g:solarized_underline=0
-" default value is 16
-let g:solarized_termcolors=256
-" default value is normal
-let g:solarized_contrast='high'
-" default value is normal
-let g:solarized_visibility='high'
-
-" Flatlandia (for MacVim)
-Plug 'git://github.com/jordwalke/flatlandia'
-
-" Web Dev Icons
-Plug 'https://github.com/ryanoasis/vim-webdevicons'
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
-
-Plug 'https://github.com/ajh17/Spacegray.vim'
+" Plug 'https://github.com/ajh17/Spacegray.vim'
+Plug 'AlessandroYorba/Despacio'
 
 " -----------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------
 
 " ACP Forked
-Plug 'SirVer/ultisnips'
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
+  vmap <Leader>c <c-_><c-_>
+  vmap <Leader>C <c-_>b
+  " mapping to `gc` doesn't toggle one visually selected line - only multiples.
+  nmap <D-/> gc$
+
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'gavinbeatty/dragvisuals.vim'
-Plug 'jordwalke/AutoComplPop'
 Plug 'unblevable/quick-scope'
+Plug 'junegunn/rainbow_parentheses.vim'
+  let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+  augroup rainbow_js
+    autocmd!
+    autocmd FileType python,elixir,eelixir,javascript,js,jsx,es6 RainbowParentheses
+  augroup END
+
+Plug 'gavinbeatty/dragvisuals.vim'
+  vmap  <expr>  <LEFT>   DVB_Drag('left')
+  vmap  <expr>  <RIGHT>  DVB_Drag('right')
+  vmap  <expr>  <DOWN>   DVB_Drag('down')
+  vmap  <expr>  <UP>     DVB_Drag('up')
+  let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
+
+Plug 'jordwalke/AutoComplPop'
+  let g:acp_ignorecaseOption = 1
+
+" -----------------------------------------------------
+" External tools intergration plugins
+" -----------------------------------------------------
+
+Plug 'tpope/vim-fugitive'
+  nnoremap <leader>gs :Gstatus<CR>
 
 " -----------------------------------------------------
 " Swift
@@ -53,8 +56,11 @@ Plug 'keith/swift.vim', { 'for': 'swift' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+  let g:jsx_ext_required = 0
+
 Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['javascript', 'javascript.jsx'] }
+  let g:JSDocSnippetsMapping='<D-C>'
+
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 
 " -----------------------------------------------------
@@ -63,36 +69,62 @@ Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+  au BufNewFile,BufReadPost *.md set filetype=markdown
+  let g:markdown_fenced_languages = [
+    \ 'css',
+    \ 'erb=eruby',
+    \ 'javascript',
+    \ 'js=javascript',
+    \ 'json=javascript',
+    \ 'ruby',
+    \ 'sass',
+    \ 'xml',
+    \ 'html',
+    \ 'python',
+    \ 'bash=sh',
+    \ 'sh' ]
 
 " -----------------------------------------------------
 " Elixir
 " -----------------------------------------------------
 
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'eelixir'] }
 
 " -----------------------------------------------------
-" External tools intergration plugins
+" Python
 " -----------------------------------------------------
 
-Plug 'tpope/vim-fugitive'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 
 " -----------------------------------------------------
 " Interface improvement
 " -----------------------------------------------------
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
+  let g:NERDTreeDirArrows = 1 " nice arrow
+  let g:NERDTreeMinimalUI = 1 " not so much cruft
+  let g:NERDTreeShowBookmarks = 1
+  hi def link NERDTreeRO Normal
+  hi def link NERDTreePart StatusLine
+  hi def link NERDTreeDirSlash Directory
+  hi def link NERDTreeCurrentNode Search
+  hi def link NERDTreeCWD Normal
+  let g:NERDChristmasTree = 0 " Not so much color
+
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
+  nnoremap <leader>d :NERDTreeTabsToggle<CR>
+  nnoremap <leader>f :NERDTreeTabsFind<CR>
+  " don't auto open NERDTree
+  let g:nerdtree_tabs_open_on_gui_startup = 1
+
 Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
-
-" Unite (Files, Buffers, Commands, etc. fuzzy searcher)
-Plug 'Shougo/unite.vim'
-
-" A lighterweight Powerline
-Plug 'vim-airline/vim-airline'
-let g:airline_powerline_fonts = 1
-set laststatus=2
-" Disable truncation
-let g:airline#extensions#default#section_truncate_width = {}
+  nnoremap <leader>t :CtrlP<CR>
+  nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+  noremap <C-h> <C-w>h
+  set splitright                      " splliting right after helps preserver left nav
+  let g:ctrlp_switch_buffer='ETVH'    " jump to exisiting buffer on any open command
+  let g:ctrlp_show_hidden = 1         " show me dotfiles
+  let g:ctrlp_match_window_bottom = 1 " show the match window at the top of the screen
 
 " Custom Resizing for SplitBalancer
 Plug 'jordwalke/VimSplitBalancer'
@@ -103,13 +135,18 @@ nnoremap <D-U> :GundoToggle<CR>
 let g:gundo_close_on_revert=1
 
 Plug 'terryma/vim-smooth-scroll'
+  " Normal mode
+  noremap <silent> <c-u> :call smooth_scroll#up(40, 20, 6)<CR>
+  noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
+  " smooth_scroll is broken in visual mode currently - unmap
+  vnoremap <silent> <c-u> <c-u>
+  vnoremap <silent> <c-d> <c-d>
 
 " -----------------------------------------------------
 " Dependencies
 " -----------------------------------------------------
 
 " Async processing (for Unite)
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'tpope/vim-repeat'
 
 " -----------------------------------------------------
@@ -130,7 +167,6 @@ Plug 'jordwalke/MacVimSmartGUITabs'
 map <D-Cr> :SmartGUITabsToggleFullScreen<CR>
 imap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
 nmap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
-
 
 " Combine Previous Plugins For Modern Completion Experience
 

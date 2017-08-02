@@ -97,7 +97,6 @@ set number            " show the current line number
 set autoindent        " automatically set indent of new line
 set smartindent
 
-
 " -----------------------------------------------------
 " Files, backups and undo
 " -----------------------------------------------------
@@ -175,5 +174,4 @@ set background=dark
 colorscheme despacio
 
 " highlight the 80st character in each line
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-autocmd WinEnter * match MyLineTooLongMarker '\%81v'
+autocmd WinEnter * match Error '\%81v'

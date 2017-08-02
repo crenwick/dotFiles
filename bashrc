@@ -52,7 +52,8 @@ export VISUAL=code
 GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Single_line
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 # example: `$ gi node,osx`
@@ -85,7 +86,7 @@ export PYTHONPATH=:$PYTHONPATH
 export GOPATH="$HOME/gocode"
 
 # Rust
-# source $HOME/.cargo/env
+source $HOME/.cargo/env
 
 export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"

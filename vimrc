@@ -1,9 +1,3 @@
-call plug#begin()
-
-source $HOME/.vim/bundles.vimrc
-
-call plug#end()
-
 " -----------------------------------------------------
 " General
 " -----------------------------------------------------
@@ -70,6 +64,7 @@ set hlsearch
 set incsearch         " search as you type
 
 set showmatch         " highlight matching on {[()]}
+set mat=2             " how many tenths of a second to blink
 
 " Error bells
 set noerrorbells
@@ -77,16 +72,21 @@ set visualbell
 
 syntax on             " enable syntax highlighting
 
-set number            " show line numbers
+" set es to javascript syntax
+au BufNewFile,BufReadPost *.es6 set filetype=javascript
+au BufNewFile,BufReadPost *.json set filetype=javascript
+au BufRead,BufNewFile *.bash_profile set filetype=sh
+au BufRead,BufNewFile *.bashrc set filetype=sh
+au BufRead,BufNewFile Fastfile set filetype=ruby
 
-set autoindent
+" Theme
+set encoding=utf8
+let base16colorspace=256
+set t_Co=256          " explicitly tell vim the terminal supports 256
+set number            " show the current line number
+
+set autoindent        " automatically set indent of new line
 set smartindent
-
-set background=dark
-
-" highlight the 81st character in each line
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-autocmd WinEnter * match MyLineTooLongMarker '\%81v'
 
 " -----------------------------------------------------
 " Files, backups and undo
@@ -118,6 +118,13 @@ nnoremap <Leader>w :wa<CR>
 " enter visual line mode:
 nmap <Leader><Leader> V
 
+" Tag Jumping:
+command! MakeTags !ctags -R .
+" Create the `tags` file (requires ctags)
+" - Use ^] to jump to tag under cursor
+" - Use g^] for a list of tags under cursor
+" - Use ^t to jump back up the tag stack
+
 " Get rid of trailing whitespace
 nnoremap <leader>WW :%s/\s\+$//<CR>
 
@@ -127,97 +134,22 @@ nnoremap <leader>H :bn<CR>
 nnoremap <leader>L :bp<CR>
 
 " -----------------------------------------------------
+" Snippets
+" -----------------------------------------------------
+
+nnoremap ,html :-1read $HOME/.vim/snippets/skeleton.html<CR>3jwf>a
+nnoremap ,defmod :-1read $HOME/.vim/snippets/skeleton.defmodule.ex<CR>ela
+nnoremap ,mdoc :-1read $HOME/.vim/snippets/skeleton.moduledoc.ex<CR>jA
+
+" -----------------------------------------------------
 " Plugins
 " -----------------------------------------------------
 
-" :ultisnips
-let g:UltiSnipsSnippetsDir=$HOME . '/.vim'
-let g:UltiSnipsSnippetDirectories=['myUltiSnippets']
+call plug#begin()
 
-" :TComment
-vmap <D-/> <c-_><c-_>
-vmap <D-s-/> <c-_>b
-" mapping to `gc` doesn't toggle one visually selected line - only multiples.
-nmap <D-/> gc$
+source $HOME/.vim/bundles.vimrc
 
-" :dragvisuals
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
-
-" :AutoComplPop
-let g:acp_ignorecaseOption = 1
-
-" :fugitive
-nnoremap <leader>gs :Gstatus<CR>
-
-" :vim-jsx
-let g:jsx_ext_required = 0
-
-" :VimJSDocSnippets
-let g:JSDocSnippetsMapping='<D-C>'
-
-" :rainbow_parentheses
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-augroup rainbow_js
-  autocmd!
-  autocmd FileType javascript,js,jsx,es6 RainbowParentheses
-augroup END
-
-" :NERDTree
-let g:NERDTreeDirArrows = 1 " nice arrow
-let g:NERDTreeMinimalUI = 1 " not so much cruft
-let g:NERDTreeShowBookmarks = 1
-hi def link NERDTreeRO Normal
-hi def link NERDTreePart StatusLine
-hi def link NERDTreeDirSlash Directory
-hi def link NERDTreeCurrentNode Search
-hi def link NERDTreeCWD Normal
-let g:NERDChristmasTree = 0 " Not so much color
-
-" :NERDTreeTabs
-nnoremap <leader>d :NERDTreeTabsToggle<CR>
-nnoremap <leader>f :NERDTreeTabsFind<CR>
-
-" :CtrlP
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-" splliting right after helps preserver left nav
-set splitright
-" jump to exisiting buffer on any open command
-let g:ctrlp_switch_buffer='ETVH'
-" search for nearest ancestor like .git, .hg,
-" else the directory of the current file
-let g:ctrlp_working_path_mode = 'a'
-" show the match window at the top of the screen
-let g:ctrlp_match_window_bottom = 1
-" enable caching
-let g:ctrlp_use_caching = 1
-" speed up by not removing clearing cache evertime
-let g:ctrlp_clear_cache_on_exit=0
-" show me dotfiles
-let g:ctrlp_show_hidden = 1
-" number of recently opened files
-let g:ctrlp_mruf_max = 250
-let g:ctrlp_max_depth = 7
-let g:ctrlp_max_files = 30000
-
-" :vim-smooth-scroll
-" Normal mode
-noremap <silent> <c-u> :call smooth_scroll#up(40, 20, 6)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(40, 20, 6)<CR>
-" smooth_scroll is broken in visual mode currently - unmap
-vnoremap <silent> <c-u> <c-u>
-vnoremap <silent> <c-d> <c-d>
-
-
-
-
-
-
-
+call plug#end()
 
 
 
@@ -227,7 +159,6 @@ filetype plugin on
 filetype indent on
 
 " sourcing before custom scripts can go here
-
 
 " Configure as Privacy Plugin
 " All sensitive data is not stored in your ~/.vimrc folder
@@ -253,17 +184,12 @@ let g:netrw_dirhistmax=0
 " stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
 set switchbuf+=usetab,newtab
 
+" -----------------------------------------------------
+" UI
+" -----------------------------------------------------
 
-" markdown with fenced code gets marked
-au BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = [
-  \ 'css',
-  \ 'erb=eruby',
-  \ 'javascript',
-  \ 'js=javascript',
-  \ 'json=javascript',
-  \ 'ruby',
-  \ 'sass',
-  \ 'xml',
-  \ 'html',
-  \ 'sh' ]
+set background=dark
+colorscheme despacio
+
+" highlight the 80st character in each line
+autocmd WinEnter * match Error '\%81v'

@@ -103,7 +103,6 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
   let g:jsx_ext_required = 0
 
 Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
-
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 
 " -----------------------------------------------------
@@ -112,7 +111,19 @@ Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-  let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'yaml', 'haml', 'bash=sh']
+  let g:markdown_fenced_languages = [
+    \ 'css',
+    \ 'erb=eruby',
+    \ 'javascript',
+    \ 'js=javascript',
+    \ 'json=javascript',
+    \ 'ruby',
+    \ 'sass',
+    \ 'xml',
+    \ 'html',
+    \ 'python',
+    \ 'bash=sh',
+    \ 'sh' ]
 
 " -----------------------------------------------------
 " Elixir
