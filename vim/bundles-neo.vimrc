@@ -94,6 +94,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'keith/swift.vim', { 'for': 'swift' }
 
 " -----------------------------------------------------
+" Rust
+" -----------------------------------------------------
+
+Plug 'rust-lang/rust.vim'
+
+" -----------------------------------------------------
 " Javascript
 " -----------------------------------------------------
 
@@ -104,6 +110,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'elmcast/elm-vim', { 'for': ['elm'] }
 
 " -----------------------------------------------------
 " HTML/CSS
@@ -141,22 +148,21 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " Interface improvement
 " -----------------------------------------------------
 
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
+Plug 'scrooloose/nerdtree'
   let g:NERDTreeDirArrows = 1 " nice arrow
   let g:NERDTreeMinimalUI = 1 " not so much cruft
+  let g:NERDTreeShowHidden = 1 " Should hidden files
   let g:NERDTreeShowBookmarks = 1
   hi def link NERDTreeRO Normal
   hi def link NERDTreePart StatusLine
   hi def link NERDTreeDirSlash Directory
   hi def link NERDTreeCurrentNode Search
   hi def link NERDTreeCWD Normal
-  let g:NERDChristmasTree = 0 " Not so much color
 
-Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
+Plug 'jistr/vim-nerdtree-tabs'
   nnoremap <leader>d :NERDTreeTabsToggle<CR>
   nnoremap <leader>f :NERDTreeTabsFind<CR>
-  " don't auto open NERDTree
-  let g:nerdtree_tabs_open_on_gui_startup = 1
+  let g:nerdtree_tabs_open_on_console_startup = 1
 
 Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
   nnoremap <leader>t :CtrlP<CR>

@@ -4,6 +4,7 @@ alias ls='ls -GFh'
 
 alias cdg='cd ~/Grove'
 alias cdd='cd ~/Documents'
+alias fucking='sudo'
 
 alias npmlist='npm list -g --depth=0'
 
