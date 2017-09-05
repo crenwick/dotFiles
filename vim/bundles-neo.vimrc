@@ -149,10 +149,11 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " -----------------------------------------------------
 
 Plug 'scrooloose/nerdtree'
-  let g:NERDTreeDirArrows = 1 " nice arrow
   let g:NERDTreeMinimalUI = 1 " not so much cruft
   let g:NERDTreeShowHidden = 1 " Should hidden files
-  let g:NERDTreeShowBookmarks = 1
+  let g:NERDTreeShowLineNumbers = 1
+  let g:NERDTreeIgnore=['\.DS_Store']
+  let g:NERDTreeShowBookmarks = 0
   hi def link NERDTreeRO Normal
   hi def link NERDTreePart StatusLine
   hi def link NERDTreeDirSlash Directory

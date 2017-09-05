@@ -1,9 +1,9 @@
 alias c='clear'
+alias C='clear && printf "\e[3J"'
+
 alias g='git'
 alias ls='ls -GFh'
 
-alias cdg='cd ~/Grove'
-alias cdd='cd ~/Documents'
 alias fucking='sudo'
 
 alias npmlist='npm list -g --depth=0'
@@ -12,14 +12,11 @@ alias hideDesktopFiles='defaults write com.apple.finder CreateDesktop -bool fals
 alias showDesktopFiles='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 alias showAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
-alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
-
-alias gapi='cd ~/Grove/api; source ../.grove_secrets.sh; npm; nvm use 4'
-
-alias wuzz='$GOPATH/bin/wuzz'
-alias postgres_start='postgres -D /usr/local/var/postgres'
 
 alias watch="fswatch -0 -o . | xargs -n1 -I {} "
+alias postgres_start='postgres -D /usr/local/var/postgres'
+
+alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 # Generates ctags for Python (with packages and libs dir)
 function ctags_pip() {
