@@ -42,6 +42,8 @@ function jobs_count {
 }
 
 export HISTCONTROL=ignoreboth:erasedups # dont keep dups in bash histry
+export HISTSIZE=2000
+export HISTFILESIZE=4000
 
 # Git configuration
 export EDITOR=nvim

@@ -115,7 +115,8 @@ Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
   nnoremap <leader>d :NERDTreeTabsToggle<CR>
   nnoremap <leader>f :NERDTreeTabsFind<CR>
   " don't auto open NERDTree
-  let g:nerdtree_tabs_open_on_gui_startup = 1
+  " let g:nerdtree_tabs_open_on_gui_startup = 1
+  " let g:nerdtree_tabs_open_on_console_startup = 0
 
 Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
   nnoremap <leader>t :CtrlP<CR>

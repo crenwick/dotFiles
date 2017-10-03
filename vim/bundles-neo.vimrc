@@ -111,6 +111,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'elmcast/elm-vim', { 'for': ['elm'] }
+Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
 
 " -----------------------------------------------------
 " HTML/CSS
@@ -163,7 +164,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
   nnoremap <leader>d :NERDTreeTabsToggle<CR>
   nnoremap <leader>f :NERDTreeTabsFind<CR>
-  let g:nerdtree_tabs_open_on_console_startup = 1
+  let g:nerdtree_tabs_open_on_console_startup = 2
+  " open only if directory was given as startup argument
 
 Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
   nnoremap <leader>t :CtrlP<CR>

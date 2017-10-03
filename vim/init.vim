@@ -170,7 +170,8 @@ call plug#end()
 " UI
 " -----------------------------------------------------
 
-set background=dark
+" set background=dark
+let g:despacio_Midnight = 1
 colorscheme despacio
 
 " highlight the 80st character in each line
