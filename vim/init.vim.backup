@@ -3,10 +3,10 @@
 " -----------------------------------------------------
 
 set nocompatible      " not compatible with vi
-set autoindent        " automatically set indent of new line
-set autoread          " reload files when changed on disk,
-" set backspace=indent,eol,start
-                      " Allow backspace beyond insertion point
+set autoread          " reload files when changed on disk
+
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 set title             " Set terminal title
 set ruler             " Show where you are
@@ -29,7 +29,7 @@ set listchars+=trail:.
 set tabpagemax=30
 set showcmd           " show current command going on
 
-" code folding settings
+" Code folding settings
 set foldmethod=indent
 set nofoldenable      " Remove ugly folds
 set diffopt=filler,context:9999 "nofold in diff mode
@@ -38,7 +38,7 @@ set diffopt=filler,context:9999 "nofold in diff mode
 " User Interface
 " -----------------------------------------------------
 
-set wildmenu          " show a navigable menu for tab completion
+set wildmenu          " enhanced command line completion
 set wildmode=list:longest,full
 set wildignore=log/**,target/**
 set wildignore+=*.DS_Store
@@ -49,24 +49,19 @@ set wildignore+=tmp/**
 set wildignore+=.meteor/local/**
 set hidden            " allow buffer to be hidden when writing to disk
 set scrolloff=5       " show context above/below cursor line
-set sidescroll=1
-
-" set shell=/bin/bash\ -li
-" " fix shell?
-" if &shell =~# 'fish$'
-"   set shell=sh
-" endif
 set shell=$SHELL
 
 " Searching
-set ignorecase        " case-insensitive search
-set smartcase         " case-sensitive search if any caps
-set hlsearch
-set incsearch         " search as you type
+" Finding Files
 set path+=**          " Search down into subfolders
 " - Hit tab to :find by partial math
 " - Use * to make it fuzzy
 " - :b lets autocomplete work in any open buffer
+
+set ignorecase        " case-insensitive search
+set smartcase         " case-sensitive search if any caps
+set hlsearch
+set incsearch         " search as you type
 
 " Autocomplete:
 " ^n for anything specified by the 'complete' option
@@ -97,12 +92,12 @@ let base16colorspace=256
 set t_Co=256          " explicitly tell vim the terminal supports 256
 set number            " show the current line number
 
+set autoindent        " automatically set indent of new line
 set smartindent
 
 " -----------------------------------------------------
 " Files, backups and undo
 " -----------------------------------------------------
-
 set noswapfile        " Don't make backups.
 set nowritebackup     " Even if you did make a backup, don't keep it around.
 set nobackup
@@ -111,44 +106,11 @@ set nobackup
 " Statusline
 " -----------------------------------------------------
 
-set laststatus=2      " always show status
+set laststatus=2      " show the status line all the time
 
 " -----------------------------------------------------
 " Mappings
 " -----------------------------------------------------
-
-
-" -----------------------------------------------------
-" Snippets
-" -----------------------------------------------------
-
-nnoremap ,html :-1read $HOME/.vim/snippets/skeleton.html<CR>3jwf>a
-nnoremap ,defmod :-1read $HOME/.vim/snippets/skeleton.defmodule.ex<CR>ela
-nnoremap ,mdoc :-1read $HOME/.vim/snippets/skeleton.moduledoc.ex<CR>jA
-
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
-
-" -----------------------------------------------------
-" Plugins
-" -----------------------------------------------------
-
-call plug#begin()
-
-source $HOME/.vim/bundles.vimrc
-
-call plug#end()
-
-" -----------------------------------------------------
-" Key Maps
-" -----------------------------------------------------
-
-" Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
-" line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
-" it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down'
-" to mean the next line on the screen
-nmap j gj
-nmap k gk
 
 " hjkl keys navigate buffer splits
 noremap <C-h> <C-w>h
@@ -159,7 +121,7 @@ noremap <C-l> <C-w>l
 " to save all files
 nnoremap <Leader>w :wa<CR>
 
-" enter visual line mode:
+" enter visual line mode
 nmap <Leader><Leader> V
 
 " send last command to last tmux pane
@@ -173,54 +135,47 @@ command! MakeTags !ctags -R .
 " - Use ^t to jump back up the tag stack
 
 " Get rid of trailing whitespace
-nnoremap <leader>WS :%s/\s\+$//<CR>
+nnoremap <Leader>WS :%s/\s\+$//<CR>
 
 " buffer nav shortcuts
+nnoremap <leader>b :ls<CR>
 nnoremap <leader>H :bn<CR>
 nnoremap <leader>L :bp<CR>
 
-if has('nvim')
-  " nvim-terminal-emulator
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-endif
-
-" These are things that I mistype and want ignored.
-nmap Q  <silent>
-nmap q: <silent>
-nmap K <silent>
+" nvim-terminal-emulator
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " -----------------------------------------------------
+" Snippets
 " -----------------------------------------------------
+
+nnoremap ,html :-1read $HOME/.vim/snippets/skeleton.html<CR>3jwf>a
+nnoremap ,defmod :-1read $HOME/.vim/snippets/skeleton.defmodule.ex<CR>ela
+nnoremap ,mdoc :-1read $HOME/.vim/snippets/skeleton.moduledoc.ex<CR>jA
+
+" -----------------------------------------------------
+" Plugins
+" -----------------------------------------------------
+
+call plug#begin('~/.local/share/nvim/plugged')
+
+" source $HOME/.vim/bundles-neo.vimrc
+source $HOME/.vim/bundles.vimrc
+
+call plug#end()
 
 filetype plugin on
 filetype indent on
-
-" sourcing before custom scripts can go here
 
 " Configure as Privacy Plugin
 " All sensitive data is not stored in your ~/.vimrc folder
 " Configure the spelling language and file.
 set spelllang=en
 set spellfile=$HOME/vim_spell/en.utf-8.add
-
-" UndoDir:
-let s:homeFolder = $HOME
-let s:undoDir = s:homeFolder . '/vimUndo'
-set undofile
-set undolevels=500
-set undoreload=500
-" Create undo dir if needed - not in your dotVim folder! It should be local to
-" your computer.
-if !isdirectory(s:undoDir)
-  call mkdir(s:undoDir)
-endif
-execute "set undodir=".s:undoDir
-" Since your file/folder history may show up in a git commit!
-let g:netrw_dirhistmax=0
 
 " stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
 set switchbuf+=usetab,newtab
@@ -229,6 +184,7 @@ set switchbuf+=usetab,newtab
 " UI
 " -----------------------------------------------------
 
+" set background=dark
 let g:despacio_Midnight = 1
 colorscheme despacio
 

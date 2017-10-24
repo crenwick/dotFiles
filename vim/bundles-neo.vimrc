@@ -2,73 +2,29 @@
 " Colorschemes
 " -----------------------------------------------------
 
-" Plug 'https://github.com/ajh17/Spacegray.vim'
 Plug 'AlessandroYorba/Despacio'
 
 " -----------------------------------------------------
 " Language agnoustic
 " -----------------------------------------------------
 
-Plug 'benekastah/neomake', { 'on': ['Neomake'] }
-  let g:neomake_error_sign = {
-      \ 'text': '⌦',
-      \ 'texthl': 'ErrorMsg',
-      \ }
-
-  let g:neomake_warning_sign = {
-      \ 'text': '㋡',
-      \ 'texthl': 'WarningMsg',
-      \ }
-  hi WarningMsg ctermfg=3 ctermbg=18
-  hi ErrorMsg ctermfg=1 ctermbg=18
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_jsx_enabled_makers = ['eslint']
-  let g:neomake_python_python_exe = 'python3'
-  autocmd! BufWritePost * Neomake
-
-  " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
-  let g:neomake_elixir_enabled_makers = ['mycredo']
-  function! NeomakeCredoErrorType(entry)
-    if a:entry.type ==# 'F'      " Refactoring opportunities
-      let l:type = 'W'
-    elseif a:entry.type ==# 'D'  " Software design suggestions
-      let l:type = 'I'
-    elseif a:entry.type ==# 'W'  " Warnings
-      let l:type = 'W'
-    elseif a:entry.type ==# 'R'  " Readability suggestions
-      let l:type = 'I'
-    elseif a:entry.type ==# 'C'  " Convention violation
-      let l:type = 'W'
-    else
-      let l:type = 'M'           " Everything else is a message
-    endif
-    let a:entry.type = l:type
-  endfunction
-
-  let g:neomake_elixir_mycredo_maker = {
-    \ 'exe': 'mix',
-    \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
-    \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
-    \ 'postprocess': function('NeomakeCredoErrorType')
-    \ }
-
+Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
-  vmap <Leader>c <c-_><c-_>
-  vmap <Leader>C <c-_>b
-  " mapping to `gc` doesn't toggle one visually selected line - only multiples.
-  nmap <D-/> gc$
-
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'mbbill/undotree'
 Plug 'unblevable/quick-scope'
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 Plug 'junegunn/rainbow_parentheses.vim'
   let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+  let g:rainbow#blacklist = [180, 208, 230, 216, 109, 233]
   augroup rainbow_js
     autocmd!
-    autocmd FileType python,elixir,eelixir,javascript,js,jsx,es6 RainbowParentheses
+    autocmd FileType * RainbowParentheses
   augroup END
 
-Plug 'gavinbeatty/dragvisuals.vim'
+Plug 'gavinbeatty/dragvisuals.vim' 
   vmap  <expr>  <LEFT>   DVB_Drag('left')
   vmap  <expr>  <RIGHT>  DVB_Drag('right')
   vmap  <expr>  <DOWN>   DVB_Drag('down')
@@ -80,10 +36,21 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " use tab for completion
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+Plug 'junegunn/goyo.vim'
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+  set bg=light
+endfunction
+command! ProseMode call ProseMode()
+nmap \p :ProseMode<CR>
+
 " -----------------------------------------------------
 " External tools intergration plugins
 " -----------------------------------------------------
 
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
   nnoremap <leader>gs :Gstatus<CR>
 
@@ -97,7 +64,7 @@ Plug 'keith/swift.vim', { 'for': 'swift' }
 " Rust
 " -----------------------------------------------------
 
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rs' }
 
 " -----------------------------------------------------
 " Javascript
@@ -108,7 +75,6 @@ Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] 
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
   let g:jsx_ext_required = 0
 
-Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'elmcast/elm-vim', { 'for': ['elm'] }
 Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
@@ -119,6 +85,7 @@ Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+  au BufNewFile,BufReadPost *.md set filetype=markdown
   let g:markdown_fenced_languages = [
     \ 'css',
     \ 'erb=eruby',
@@ -167,10 +134,18 @@ Plug 'jistr/vim-nerdtree-tabs'
   let g:nerdtree_tabs_open_on_console_startup = 2
   " open only if directory was given as startup argument
 
-Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
-  nnoremap <leader>t :CtrlP<CR>
-  nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-  noremap <C-h> <C-w>h
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>r :Tags<CR>
+
+" adds `:Rg` command for quick search (ALT-A to select all, ALT-D to deselect all)
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 " -----------------------------------------------------
 " Dependencies

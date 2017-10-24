@@ -18,6 +18,8 @@ alias postgres_start='postgres -D /usr/local/var/postgres'
 
 alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
+alias start_sp='cd ~/Documents/elixir/silver_post; ~/dotFiles/tmux/sp.sh'
+
 # Generates ctags for Python (with packages and libs dir)
 function ctags_pip() {
   # Make magic
@@ -64,9 +66,9 @@ function weather { wget -O - http://wttr.in/$1 -q; }
 
 # nvm
 # Only loads nvm when `node` or `npm` is called for the first time:
-alias load_nvm='export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
-alias node='unalias node npm && load_nvm && node'
-alias npm='unalias node npm && load_nvm && npm'
+# alias load_nvm='export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
+# alias node='unalias node npm && load_nvm && node'
+# alias npm='unalias node npm && load_nvm && npm'
 # alias nvm='unalias node npm && load_nvm && nvm'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -96,3 +98,8 @@ export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\03
 # if command -v tmux>/dev/null; then
 #   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 # fi
+
+# makes FZF use ripgrep (rg)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"

@@ -29,18 +29,19 @@ if [ "$(uname)" == "Darwin" ]; then
   # neovim
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s `pwd`/vim $XDG_CONFIG_HOME/nvim
+  ln -s `pwd`/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
-  echo "Running on OSX"
+  # echo "Running on OSX"
 
-  echo "Brewing..."
-  source install/brew.sh
+  # echo "Brewing..."
+  # source install/brew.sh
 
-  echo "Cask brewing..."
-  source install/brewCask.sh
+  # echo "Cask brewing..."
+  # source install/brewCask.sh
 
-  echo "Installing node..."
-  source install/nvm.sh
-  source install/node.sh
+  # echo "Installing node..."
+  # source install/nvm.sh
+  # source install/node.sh
 fi
 
 echo "Done."

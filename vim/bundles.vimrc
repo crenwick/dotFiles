@@ -2,28 +2,26 @@
 " Colorschemes
 " -----------------------------------------------------
 
-" Plug 'https://github.com/ajh17/Spacegray.vim'
 Plug 'AlessandroYorba/Despacio'
 
 " -----------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------
 
-" ACP Forked
+Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
-  vmap <Leader>c <c-_><c-_>
-  vmap <Leader>C <c-_>b
-  " mapping to `gc` doesn't toggle one visually selected line - only multiples.
-  nmap <D-/> gc$
-
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'mbbill/undotree'
 Plug 'unblevable/quick-scope'
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 Plug 'junegunn/rainbow_parentheses.vim'
   let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+  let g:rainbow#blacklist = [180, 208, 230, 216, 109, 233]
   augroup rainbow_js
     autocmd!
-    autocmd FileType python,elixir,eelixir,javascript,js,jsx,es6 RainbowParentheses
+    autocmd FileType * RainbowParentheses
   augroup END
 
 Plug 'gavinbeatty/dragvisuals.vim'
@@ -33,13 +31,35 @@ Plug 'gavinbeatty/dragvisuals.vim'
   vmap  <expr>  <UP>     DVB_Drag('up')
   let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
 
-Plug 'jordwalke/AutoComplPop'
-  let g:acp_ignorecaseOption = 1
+
+if !has('nvim')
+  " Plug 'tpope/vim-sensible'
+  " Plug 'jordwalke/AutoComplPop'
+  "   let g:acp_ignorecaseOption = 1
+endif
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
+    " use tab for completion
+    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+endif
+
+Plug 'junegunn/goyo.vim'
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+  set bg=light
+endfunction
+command! ProseMode call ProseMode()
+nmap \p :ProseMode<CR>
 
 " -----------------------------------------------------
 " External tools intergration plugins
 " -----------------------------------------------------
 
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
   nnoremap <leader>gs :Gstatus<CR>
 
@@ -50,6 +70,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'keith/swift.vim', { 'for': 'swift' }
 
 " -----------------------------------------------------
+" Rust
+" -----------------------------------------------------
+
+Plug 'rust-lang/rust.vim', { 'for': 'rs' }
+
+" -----------------------------------------------------
 " Javascript
 " -----------------------------------------------------
 
@@ -58,10 +84,9 @@ Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] 
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
   let g:jsx_ext_required = 0
 
-Plug 'jordwalke/VimJSDocSnippets', { 'for': ['javascript', 'javascript.jsx'] }
-  let g:JSDocSnippetsMapping='<D-C>'
-
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'elmcast/elm-vim', { 'for': ['elm'] }
+Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
 
 " -----------------------------------------------------
 " HTML/CSS
@@ -100,40 +125,39 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " Interface improvement
 " -----------------------------------------------------
 
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle', 'NERDTreeTabsToggle'] }
-  let g:NERDTreeDirArrows = 1 " nice arrow
+Plug 'scrooloose/nerdtree'
   let g:NERDTreeMinimalUI = 1 " not so much cruft
-  let g:NERDTreeShowBookmarks = 1
+  let g:NERDTreeShowHidden = 1 " Should hidden files
+  let g:NERDTreeShowLineNumbers = 1
+  let g:NERDTreeIgnore=['\.DS_Store']
+  let g:NERDTreeShowBookmarks = 0
   hi def link NERDTreeRO Normal
   hi def link NERDTreePart StatusLine
   hi def link NERDTreeDirSlash Directory
   hi def link NERDTreeCurrentNode Search
   hi def link NERDTreeCWD Normal
-  let g:NERDChristmasTree = 0 " Not so much color
 
-Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeTabsToggle'] }
+Plug 'jistr/vim-nerdtree-tabs'
   nnoremap <leader>d :NERDTreeTabsToggle<CR>
   nnoremap <leader>f :NERDTreeTabsFind<CR>
-  " don't auto open NERDTree
-  " let g:nerdtree_tabs_open_on_gui_startup = 1
-  " let g:nerdtree_tabs_open_on_console_startup = 0
+  let g:nerdtree_tabs_open_on_console_startup = 2
+  " open only if directory was given as startup argument
 
-Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPClearCache'] }
-  nnoremap <leader>t :CtrlP<CR>
-  nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-  noremap <C-h> <C-w>h
-  set splitright                      " splliting right after helps preserver left nav
-  let g:ctrlp_switch_buffer='ETVH'    " jump to exisiting buffer on any open command
-  let g:ctrlp_show_hidden = 1         " show me dotfiles
-  let g:ctrlp_match_window_bottom = 1 " show the match window at the top of the screen
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>r :Tags<CR>
 
-" Custom Resizing for SplitBalancer
-Plug 'jordwalke/VimSplitBalancer'
+" adds `:Rg` command for quick search (ALT-A to select all, ALT-D to deselect all)
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
-" Visualize a tree of your document history
-Plug 'http://github.com/sjl/gundo.vim.git'
-nnoremap <D-U> :GundoToggle<CR>
-let g:gundo_close_on_revert=1
+Plug 'justincampbell/vim-eighties'
+  let g:eighties_minimum_width = 80
 
 Plug 'terryma/vim-smooth-scroll'
   " Normal mode
@@ -149,28 +173,3 @@ Plug 'terryma/vim-smooth-scroll'
 
 " Async processing (for Unite)
 Plug 'tpope/vim-repeat'
-
-" -----------------------------------------------------
-" Other
-" -----------------------------------------------------
-
-" Bootstrap for Vim
-Plug 'tpope/vim-sensible'
-" AutoMakeDirectory if Needed
-Plug 'jordwalke/VimAutoMakeDirectory'
-" Thumbnail
-Plug 'itchyny/thumbnail.vim'
-" Go to Left when closing like everything else in the world
-Plug 'jordwalke/VimCloser'
-" SmartGUITabs
-Plug 'jordwalke/MacVimSmartGUITabs'
-" Make sure to have `set guioptions+=e` in your `.gvimrc`.
-map <D-Cr> :SmartGUITabsToggleFullScreen<CR>
-imap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
-nmap <D-Cr> <Esc>:SmartGUITabsToggleFullScreen<CR>
-
-" Combine Previous Plugins For Modern Completion Experience
-
-" ciP  (change in paramater  - changes the single argument under cursor!
-Plug 'git://github.com/vim-scripts/Parameter-Text-Objects.git'
-
