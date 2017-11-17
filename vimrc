@@ -1,11 +1,11 @@
 " -----------------------------------------------------
-" General
+" Options
 " -----------------------------------------------------
 
 set nocompatible      " not compatible with vi
 set autoindent        " automatically set indent of new line
 set autoread          " reload files when changed on disk,
-" set backspace=indent,eol,start
+set backspace=indent,eol,start
                       " Allow backspace beyond insertion point
 
 set title             " Set terminal title
@@ -24,8 +24,8 @@ set clipboard=unnamed " yank and paste with the system clipboard
 set directory-=.      " don't store swapfiles in the current directory
 set list              " show trailing whitespace
 set listchars=""
-set listchars=tab:\ \
-set listchars+=trail:.
+" set listchars+=trail:·
+set listchars+=tab:\|\
 set tabpagemax=30
 set showcmd           " show current command going on
 
@@ -33,10 +33,6 @@ set showcmd           " show current command going on
 set foldmethod=indent
 set nofoldenable      " Remove ugly folds
 set diffopt=filler,context:9999 "nofold in diff mode
-
-" -----------------------------------------------------
-" User Interface
-" -----------------------------------------------------
 
 set wildmenu          " show a navigable menu for tab completion
 set wildmode=list:longest,full
@@ -52,7 +48,7 @@ set scrolloff=5       " show context above/below cursor line
 set sidescroll=1
 
 " set shell=/bin/bash\ -li
-" " fix shell?
+" fix shell?
 " if &shell =~# 'fish$'
 "   set shell=sh
 " endif
@@ -82,15 +78,6 @@ set mat=2             " how many tenths of a second to blink
 set noerrorbells
 set visualbell
 
-syntax on             " enable syntax highlighting
-
-" set es to javascript syntax
-au BufNewFile,BufReadPost *.es6 set filetype=javascript
-au BufNewFile,BufReadPost *.json set filetype=json
-au BufRead,BufNewFile *.bash_profile set filetype=sh
-au BufRead,BufNewFile *.bashrc set filetype=sh
-au BufRead,BufNewFile Fastfile set filetype=ruby
-
 " Theme
 set encoding=utf8
 let base16colorspace=256
@@ -99,24 +86,20 @@ set number            " show the current line number
 
 set smartindent
 
-" -----------------------------------------------------
-" Files, backups and undo
-" -----------------------------------------------------
-
 set noswapfile        " Don't make backups.
 set nowritebackup     " Even if you did make a backup, don't keep it around.
 set nobackup
 
-" -----------------------------------------------------
-" Statusline
-" -----------------------------------------------------
-
 set laststatus=2      " always show status
 
-" -----------------------------------------------------
-" Mappings
-" -----------------------------------------------------
+" stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
+set switchbuf+=usetab,newtab
 
+" Configure as Privacy Plugin
+" All sensitive data is not stored in your ~/.vimrc folder
+" Configure the spelling language and file.
+set spelllang=en
+set spellfile=$HOME/vim_spell/en.utf-8.add
 
 " -----------------------------------------------------
 " Snippets
@@ -163,7 +146,7 @@ nnoremap <Leader>w :wa<CR>
 nmap <Leader><Leader> V
 
 " send last command to last tmux pane
-nmap \r :!tmux send-keys -t {last} Up Enter <CR><CR>
+nmap \r :!tmux send-keys -t {last} C-c Up Enter <CR><CR>
 
 " Tag Jumping:
 command! MakeTags !ctags -R .
@@ -191,21 +174,10 @@ endif
 " These are things that I mistype and want ignored.
 nmap Q  <silent>
 nmap q: <silent>
-nmap K <silent>
-
-" -----------------------------------------------------
-" -----------------------------------------------------
+nmap K  <silent>
 
 filetype plugin on
 filetype indent on
-
-" sourcing before custom scripts can go here
-
-" Configure as Privacy Plugin
-" All sensitive data is not stored in your ~/.vimrc folder
-" Configure the spelling language and file.
-set spelllang=en
-set spellfile=$HOME/vim_spell/en.utf-8.add
 
 " UndoDir:
 let s:homeFolder = $HOME
@@ -222,9 +194,6 @@ execute "set undodir=".s:undoDir
 " Since your file/folder history may show up in a git commit!
 let g:netrw_dirhistmax=0
 
-" stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
-set switchbuf+=usetab,newtab
-
 " -----------------------------------------------------
 " UI
 " -----------------------------------------------------
@@ -232,5 +201,22 @@ set switchbuf+=usetab,newtab
 let g:despacio_Midnight = 1
 colorscheme despacio
 
+syntax on             " enable syntax highlighting
+
+" highlight SpecialKey term=reverse cterm=reverse ctermfg=167 ctermbg=233 gui=reverse guifg=#d75f5f guibg=#121212
 " highlight the 80st character in each line
-autocmd WinEnter * match Error '\%81v'
+autocmd WinEnter * match Error '\%81v.\+'
+
+" highlight trailing whitespace
+" match Error /\s\+$/
+
+" -----------------------------------------------------
+" FILE TYPE TRIGGERS
+" -----------------------------------------------------
+
+au BufNewFile,BufRead *.html          setlocal nocindent smartindent
+au BufNewFile,BufRead *.es6           set ft=javascript
+au BufNewFile,BufRead *.json          set ft=json
+au BufNewFile,BufRead *.bash_profile  set ft=sh
+au BufNewFile,BufRead *.bashrc        set ft=sh
+au BufNewFile,BufRead Fastfile        set ft=ruby

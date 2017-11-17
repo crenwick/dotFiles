@@ -51,6 +51,9 @@ function! ProseMode()
   set spell noci nosi noai nolist noshowmode noshowcmd
   set complete+=s
   set bg=light
+  highlight SpecialKey ctermbg=NONE
+
+  match Error /\%81v/
 endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
@@ -60,8 +63,8 @@ nmap \p :ProseMode<CR>
 " -----------------------------------------------------
 
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-  nnoremap <leader>gs :Gstatus<CR>
+" Plug 'tpope/vim-fugitive'
+"   nnoremap <leader>gs :Gstatus<CR>
 
 " -----------------------------------------------------
 " Swift
@@ -126,27 +129,24 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " -----------------------------------------------------
 
 Plug 'scrooloose/nerdtree'
-  let g:NERDTreeMinimalUI = 1 " not so much cruft
-  let g:NERDTreeShowHidden = 1 " Should hidden files
-  let g:NERDTreeShowLineNumbers = 1
-  let g:NERDTreeIgnore=['\.DS_Store']
-  let g:NERDTreeShowBookmarks = 0
+  let NERDTreeMinimalUI = 1 " not so much cruft
+  let NERDTreeShowHidden = 1 " Should hidden files
+  let NERDTreeShowLineNumbers = 0
+  let NERDTreeIgnore=['\.DS_Store']
+  let NERDTreeShowBookmarks = 0
+  let NERDTreeWinSize = 20
+  let NERDTreeAutoDeleteBuffer=1
   hi def link NERDTreeRO Normal
   hi def link NERDTreePart StatusLine
   hi def link NERDTreeDirSlash Directory
   hi def link NERDTreeCurrentNode Search
   hi def link NERDTreeCWD Normal
-
-Plug 'jistr/vim-nerdtree-tabs'
-  nnoremap <leader>d :NERDTreeTabsToggle<CR>
-  nnoremap <leader>f :NERDTreeTabsFind<CR>
-  let g:nerdtree_tabs_open_on_console_startup = 2
-  " open only if directory was given as startup argument
+  nnoremap <leader>d :NERDTreeToggle<CR>
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-nnoremap <leader>t :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>r :Tags<CR>
+  nnoremap <leader>t :Files<CR>
+  nnoremap <leader>b :Buffers<CR>
+  nnoremap <leader>r :Tags<CR>
 
 " adds `:Rg` command for quick search (ALT-A to select all, ALT-D to deselect all)
 command! -bang -nargs=* Rg
@@ -155,9 +155,6 @@ command! -bang -nargs=* Rg
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
       \   <bang>0)
-
-Plug 'justincampbell/vim-eighties'
-  let g:eighties_minimum_width = 80
 
 Plug 'terryma/vim-smooth-scroll'
   " Normal mode

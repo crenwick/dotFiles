@@ -34,6 +34,26 @@ set -o vi # set termainal to vi mode
 
 stty -ixon # enable `ctrl-s`
 
+function promptCommand()
+{
+  LAST_STATUS=$?
+  # Set title of window to dir, then add new line to prompt.
+  PS1='\[\e]0;\w\a\]\n'
+  if [ $LAST_STATUS -eq 0 ]; then
+    ((successes++))
+    PS1+='\[\033[1;32m\][$successes]'
+  else
+    successes=0
+    PS1+='\[\033[1;31m\][0 $LAST_STATUS]'
+  fi  
+  PS1+='\[\033[0;32m\] '
+  PS1+='\w $(date +%H:%M) \$ \[\033[0m\]'
+}
+
+lastStatus=0
+successes=-1
+PROMPT_COMMAND="promptCommand"
+
 # show current background job count
 # add \`jobs_count\` to the end of PS1
 function jobs_count {
@@ -51,7 +71,6 @@ export HISTFILESIZE=4000
 export EDITOR=nvim
 export VISUAL=code
 
-GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Single_line
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
@@ -86,6 +105,7 @@ export PYTHONPATH=:$PYTHONPATH
 
 # Go
 export GOPATH="$HOME/gocode"
+export PATH="$GOPATH/bin:$PATH"
 
 # Rust
 source $HOME/.cargo/env
@@ -95,11 +115,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 # export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
-# if command -v tmux>/dev/null; then
-#   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-# fi
-
 # makes FZF use ripgrep (rg)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
