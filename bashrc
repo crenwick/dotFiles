@@ -116,7 +116,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
 # makes FZF use ripgrep (rg)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,deps,_build,elm-stuff}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"

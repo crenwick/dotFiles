@@ -7,7 +7,7 @@ Aborting." >&2; exit 1; }
 SESSION=sp
 
 # if the session is already running, just attach to it.
-tmux has-session -t $SESSION
+tmux has-session -t=$SESSION
 if [ $? -eq 0 ]; then
   echo "Session $SESSION already exists. Attaching."
   sleep 1

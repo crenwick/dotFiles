@@ -12,6 +12,7 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'mbbill/undotree'
 Plug 'unblevable/quick-scope'
   let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
