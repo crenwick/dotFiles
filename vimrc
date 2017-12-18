@@ -19,6 +19,9 @@ set expandtab         " expand tabs to spaces
 set tabstop=2         " actual tab uses 8 spaces
 
 set mouse=a           " click tabs, drag tabs, and drag split bars
+if has("mouse_sgr")
+  set ttymouse=sgr
+end
 set clipboard=unnamed " yank and paste with the system clipboard
 
 set directory-=.      " don't store swapfiles in the current directory

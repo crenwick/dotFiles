@@ -32,19 +32,16 @@ Plug 'gavinbeatty/dragvisuals.vim'
   vmap  <expr>  <UP>     DVB_Drag('up')
   let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
 
-
-if !has('nvim')
-  " Plug 'tpope/vim-sensible'
-  " Plug 'jordwalke/AutoComplPop'
-  "   let g:acp_ignorecaseOption = 1
-endif
-
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:deoplete#enable_at_startup = 1
-    " use tab for completion
-    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  let g:deoplete#enable_at_startup = 1
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+  " use tab for completion
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 Plug 'junegunn/goyo.vim'
 function! ProseMode()

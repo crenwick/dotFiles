@@ -69,7 +69,7 @@ export HISTFILESIZE=4000
 
 # Git configuration
 export EDITOR=nvim
-export VISUAL=code
+# export VISUAL=code
 
 GIT_PROMPT_THEME=Single_line
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
@@ -94,7 +94,7 @@ function weather { wget -O - http://wttr.in/$1 -q; }
 
 
 # Python imports
-export PYTHONPATH=:$PYTHONPATH
+# export PYTHONPATH=:$PYTHONPATH
 
 # PHP imports
 # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
@@ -103,20 +103,18 @@ export PYTHONPATH=:$PYTHONPATH
 # Swift REPL
 # export TOOLCHAINS=swift
 
-# Go
-export GOPATH="$HOME/gocode"
-export PATH="$GOPATH/bin:$PATH"
-
-# Rust
-source $HOME/.cargo/env
-
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
-# export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
-# export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
 
 # makes FZF use ripgrep (rg)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,deps,_build,elm-stuff}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Go
+export PATH="$HOME/gocode/bin:$PATH"
+
+# Rust
+source $HOME/.cargo/env
+
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
