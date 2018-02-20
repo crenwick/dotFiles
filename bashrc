@@ -94,7 +94,7 @@ function weather { wget -O - http://wttr.in/$1 -q; }
 
 
 # Python imports
-# export PYTHONPATH=:$PYTHONPATH
+export PYTHONPATH=:$PYTHONPATH
 
 # PHP imports
 # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"

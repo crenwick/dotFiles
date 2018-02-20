@@ -149,7 +149,8 @@ nnoremap <Leader>w :wa<CR>
 nmap <Leader><Leader> V
 
 " send last command to last tmux pane
-nmap \r :!tmux send-keys -t {last} C-c Up Enter <CR><CR>
+nmap \r :!tmux send-keys -t {last} Up Enter <CR><CR>
+nmap \c :!tmux send-keys -t {last} C-C <CR><CR>
 
 " Tag Jumping:
 command! MakeTags !ctags -R .
@@ -157,6 +158,8 @@ command! MakeTags !ctags -R .
 " - Use ^] to jump to tag under cursor
 " - Use g^] for a list of tags under cursor
 " - Use ^t to jump back up the tag stack
+
+command! Reload :so $MYVIMRC
 
 " Get rid of trailing whitespace
 nnoremap <leader>WS :%s/\s\+$//<CR>
@@ -201,8 +204,8 @@ let g:netrw_dirhistmax=0
 " UI
 " -----------------------------------------------------
 
-let g:despacio_Midnight = 1
-colorscheme despacio
+" let g:despacio_Midnight = 1
+colorscheme apprentice
 
 syntax on             " enable syntax highlighting
 

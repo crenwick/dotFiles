@@ -3,6 +3,9 @@
 " -----------------------------------------------------
 
 Plug 'AlessandroYorba/Despacio'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'morhetz/gruvbox'
+Plug 'romainl/Apprentice'
 
 " -----------------------------------------------------
 " Language agnostic plugins
@@ -18,8 +21,8 @@ Plug 'unblevable/quick-scope'
   let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 Plug 'junegunn/rainbow_parentheses.vim'
-  let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-  let g:rainbow#blacklist = [180, 208, 230, 216, 109, 233]
+  " let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+  " let g:rainbow#blacklist = [180, 208, 230, 216, 109, 233]
   augroup rainbow_js
     autocmd!
     autocmd FileType * RainbowParentheses
@@ -61,8 +64,11 @@ nmap \p :ProseMode<CR>
 " -----------------------------------------------------
 
 Plug 'airblade/vim-gitgutter'
-" Plug 'tpope/vim-fugitive'
-"   nnoremap <leader>gs :Gstatus<CR>
+Plug 'tpope/vim-fugitive'
+  nnoremap <leader>gs :Gstatus<CR>
+  nnoremap <leader>gc :Gcommit -v -q<CR>
+  nnoremap <leader>gd :Gdiff<CR>
+  nnoremap <leader>gr :Git grok<CR>
 
 " -----------------------------------------------------
 " Swift
@@ -87,6 +93,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'elmcast/elm-vim', { 'for': ['elm'] }
+  let g:elm_setup_keybindings = 0
 Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
 
 " -----------------------------------------------------
