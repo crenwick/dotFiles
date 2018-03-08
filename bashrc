@@ -18,6 +18,7 @@ alias postgres_start='postgres -D /usr/local/var/postgres'
 
 alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
+alias tmuxpbcopy='tmux saveb - | pbcopy'
 alias start_sp='cd ~/Documents/elixir/silver_post; ~/dotFiles/tmux/sp.sh'
 
 # Generates ctags for Python (with packages and libs dir)
@@ -36,32 +37,17 @@ stty -ixon # enable `ctrl-s`
 
 function promptCommand()
 {
-  LAST_STATUS=$?
-  # Set title of window to dir, then add new line to prompt.
-  PS1='\[\e]0;\w\a\]\n'
+  LAST_STATUS=$GIT_PROMPT_LAST_COMMAND_STATE
   if [ $LAST_STATUS -eq 0 ]; then
     ((successes++))
-    PS1+='\[\033[1;32m\][$successes]'
+    echo -n "$successes"
   else
     successes=0
-    PS1+='\[\033[1;31m\][0 $LAST_STATUS]'
   fi  
-  PS1+='\[\033[0;32m\] '
-  PS1+='\w $(date +%H:%M) \$ \[\033[0m\]'
 }
 
-lastStatus=0
 successes=-1
 PROMPT_COMMAND="promptCommand"
-
-# show current background job count
-# add \`jobs_count\` to the end of PS1
-function jobs_count {
-  cnt=$(jobs -l | wc -l)
-  if [ $cnt -gt 0 ]; then
-    echo -ne " \e[93m${cnt}\e[m"
-  fi
-}
 
 export HISTCONTROL=ignoreboth:erasedups # dont keep dups in bash histry
 export HISTSIZE=2000
@@ -111,6 +97,7 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Go
 export PATH="$HOME/gocode/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # Rust
 source $HOME/.cargo/env

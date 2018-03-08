@@ -12,6 +12,14 @@ Plug 'romainl/Apprentice'
 " -----------------------------------------------------
 
 Plug 'w0rp/ale'
+  let g:ale_sign_warning = '--'
+  let g:ale_sign_error = '>>'
+  highlight clear ALEWarningSign
+  let g:ale_echo_msg_format = '[%linter%] %s'
+  " nmap <silent> <C-k> :ale_previous_wrap
+  nnoremap <leader><C-k> :ALEPreviousWrap<CR>
+  nnoremap <leader><C-j> :ALENextWrap<CR>
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -101,6 +109,7 @@ Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
 " -----------------------------------------------------
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
   au BufNewFile,BufReadPost *.md set filetype=markdown
   let g:markdown_fenced_languages = [
