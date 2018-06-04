@@ -35,19 +35,18 @@ set -o vi # set termainal to vi mode
 
 stty -ixon # enable `ctrl-s`
 
-function promptCommand()
-{
-  LAST_STATUS=$GIT_PROMPT_LAST_COMMAND_STATE
-  if [ $LAST_STATUS -eq 0 ]; then
-    ((successes++))
-    echo -n "$successes"
-  else
-    successes=0
-  fi  
-}
-
-successes=-1
-PROMPT_COMMAND="promptCommand"
+# function promptCommand()
+# {
+#   LAST_STATUS=$GIT_PROMPT_LAST_COMMAND_STATE
+#   if [ $LAST_STATUS -eq 0 ]; then
+#     ((successes++))
+#     echo -n "$successes"
+#   else
+#     successes=0
+#   fi  
+# }
+# successes=-1
+# PROMPT_COMMAND="promptCommand"
 
 export HISTCONTROL=ignoreboth:erasedups # dont keep dups in bash histry
 export HISTSIZE=2000
@@ -57,11 +56,11 @@ export HISTFILESIZE=4000
 export EDITOR=nvim
 # export VISUAL=code
 
-GIT_PROMPT_THEME=Single_line
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-fi
+# GIT_PROMPT_THEME=Single_line
+# if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+#   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+#   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+# fi
 
 # example: `$ gi node,osx`
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}

@@ -4,18 +4,20 @@
 
 set nocompatible      " not compatible with vi
 set autoindent        " automatically set indent of new line
-set autoread          " reload files when changed on disk,
+set autoread          " reload files when changed on disk
 set backspace=indent,eol,start
                       " Allow backspace beyond insertion point
+set complete-=i       " Set completion results with things that are useful
 
 set title             " Set terminal title
 set ruler             " Show where you are
-set history=500
+set history=1000
 
 " Tab control
 set softtabstop=2     " insert mode tab and backspace uses 2 spaces
 set shiftwidth=2      " normal mode indentation commands uses 2 spaces
 set expandtab         " expand tabs to spaces
+set smarttab          " 'tab' according the the file usage
 set tabstop=2         " actual tab uses 8 spaces
 
 set mouse=a           " click tabs, drag tabs, and drag split bars
@@ -26,10 +28,8 @@ set clipboard=unnamed " yank and paste with the system clipboard
 
 set directory-=.      " don't store swapfiles in the current directory
 set list              " show trailing whitespace
-set listchars=""
-" set listchars+=trail:·
-set listchars+=tab:\|\
-set tabpagemax=30
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set tabpagemax=50
 set showcmd           " show current command going on
 
 " code folding settings
@@ -48,7 +48,8 @@ set wildignore+=tmp/**
 set wildignore+=.meteor/local/**
 set hidden            " allow buffer to be hidden when writing to disk
 set scrolloff=5       " show context above/below cursor line
-set sidescroll=1
+set sidescroll=5
+set display+=lastline
 
 " set shell=/bin/bash\ -li
 " fix shell?
@@ -62,6 +63,7 @@ set ignorecase        " case-insensitive search
 set smartcase         " case-sensitive search if any caps
 set hlsearch
 set incsearch         " search as you type
+
 set path+=**          " Search down into subfolders
 " - Hit tab to :find by partial math
 " - Use * to make it fuzzy
@@ -98,7 +100,7 @@ set laststatus=2      " always show status
 " stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab
 set switchbuf+=usetab,newtab
 
-" Configure as Privacy Plugin
+" Configure as Privacy plugin
 " All sensitive data is not stored in your ~/.vimrc folder
 " Configure the spelling language and file.
 set spelllang=en
@@ -175,15 +177,18 @@ if has('nvim')
   tnoremap <C-j> <C-\><C-n><C-w>j
   tnoremap <C-k> <C-\><C-n><C-w>k
   tnoremap <C-l> <C-\><C-n><C-w>l
+
+  set ttimeout        " wait for a mapping sequence to complete
+  set ttimeoutlen=100
 endif
 
-" These are things that I mistype and want ignored.
-nmap Q  <silent>
+" These are things that I mistype and want ignored or fixed.
 nmap q: <silent>
-nmap K  <silent>
+cabbrev Q q
+cabbrev Vsp vsp
+cabbrev Wq wq
 
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " UndoDir:
 let s:homeFolder = $HOME
@@ -209,12 +214,11 @@ colorscheme apprentice
 
 syntax on             " enable syntax highlighting
 
-" highlight SpecialKey term=reverse cterm=reverse ctermfg=167 ctermbg=233 gui=reverse guifg=#d75f5f guibg=#121212
 " highlight the 80st character in each line
-autocmd WinEnter * match Error '\%81v.\+'
+autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " highlight trailing whitespace
-" match Error /\s\+$/
+autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
 
 " -----------------------------------------------------
 " FILE TYPE TRIGGERS

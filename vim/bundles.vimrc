@@ -62,7 +62,7 @@ function! ProseMode()
   set bg=light
   highlight SpecialKey ctermbg=NONE
 
-  match Error /\%81v/
+  " match Error /\%81v/
 endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
