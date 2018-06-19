@@ -14,8 +14,6 @@ alias showAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 alias hideAllFiles='defaults write com.apple.finder AppleShowAllFiles YES'
 
 alias watch="fswatch -0 -o . | xargs -n1 -I {} "
-alias postgres_start='postgres -D /usr/local/var/postgres'
-
 alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 alias tmuxpbcopy='tmux saveb - | pbcopy'
@@ -31,9 +29,11 @@ function ctags_pip3() {
   ctags -R --exclude=.git --fields=+l --languages=python --python-kinds=-iv -f $1tags $(python3 -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
 }
 
-set -o vi # set termainal to vi mode
+# set termainal to vi mode
+set -o vi
 
-stty -ixon # enable `ctrl-s`
+# enable `ctrl-s`
+stty -ixon
 
 # function promptCommand()
 # {
@@ -81,13 +81,8 @@ function weather { wget -O - http://wttr.in/$1 -q; }
 # Python imports
 export PYTHONPATH=:$PYTHONPATH
 
-# PHP imports
-# export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
-# export PATH="$HOME/.composer/vendor/bin:$PATH"
-
 # Swift REPL
 # export TOOLCHAINS=swift
-
 
 # makes FZF use ripgrep (rg)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,deps,_build,elm-stuff}/*" 2> /dev/null'
@@ -100,7 +95,5 @@ export PATH="$HOME/go/bin:$PATH"
 
 # Rust
 source $HOME/.cargo/env
-
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "

@@ -22,6 +22,7 @@ Plug 'w0rp/ale'
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'mbbill/undotree'
@@ -29,12 +30,8 @@ Plug 'unblevable/quick-scope'
   let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 Plug 'junegunn/rainbow_parentheses.vim'
-  " let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-  " let g:rainbow#blacklist = [180, 208, 230, 216, 109, 233]
-  augroup rainbow_js
-    autocmd!
-    autocmd FileType * RainbowParentheses
-  augroup END
+  autocmd VimEnter * RainbowParentheses
+  let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 Plug 'gavinbeatty/dragvisuals.vim'
   vmap  <expr>  <LEFT>   DVB_Drag('left')
@@ -72,6 +69,9 @@ nmap \p :ProseMode<CR>
 " -----------------------------------------------------
 
 Plug 'airblade/vim-gitgutter'
+  " Jump between hunks with [c and ]c
+  set updatetime=100
+
 Plug 'tpope/vim-fugitive'
   nnoremap <leader>gs :Gstatus<CR>
   nnoremap <leader>gc :Gcommit -v -q<CR>
@@ -167,8 +167,9 @@ command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \           : fzf#vim#with_preview('right:50%', '?'),
       \   <bang>0)
+autocmd FileType zfz matchdelete(w:m2)
 
 Plug 'terryma/vim-smooth-scroll'
   " Normal mode
@@ -177,10 +178,3 @@ Plug 'terryma/vim-smooth-scroll'
   " smooth_scroll is broken in visual mode currently - unmap
   vnoremap <silent> <c-u> <c-u>
   vnoremap <silent> <c-d> <c-d>
-
-" -----------------------------------------------------
-" Dependencies
-" -----------------------------------------------------
-
-" Async processing (for Unite)
-Plug 'tpope/vim-repeat'

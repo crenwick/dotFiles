@@ -161,7 +161,7 @@ command! MakeTags !ctags -R .
 " - Use g^] for a list of tags under cursor
 " - Use ^t to jump back up the tag stack
 
-command! Reload :so $MYVIMRC
+command! Reload :source $MYVIMRC
 
 " Get rid of trailing whitespace
 nnoremap <leader>WS :%s/\s\+$//<CR>
@@ -180,6 +180,7 @@ if has('nvim')
 
   set ttimeout        " wait for a mapping sequence to complete
   set ttimeoutlen=100
+  set inccommand=nosplit
 endif
 
 " These are things that I mistype and want ignored or fixed.
@@ -215,10 +216,10 @@ colorscheme apprentice
 syntax on             " enable syntax highlighting
 
 " highlight the 80st character in each line
-autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+autocmd BufWinEnter * let w:m2=matchadd('SpellCap', '\%81v.', -1)
 
 " highlight trailing whitespace
-autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
+autocmd BufWinEnter * let w:m3=matchadd('ErrorMsg', '\s\+$', -1)
 
 " -----------------------------------------------------
 " FILE TYPE TRIGGERS
