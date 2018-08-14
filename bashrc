@@ -18,6 +18,7 @@ alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 alias tmuxpbcopy='tmux saveb - | pbcopy'
 alias start_sp='cd ~/Documents/elixir/silver_post; ~/dotFiles/tmux/sp.sh'
+alias qvi="~/dotFiles/vimanywhere.sh"
 
 # Generates ctags for Python (with packages and libs dir)
 function ctags_pip() {
