@@ -85,7 +85,7 @@ export PYTHONPATH=:$PYTHONPATH
 # export TOOLCHAINS=swift
 
 # makes FZF use ripgrep (rg)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,deps,_build,elm-stuff}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -97,3 +97,9 @@ export PATH="$HOME/go/bin:$PATH"
 source $HOME/.cargo/env
 
 export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\033[m\]$ "
+# export PATH="/usr/local/sbin:$PATH"
+# export PATH="~/Library/Python/3.6/bin:$PATH"
+
+export PATH="/Users/crenwick/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

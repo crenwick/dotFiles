@@ -1,8 +1,36 @@
 [user]
-	name = Charles Renwick
-	email = charles.srenwick@gmail.com
+    name = Charles Renwick
+    email = charles.srenwick@gmail.com
+
 [github]
     user = crewnick
+
+[push]
+    # push will only do the current branch, not all branches
+    default = current
+
+[branch]
+    # set up 'git pull' to rebase instead of merge
+
+    autosetuprebase = always
+
+[credential]
+    helper = osxkeychain
+
+[core]
+    excludefiles = ~/.gitignore_global
+    editor = nvim
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+
 [alias]
     s = status --short --branch
     c = commit
@@ -26,47 +54,29 @@
 
     # both initialize your repository and creates an empty root commit in one quick step.
     it = !git init && git commit -m “root” --allow-empty
+
 [color]
     diff = auto
     status = auto
     branch = auto
     interactive = auto
     ui = auto
+
 [color "branch"]
     current = green bold
     local = green
     remote = red bold
+
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red bold
     new = green bold
+
 [color "status"]
     added = green bold
     changed = yellow bold
     untracked = red
+
 [color "sh"]
     branch = yellow
-[push]
-    # push will only do the current branch, not all branches
-    default = current
-[branch]
-    # set up 'git pull' to rebase instead of merge
-    autosetuprebase = always
-[diff]
-    tool = nvimdiff
-[difftool "nvimdiff"]
-    cmd = "~/.vim/vimgitdiff.sh " $LOCAL $REMOTE
-[credential]
-    helper = osxkeychain
-[core]
-    excludefiles = ~/.gitignore_global
-    editor = nvim
-[rerere]
-    enabled = true
-    autoupdate = true
-[filter "lfs"]
-    required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process

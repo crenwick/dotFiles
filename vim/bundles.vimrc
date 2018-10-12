@@ -2,23 +2,55 @@
 " Colorschemes
 " -----------------------------------------------------
 
-Plug 'AlessandroYorba/Despacio'
-Plug 'danilo-augusto/vim-afterglow'
-Plug 'morhetz/gruvbox'
-Plug 'romainl/Apprentice'
+" Plug 'AlessandroYorba/Despacio'
+" Plug 'danilo-augusto/vim-afterglow'
+" Plug 'morhetz/gruvbox'
+" Plug 'romainl/Apprentice'
+Plug 'arcticicestudio/nord-vim'
 
 " -----------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------
 
+" Plug 'reasonml-editor/vim-reason-plus'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+  " use <tab> for trigger completion and navigate next complete item
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+
+  " Remap keys for gotos
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+
 Plug 'w0rp/ale'
+  let g:ale_fixers = ['trim_whitespace', 'remove_trailing_lines', 'trim_whitespace']
   let g:ale_sign_warning = '--'
   let g:ale_sign_error = '>>'
   highlight clear ALEWarningSign
   let g:ale_echo_msg_format = '[%linter%] %s'
-  " nmap <silent> <C-k> :ale_previous_wrap
+  let g:ale_python_pylint_change_directory = 0
   nnoremap <leader><C-k> :ALEPreviousWrap<CR>
   nnoremap <leader><C-j> :ALENextWrap<CR>
+  nnoremap <leader>F :ALEFix<CR>
+  let g:ale_set_loclist=0
+  let g:ale_set_quickfix=0
+  let g:ale_lint_on_insert_leave=1
+  let g:ale_lint_on_enter=0
+  let g:ale_lint_on_filetype_changed=0
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -40,28 +72,30 @@ Plug 'gavinbeatty/dragvisuals.vim'
   vmap  <expr>  <UP>     DVB_Drag('up')
   let g:DVB_TrimWS = 1  " Remove any introduced trailing whitespace after moving
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-  " use tab for completion
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" if has('nvim')
+"   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"   " let g:deoplete#enable_at_startup = 1
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 Plug 'junegunn/goyo.vim'
 function! ProseMode()
+  silent !tmux set status off
   call goyo#execute(0, [])
   set spell noci nosi noai nolist noshowmode noshowcmd
+  set linebreak
   set complete+=s
   set bg=light
   highlight SpecialKey ctermbg=NONE
 
   " match Error /\%81v/
 endfunction
+
 command! ProseMode call ProseMode()
+" pip install proselint
 nmap \p :ProseMode<CR>
 
 " -----------------------------------------------------
@@ -95,7 +129,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rs' }
 " -----------------------------------------------------
 
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'vim-scripts/JavaScript-Indent', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
   let g:jsx_ext_required = 0
 
@@ -103,6 +137,13 @@ Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'elmcast/elm-vim', { 'for': ['elm'] }
   let g:elm_setup_keybindings = 0
 Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+" let g:LanguageClient_serverCommands = {
+"       \ 'reason': ['/absolute/path/to/reason-language-server.exe']
+"       \ }
 
 " -----------------------------------------------------
 " HTML/CSS
@@ -142,6 +183,10 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " Interface improvement
 " -----------------------------------------------------
 
+" indentLine messes with conceal, and hides quotes in JSON files.
+" https://github.com/Yggdroot/indentLine/issues/140
+Plug 'Yggdroot/indentLine'
+  let g:indentLine_char = '▏'
 Plug 'scrooloose/nerdtree'
   let NERDTreeMinimalUI = 1 " not so much cruft
   let NERDTreeShowHidden = 1 " Should hidden files
@@ -159,6 +204,7 @@ Plug 'scrooloose/nerdtree'
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap <leader>t :Files<CR>
+  nnoremap <leader>p :Commands<CR>
   nnoremap <leader>b :Buffers<CR>
   nnoremap <leader>r :Tags<CR>
 
@@ -178,3 +224,12 @@ Plug 'terryma/vim-smooth-scroll'
   " smooth_scroll is broken in visual mode currently - unmap
   vnoremap <silent> <c-u> <c-u>
   vnoremap <silent> <c-d> <c-d>
+
+" let g:LanguageClient_serverCommands = {
+"     \ 'reason': ['/usr/local/bin/reason-language-server.exe'],
+"     \ }
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+" let g:deoplete#enable_at_startup = 1

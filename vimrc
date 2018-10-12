@@ -171,6 +171,9 @@ nnoremap <leader>H :bn<CR>
 nnoremap <leader>L :bp<CR>
 
 if has('nvim')
+  let g:python_host_prog = '/Users/crenwick/.pyenv/versions/neovim2/bin/python'
+  let g:python3_host_prog = '/Users/crenwick/.pyenv/versions/neovim3/bin/python'
+
   " nvim-terminal-emulator
   tnoremap <Esc> <C-\><C-n>
   tnoremap <C-h> <C-\><C-n><C-w>h
@@ -211,7 +214,8 @@ let g:netrw_dirhistmax=0
 " -----------------------------------------------------
 
 " let g:despacio_Midnight = 1
-colorscheme apprentice
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
 
 syntax on             " enable syntax highlighting
 
@@ -231,3 +235,17 @@ au BufNewFile,BufRead *.json          set ft=json
 au BufNewFile,BufRead *.bash_profile  set ft=sh
 au BufNewFile,BufRead *.bashrc        set ft=sh
 au BufNewFile,BufRead Fastfile        set ft=ruby
+
+" packloadall
+silent! helptags ALL
+
+" don't hide double quotes is JSON
+set conceallevel=0
+
+if exists('g:gui_oni')
+  " If using Oni's externalized statusline, hide vim's native statusline
+  set noshowmode
+  set noruler
+  set laststatus=0
+  set noshowcmd
+endif
