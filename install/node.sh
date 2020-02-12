@@ -7,7 +7,6 @@ npm install -g \
   eslint-config-airbnb-base \
   eslint-plugin-import \
   nodemon \
-  particle-cli \
-  ungit
+  particle-cli
 
 # exit 0

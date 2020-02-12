@@ -9,19 +9,52 @@ echo "Installing homebrew packages..."
 
 # cli tools
 brew install \
-  tree \
-  wget \
-  bash-git-prompt
-
-# dev tools
-brew install \
+  ack \
+  amazon-ecs-cli \
+  autoconf \
+  elixir \
+  erlang \
+  fzf \
   git \
-  reattach-to-user-namespace \
+  neovim \
+  pyenv \
+  python \
+  python@3.8 \
+  ripgrep \
+  ruby \
+  sqlite \
+  telnet \
   tmux \
-  redis \
-  neovim/neovim/neovim
+  tree \
+  vim \
+  wget \ 
+  youtube-dl \
+  zsh \
+  zsh-completions
+
+echo "Installing cask applications..."
+
+brew cask
+
+brew cask install \
+  chromedriver \
+  cyberduck \
+  docker \
+  firefox \
+  gitup \
+  google-chrome \
+  iterm2 \
+  kitematic \
+  pgadmin4 \
+  postico \
+  postman \
+  spotify \
+  tableplus \
+  visual-studio-code \
+  wkhtmltopdf \
 
 # link the apps
 brew linkapps
+brew cleanup
 
 # exit 0

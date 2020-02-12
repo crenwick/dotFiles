@@ -1,5 +1,5 @@
 # DotFiles
-v4.0
+v5.0
 
 ## Contents
 
@@ -11,9 +11,8 @@ v4.0
 
 ## Install
 
-1. `git clone https://github.com/crenwick/dotFiles.git ~/dotFiles`
-1. `cd ~/dotFiles`
-1. `./install.sh`
+1. `git clone https://github.com/crenwick/dotFiles.git ~/`
+1. `.install/install.sh`
 
 ## Vim Setup
 
