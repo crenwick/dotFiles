@@ -87,3 +87,4 @@ eval "$(pyenv init -)"
 # source "~/.local/bin/virualenvwrapper.sh"
 # eval "$(pyenv virtualenv-init -)"
 export ERL_AFLAGS="-kernel shell_history enabled"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

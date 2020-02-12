@@ -11,11 +11,17 @@ if [ "$(uname)" == "Darwin" ]; then
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 
   echo "Brewing..."
-  source install/brew.sh
+  source .install/brew.sh
+
+  echo "Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   echo "Installing node..."
-  source install/nvm.sh
-  source install/node.sh
+  source .install/nvm.sh
+  source .install/node.sh
+
+  echo "Installing rust..."
+  curl https://sh.rustup.rs -sSf | sh
 fi
 
 echo "Done."

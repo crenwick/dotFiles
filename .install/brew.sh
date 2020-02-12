@@ -17,6 +17,7 @@ brew install \
   fzf \
   git \
   neovim \
+  node \
   pyenv \
   python \
   python@3.8 \
@@ -51,10 +52,9 @@ brew cask install \
   spotify \
   tableplus \
   visual-studio-code \
-  wkhtmltopdf \
+  wkhtmltopdf
 
 # link the apps
-brew linkapps
 brew cleanup
 
 # exit 0

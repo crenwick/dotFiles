@@ -7,6 +7,7 @@ npm install -g \
   eslint-config-airbnb-base \
   eslint-plugin-import \
   nodemon \
-  particle-cli
+  particle-cli \
+  spaceship-prompt
 
 # exit 0
