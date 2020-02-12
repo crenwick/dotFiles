@@ -11,8 +11,12 @@ v5.0
 
 ## Install
 
-1. `git clone https://github.com/crenwick/dotFiles.git ~/`
-1. `.install/install.sh`
+1. `$ cd ~`
+1. `$ git init`
+1. `$ git remote add origin git@github.com:crenwick/dotFiles.git`
+1. `$ git fetch`
+1. `$ git checkout -f master`
+1. `$ .install/install.sh`
 
 ## Vim Setup
 
