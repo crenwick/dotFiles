@@ -1,6 +1,6 @@
 [user]
-    name = Charles Renwick
-    email = charles.srenwick@gmail.com
+	name = Charles Renwick
+	email = charles.srenwick@gmail.com
 
 [github]
     user = crewnick
@@ -39,6 +39,7 @@
     br = branch -v
     dt = difftool --no-prompt
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+    short = log -1 --pretty=format:%h
 
     # show the last tag
     lt = describe --tags --abbrev=0

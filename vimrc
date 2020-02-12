@@ -85,7 +85,7 @@ set visualbell
 
 " Theme
 set encoding=utf8
-let base16colorspace=256
+" let base16colorspace=256
 set t_Co=256          " explicitly tell vim the terminal supports 256
 set number            " show the current line number
 
@@ -123,7 +123,12 @@ let g:mapleader = "\<Space>"
 
 call plug#begin()
 
-source $HOME/.vim/bundles.vimrc
+source $HOME/.vim/bundles_core.vimrc
+
+" if has('g:vscode_channel')
+" else
+  source $HOME/.vim/bundles_term.vimrc
+" end
 
 call plug#end()
 
@@ -214,7 +219,7 @@ let g:netrw_dirhistmax=0
 " -----------------------------------------------------
 
 " let g:despacio_Midnight = 1
-colorscheme nord
+colorscheme apprentice
 let g:nord_cursor_line_number_background = 1
 
 syntax on             " enable syntax highlighting

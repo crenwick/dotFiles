@@ -1,18 +1,19 @@
 # This is a workaround for having a system node and NVM node
 PATH="/usr/local/bin:$(getconf PATH)"
 
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
 
+plugins=(aws brew docker git mix node npm osx pip pyenv tmux vi-mode yarn z)
+
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
 ZSH_THEME="spaceship"
+export SPACESHIP_VI_MODE_SHOW=true
+export KEYTIMEOUT=1
 
-plugins=(git brew osx aws docker mix node npm pip tmux z)
-
-# ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Load aliases

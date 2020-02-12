@@ -2,28 +2,44 @@
 " Colorschemes
 " -----------------------------------------------------
 
-" Plug 'AlessandroYorba/Despacio'
-" Plug 'danilo-augusto/vim-afterglow'
-" Plug 'morhetz/gruvbox'
-" Plug 'romainl/Apprentice'
+Plug 'AlessandroYorba/Despacio'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'morhetz/gruvbox'
+Plug 'romainl/Apprentice'
 Plug 'arcticicestudio/nord-vim'
 
 " -----------------------------------------------------
 " Language agnostic plugins
 " -----------------------------------------------------
 
-" Plug 'reasonml-editor/vim-reason-plus'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-  " use <tab> for trigger completion and navigate next complete item
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-  endfunction
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Better display for messages
+  set cmdheight=2
 
+  " You will have bad experience for diagnostic messages when it's default 4000.
+  set updatetime=300
+
+  " don't give |ins-completion-menu| messages.
+  set shortmess+=c
+
+  " always show signcolumns
+  set signcolumn=yes
+
+  " Use tab for trigger completion with characters ahead and navigate.
+  " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  " Use <c-space> to trigger completion.
+  inoremap <silent><expr> <c-space> coc#refresh()
 
   " Remap keys for gotos
   nmap <silent> gd <Plug>(coc-definition)
@@ -36,30 +52,22 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 "     \ 'do': 'bash install.sh',
 "     \ }
 
-Plug 'w0rp/ale'
-  let g:ale_fixers = ['trim_whitespace', 'remove_trailing_lines', 'trim_whitespace']
-  let g:ale_sign_warning = '--'
-  let g:ale_sign_error = '>>'
-  highlight clear ALEWarningSign
-  let g:ale_echo_msg_format = '[%linter%] %s'
-  let g:ale_python_pylint_change_directory = 0
-  nnoremap <leader><C-k> :ALEPreviousWrap<CR>
-  nnoremap <leader><C-j> :ALENextWrap<CR>
-  nnoremap <leader>F :ALEFix<CR>
-  let g:ale_set_loclist=0
-  let g:ale_set_quickfix=0
-  let g:ale_lint_on_insert_leave=1
-  let g:ale_lint_on_enter=0
-  let g:ale_lint_on_filetype_changed=0
+" Plug 'w0rp/ale'
+  " let g:ale_fixers = ['trim_whitespace', 'remove_trailing_lines', 'trim_whitespace']
+  " let g:ale_sign_warning = '--'
+  " let g:ale_sign_error = '>>'
+  " highlight clear ALEWarningSign
+  " let g:ale_echo_msg_format = '[%linter%] %s'
+  " let g:ale_python_pylint_change_directory = 0
+  " nnoremap <leader><C-k> :ALEPreviousWrap<CR>
+  " nnoremap <leader><C-j> :ALENextWrap<CR>
+  " nnoremap <leader>F :ALEFix<CR>
+  " let g:ale_set_loclist=0
+  " let g:ale_set_quickfix=0
+  " let g:ale_lint_on_insert_leave=1
+  " let g:ale_lint_on_enter=0
+  " let g:ale_lint_on_filetype_changed=0
 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'arithran/vim-delete-hidden-buffers'
-Plug 'mbbill/undotree'
-Plug 'unblevable/quick-scope'
-  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 Plug 'junegunn/rainbow_parentheses.vim'
   autocmd VimEnter * RainbowParentheses
@@ -201,21 +209,6 @@ Plug 'scrooloose/nerdtree'
   hi def link NERDTreeCurrentNode Search
   hi def link NERDTreeCWD Normal
   nnoremap <leader>d :NERDTreeToggle<CR>
-
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-  nnoremap <leader>t :Files<CR>
-  nnoremap <leader>p :Commands<CR>
-  nnoremap <leader>b :Buffers<CR>
-  nnoremap <leader>r :Tags<CR>
-
-" adds `:Rg` command for quick search (ALT-A to select all, ALT-D to deselect all)
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%', '?'),
-      \   <bang>0)
-autocmd FileType zfz matchdelete(w:m2)
 
 Plug 'terryma/vim-smooth-scroll'
   " Normal mode

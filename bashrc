@@ -82,5 +82,8 @@ export PS1="\[\033[36m\]\u\[\033[m\]:\[\033[33;1m\]\w\[\033[m\]\[\033[36m\]\[\03
 export PATH="/Users/crenwick/.pyenv/bin:$PATH"
 # CPPFLAGS="-I$(brew --prefix zlib)/include" pyenv install -v 3.7.2
 eval "$(pyenv init -)"
+# export WORKON_HOME="~/.virtualenv"
+# export VIRTUALENVWRAPPER_PYTHON="/Users/crenwick/.pyenv/shims/python3"
+# source "~/.local/bin/virualenvwrapper.sh"
 # eval "$(pyenv virtualenv-init -)"
 export ERL_AFLAGS="-kernel shell_history enabled"
