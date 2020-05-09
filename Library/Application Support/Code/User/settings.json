@@ -1,0 +1,89 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "breadcrumbs.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingOvertype": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.fontFamily": "SFMono-Regular, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.minimap.enabled": false,
+    "editor.parameterHints.enabled": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "selection",
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "emmet.includeLanguages": {
+        "HTML (EEx)": "html"
+    },
+    "elixirLS.dialyzerEnabled": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "files.associations": {
+        "*.production": "dockerfile"
+    },
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/_build": true,
+        "**/deps": true,
+        "tags": true
+    },
+    "python.formatting.provider": "black",
+    "python.pythonPath": "/Users/crenwick/.pyenv/shims/python",
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "vim.easymotionMarkerFontFamily": "Monaco",
+    "vim.leader": "<space>",
+    "window.autoDetectColorScheme": true,
+    "window.zoomLevel": 0,
+    "workbench.activityBar.visible": true,
+    "workbench.editor.revealIfOpen": true,
+    "workbench.preferredDarkColorTheme": "Verdandi Alter",
+    "workbench.preferredLightColorTheme": "Verdandi",
+    "workbench.startupEditor": "welcomePage",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "leader",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "F"
+            ],
+            "commands": [
+                "editor.action.formatDocument",
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "leader"
+            ],
+            "after": [
+                "V",
+            ]
+        }
+    ],
+    "zenMode.centerLayout": false,
+    "zenMode.fullScreen": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideTabs": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.sideBar.location": "right",
+    "diffEditor.renderSideBySide": true,
+    "workbench.colorTheme": "Verdandi"
+}

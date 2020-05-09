@@ -64,7 +64,7 @@ export PYTHONPATH=:$PYTHONPATH
 # export TOOLCHAINS=swift
 
 # makes FZF use ripgrep (rg)
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --hideden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 

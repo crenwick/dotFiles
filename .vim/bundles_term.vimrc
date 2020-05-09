@@ -25,6 +25,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " always show signcolumns
   set signcolumn=yes
 
+
+  " Formatting selected code.
+  xmap <leader>f  <Plug>(coc-format)
+  nmap <leader>f  <Plug>(coc-format)
+
+  " Add `:Format` command to format current buffer.
+  command! -nargs=0 Format :call CocAction('format')
+
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
   inoremap <silent><expr> <TAB>

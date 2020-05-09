@@ -21,7 +21,7 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " adds `:Rg` command for quick search (ALT-A to select all, ALT-D to deselect all)
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   'rg --column --line-number --no-heading --color always '.shellescape(<q-args>), 1,
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
       \           : fzf#vim#with_preview('right:50%', '?'),
       \   <bang>0)

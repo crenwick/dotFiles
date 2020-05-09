@@ -124,11 +124,7 @@ let g:mapleader = "\<Space>"
 call plug#begin()
 
 source $HOME/.vim/bundles_core.vimrc
-
-" if has('g:vscode_channel')
-" else
-  source $HOME/.vim/bundles_term.vimrc
-" end
+source $HOME/.vim/bundles_term.vimrc
 
 call plug#end()
 
