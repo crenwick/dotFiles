@@ -23,6 +23,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
+alias ec='$EDITOR $HOME/.zshrc'
 
 # Add cargo to the PATH
 source $HOME/.cargo/env

@@ -1,10 +1,16 @@
 #!/bin/bash
 
-alias c='clear'
+alias c=clear
 alias C='clear && printf "\e[3J"'
 
-alias g='git'
-alias ls='ls -GFh'
+alias g=git
+alias ls='ls -thor'
+alias cs='chmod +x'
+alias s=ssh
+alias ps='ps auxf'
+alias psg='ps aux | grep -v grep | grep -i -e USER -e'
+alias ..='cd ..'
+alias myp='ps -fjH -u $USER'
 
 alias fucking='sudo'
 
@@ -21,4 +27,7 @@ alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 alias tpbcopy='tmux saveb - | pbcopy'
 alias start_sp='cd ~/Documents/elixir/silver_post; ~/dotFiles/tmux/sp.sh'
 alias qvi="~/dotFiles/vimanywhere.sh"
+
+alias spleet="spleeter separate -o ~/Music/spleeter_output -p spleeter:4stems-16kHz"
+alias youtubeDL="youtube-dl -x --audio-format \"mp3\" --audio-quality 0"
 
