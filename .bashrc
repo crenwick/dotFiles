@@ -14,6 +14,12 @@ set -o vi
 # enable `ctrl-s`
 stty -ixon
 
+# Open tmux_chooser on launch
+# https://cedaei.com/posts/ideas-from-my-dev-setup-always-tmux/
+if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
+  ./tmux_chooser.sh && exit
+fi
+
 # function promptCommand()
 # {
 #   LAST_STATUS=$GIT_PROMPT_LAST_COMMAND_STATE
@@ -22,7 +28,7 @@ stty -ixon
 #     echo -n "$successes"
 #   else
 #     successes=0
-#   fi  
+#   fi
 # }
 # successes=-1
 # PROMPT_COMMAND="promptCommand"
@@ -42,10 +48,10 @@ export EDITOR=nvim
 # fi
 
 # example: `$ gi node,osx`
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+function gi() { curl -L -s https://www.gitignore.io/api/$@; }
 
 # example: `$ weather seattle`
-function weather { wget -O - http://wttr.in/$1 -q; }
+function weather() { wget -O - http://wttr.in/$1 -q; }
 
 # nvm
 # Only loads nvm when `node` or `npm` is called for the first time:
@@ -55,7 +61,6 @@ function weather { wget -O - http://wttr.in/$1 -q; }
 # alias nvm='unalias node npm && load_nvm && nvm'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
 
 # Python imports
 export PYTHONPATH=:$PYTHONPATH
@@ -87,4 +92,4 @@ eval "$(pyenv init -)"
 # source "~/.local/bin/virualenvwrapper.sh"
 # eval "$(pyenv virtualenv-init -)"
 export ERL_AFLAGS="-kernel shell_history enabled"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

@@ -80,3 +80,6 @@
 
 [color "sh"]
     branch = yellow
+
+[init]
+	defaultBranch = main

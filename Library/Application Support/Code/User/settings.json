@@ -1,89 +1,102 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "breadcrumbs.enabled": true,
-    "diffEditor.ignoreTrimWhitespace": true,
-    "editor.acceptSuggestionOnCommitCharacter": false,
-    "editor.acceptSuggestionOnEnter": "off",
-    "editor.autoClosingBrackets": "never",
-    "editor.autoClosingOvertype": "never",
-    "editor.autoClosingQuotes": "never",
-    "editor.fontFamily": "SFMono-Regular, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 13,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": false,
-    "editor.minimap.enabled": false,
-    "editor.parameterHints.enabled": false,
-    "editor.renderControlCharacters": true,
-    "editor.renderWhitespace": "selection",
-    "editor.suggestOnTriggerCharacters": false,
-    "editor.tabSize": 2,
-    "editor.wordWrap": "on",
-    "emmet.includeLanguages": {
-        "HTML (EEx)": "html"
+  "beautify.language": {
+    "js": {
+      "type": ["javascript", "json"],
+      "filename": [".jshintrc", ".jsbeautifyrc"]
     },
-    "elixirLS.dialyzerEnabled": false,
-    "git.autofetch": true,
-    "git.confirmSync": false,
-    "gitlens.currentLine.enabled": false,
-    "gitlens.hovers.currentLine.over": "line",
-    "files.associations": {
-        "*.production": "dockerfile"
+    "css": ["css", "scss"]
+  },
+  "breadcrumbs.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingOvertype": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.fontFamily": "SFMono-Regular, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.minimap.enabled": false,
+  "editor.parameterHints.enabled": false,
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "elixirLS.dialyzerEnabled": false,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "files.associations": {
+    "*.production": "dockerfile"
+  },
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/_build": true,
+    "**/deps": true,
+    "tags": true
+  },
+  "python.formatting.provider": "black",
+  "python.pythonPath": "/Users/crenwick/.pyenv/shims/python",
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "vim.leader": "<space>",
+  "window.autoDetectColorScheme": true,
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "workbench.editor.revealIfOpen": true,
+  "workbench.preferredDarkColorTheme": "Verdandi Alter",
+  "workbench.preferredLightColorTheme": "Verdandi",
+  "workbench.startupEditor": "welcomePage",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["leader", "w"],
+      "commands": ["workbench.action.files.save"]
     },
-    "files.insertFinalNewline": true,
-    "files.exclude": {
-        "**/_build": true,
-        "**/deps": true,
-        "tags": true
+    {
+      "before": ["leader", "F"],
+      "commands": ["editor.action.formatDocument"]
     },
-    "python.formatting.provider": "black",
-    "python.pythonPath": "/Users/crenwick/.pyenv/shims/python",
-    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-    "vim.easymotionMarkerFontFamily": "Monaco",
-    "vim.leader": "<space>",
-    "window.autoDetectColorScheme": true,
-    "window.zoomLevel": 0,
-    "workbench.activityBar.visible": true,
-    "workbench.editor.revealIfOpen": true,
-    "workbench.preferredDarkColorTheme": "Verdandi Alter",
-    "workbench.preferredLightColorTheme": "Verdandi",
-    "workbench.startupEditor": "welcomePage",
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "leader",
-                "w"
-            ],
-            "commands": [
-                "workbench.action.files.save",
-            ]
-        },
-        {
-            "before": [
-                "leader",
-                "F"
-            ],
-            "commands": [
-                "editor.action.formatDocument",
-            ]
-        },
-        {
-            "before": [
-                "leader",
-                "leader"
-            ],
-            "after": [
-                "V",
-            ]
-        }
-    ],
-    "zenMode.centerLayout": false,
-    "zenMode.fullScreen": false,
-    "zenMode.hideLineNumbers": false,
-    "zenMode.hideTabs": false,
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "workbench.sideBar.location": "right",
-    "diffEditor.renderSideBySide": true,
-    "workbench.colorTheme": "Verdandi"
+    {
+      "before": ["leader", "leader"],
+      "after": ["V"]
+    }
+  ],
+  "zenMode.centerLayout": false,
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideTabs": false,
+  "workbench.sideBar.location": "right",
+  "diffEditor.renderSideBySide": true,
+  "workbench.colorTheme": "Verdandi",
+  "git.autoStash": true,
+  "yaml.schemas": {
+    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "atlascode.jira.enabled": true,
+  "atlascode.bitbucket.enabled": false,
+  "atlascode.jira.jqlList": [
+    {
+      "id": "ac9e66ab-6707-41c3-ae34-2157be8aae70",
+      "enabled": true,
+      "name": "My spyce Issues",
+      "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+      "siteId": "3c5b0e47-05eb-435c-aa13-3b30790e25e0",
+      "monitor": true
+    }
+  ],
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "3c5b0e47-05eb-435c-aa13-3b30790e25e0",
+    "projectKey": "GSW"
+  },
+  "elixirLS.fetchDeps": false,
+  "git.branchWhitespaceChar": "_",
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
