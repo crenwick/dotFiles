@@ -17,7 +17,6 @@ if [ "$(uname)" == "Darwin" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   echo "Installing node..."
-  source .install/nvm.sh
   source .install/node.sh
 
   echo "Installing rust..."

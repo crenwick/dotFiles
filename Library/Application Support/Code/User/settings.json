@@ -73,7 +73,7 @@
   "workbench.colorTheme": "Verdandi",
   "git.autoStash": true,
   "yaml.schemas": {
-    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "atlascode.jira.enabled": true,
   "atlascode.bitbucket.enabled": false,
@@ -98,5 +98,14 @@
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "debug.console.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "markdown.preview.fontSize": 13
 }
