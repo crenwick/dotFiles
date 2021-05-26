@@ -2,6 +2,13 @@
 
 # https://betterdev.blog/minimal-safe-bash-script-template/
 
+# How to use:
+#   1. `cp` file to desired location + name
+#   2. Change `usage()` text with a sort description
+#   3. Change `cleanup()` function, which is called on each exit
+#   4. Change or replace -f and -p parameters in `parse_params()`
+#   5. Add actual script log
+
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
 

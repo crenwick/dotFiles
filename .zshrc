@@ -41,26 +41,29 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export PATH="/Users/crenwick/.pyenv/bin:$PATH"
-if which pyenv > /dev/null; then
+if which pyenv >/dev/null; then
   eval "$(pyenv init - zsh --no-rehash)"
 fi
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
+# Set Spaceship ZSH as a promfpt
+autoload -U promptinit
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+promptinit
 prompt spaceship
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/charlol/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/charlol/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/Users/charlol/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/charlol/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/charlol/miniconda3/bin:$PATH"
-    fi
+  if [ -f "/Users/charlol/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/Users/charlol/miniconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/Users/charlol/miniconda3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-

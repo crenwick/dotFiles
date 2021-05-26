@@ -34,4 +34,3 @@ else
   tmux new-session -s "$input"
 fi
 exit 0
-
