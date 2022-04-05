@@ -26,6 +26,8 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "elixirLS.dialyzerEnabled": false,
+  "elixirLS.fetchDeps": false,
+  "elixirLS.suggestSpecs": false,
   "git.autofetch": true,
   "git.confirmSync": false,
   "gitlens.currentLine.enabled": false,
@@ -37,7 +39,18 @@
   "files.exclude": {
     "**/_build": true,
     "**/deps": true,
-    "tags": true
+    "tags": true,
+    "**/.elixir_ls": true,
+    "**/*.beam": true
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/tmp/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/*.beam": true,
+    "**/node_modules": true,
+    "**/.elixir_ls": true
   },
   "python.formatting.provider": "black",
   "python.pythonPath": "/Users/crenwick/.pyenv/shims/python",
@@ -72,7 +85,7 @@
   "workbench.colorTheme": "Verdandi",
   "git.autoStash": true,
   "yaml.schemas": {
-    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.10.11/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "atlascode.jira.enabled": true,
   "atlascode.bitbucket.enabled": false,
@@ -90,7 +103,6 @@
     "siteId": "3c5b0e47-05eb-435c-aa13-3b30790e25e0",
     "projectKey": "GSW"
   },
-  "elixirLS.fetchDeps": false,
   "git.branchWhitespaceChar": "_",
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
@@ -104,6 +116,9 @@
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[elixir]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+  },
   "debug.console.fontSize": 13,
   "terminal.integrated.fontSize": 13,
   "markdown.preview.fontSize": 13,
@@ -112,13 +127,11 @@
   },
   "workbench.editor.enablePreview": false,
   "git.suggestSmartCommit": false,
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "cSpell.enableFiletypes": [
     "html-eex"
-  ]
+  ],
+  "redhat.telemetry.enabled": false
 }
