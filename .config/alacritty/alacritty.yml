@@ -3,11 +3,18 @@
 window:
   dynamic_padding: true
   # 'decorations: transparent' is currently broken in alacritty 0.10.1
-  decorations: buttonless
-  padding:
-    x: 1
+  decorations: full
 font:
   size: 14
+  normal:
+    family: SF Mono
+    style: Regular
+  bold:
+    style: Bold
+  italic:
+    style: Medium Italic
+  bold_italic:
+    style: Bold Italic
 
 # Mainly adding keybindings to support sending Alt commands to tmux
 key_bindings:

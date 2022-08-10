@@ -1,21 +1,19 @@
 // Place your settings in this file to overwrite the default settings
 {
-  "beautify.language": {
-    "js": {
-      "type": ["javascript", "json"],
-      "filename": [".jshintrc", ".jsbeautifyrc"]
-    },
-    "css": ["css", "scss"]
-  },
+  "beancount.mainBeanFile": "ledger.beancount",
   "breadcrumbs.enabled": true,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "cSpell.enableFiletypes": [
+    "html-eex"
+  ],
+  "debug.console.fontSize": 13,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "off",
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingOvertype": "never",
   "editor.autoClosingQuotes": "never",
-  "editor.fontFamily": "SFMono-Regular, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 13,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "SF Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
   "editor.minimap.enabled": false,
@@ -26,16 +24,14 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "elixirLS.dialyzerEnabled": false,
-  "elixirLS.fetchDeps": false,
   "elixirLS.suggestSpecs": false,
-  "git.autofetch": true,
-  "git.confirmSync": false,
-  "gitlens.currentLine.enabled": false,
-  "gitlens.hovers.currentLine.over": "line",
-  "files.associations": {
-    "*.production": "dockerfile"
+  "emmet.includeLanguages": {
+    "phoenix-heex": "html"
   },
-  "files.insertFinalNewline": true,
+  "files.associations": {
+    "Dockerfile*": "dockerfile",
+    "*.heex": "phoenix-heex"
+  },
   "files.exclude": {
     "**/_build": true,
     "**/deps": true,
@@ -43,6 +39,18 @@
     "**/.elixir_ls": true,
     "**/*.beam": true
   },
+  "files.insertFinalNewline": true,
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "git.branchWhitespaceChar": "_",
+  "git.confirmSync": false,
+  "git.suggestSmartCommit": false,
+  "githubPullRequests.pullBranch": "never",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "markdown.preview.fontSize": 13,
+  "prettier.requireConfig": true,
+  "python.formatting.provider": "black",
   "search.exclude": {
     "**/.git": true,
     "**/tmp/**": true,
@@ -52,86 +60,66 @@
     "**/node_modules": true,
     "**/.elixir_ls": true
   },
-  "python.formatting.provider": "black",
-  "python.pythonPath": "/Users/crenwick/.pyenv/shims/python",
-  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "tailwindCSS.includeLanguages": {
+    "elixir": "html",
+    "phoenix-heex": "html"
+  },
+  "terminal.integrated.fontSize": 13,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "leader",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "F"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "leader"
+      ],
+      "after": [
+        "V"
+      ]
+    }
+  ],
   "vim.leader": "<space>",
   "window.autoDetectColorScheme": true,
   "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Verdandi",
+  "workbench.editor.enablePreview": false,
   "workbench.editor.revealIfOpen": true,
+  "workbench.iconTheme": "verdandi",
   "workbench.preferredDarkColorTheme": "Verdandi Alter",
   "workbench.preferredLightColorTheme": "Verdandi",
+  "workbench.sideBar.location": "right",
   "workbench.startupEditor": "welcomePage",
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["leader", "w"],
-      "commands": ["workbench.action.files.save"]
-    },
-    {
-      "before": ["leader", "F"],
-      "commands": ["editor.action.formatDocument"]
-    },
-    {
-      "before": ["leader", "leader"],
-      "after": ["V"]
-    }
-  ],
+  "yaml.schemas": {
+    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
   "zenMode.centerLayout": false,
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideTabs": false,
-  "workbench.sideBar.location": "right",
-  "diffEditor.renderSideBySide": true,
-  "workbench.colorTheme": "Verdandi",
-  "git.autoStash": true,
-  "yaml.schemas": {
-    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.10.11/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
-  "atlascode.jira.enabled": true,
-  "atlascode.bitbucket.enabled": false,
-  "atlascode.jira.jqlList": [
-    {
-      "id": "ac9e66ab-6707-41c3-ae34-2157be8aae70",
-      "enabled": true,
-      "name": "My spyce Issues",
-      "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
-      "siteId": "3c5b0e47-05eb-435c-aa13-3b30790e25e0",
-      "monitor": true
-    }
-  ],
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "3c5b0e47-05eb-435c-aa13-3b30790e25e0",
-    "projectKey": "GSW"
-  },
-  "git.branchWhitespaceChar": "_",
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[elixir]": {
-    "editor.defaultFormatter": "JakeBecker.elixir-ls"
-  },
-  "debug.console.fontSize": 13,
-  "terminal.integrated.fontSize": 13,
-  "markdown.preview.fontSize": 13,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.editor.enablePreview": false,
-  "git.suggestSmartCommit": false,
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
-  },
-  "cSpell.enableFiletypes": [
-    "html-eex"
-  ],
-  "redhat.telemetry.enabled": false
+  "[python]": {
+    "editor.wordBasedSuggestions": false,
+    "editor.defaultFormatter": "ms-python.python"
+  }
 }
