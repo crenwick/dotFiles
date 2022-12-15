@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="agnoster"
 ZSH_THEME="af-magic"
 
-# plugsin=(
+plugins=(git asdf docker)
 #   git
 #   osx
 #   docker

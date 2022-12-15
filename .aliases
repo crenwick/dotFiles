@@ -12,7 +12,7 @@ alias psg='ps aux | grep -v grep | grep -i -e USER -e'
 alias ..='cd ..'
 alias myp='ps -fjH -u $USER'
 
-alias fucking='sudo'
+alias awsv='aws-vault exec order-poweruser'
 
 alias npmlist='npm list -g --depth=0'
 
@@ -30,4 +30,3 @@ alias qvi="~/dotFiles/vimanywhere.sh"
 
 alias spleet="spleeter separate -o ~/Music/spleeter_output -p spleeter:4stems-16kHz"
 alias youtubeDL="youtube-dl -x --audio-format \"mp3\" --audio-quality 0"
-

@@ -11,7 +11,7 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingOvertype": "never",
   "editor.autoClosingQuotes": "never",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "SF Mono, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.formatOnSave": true,
@@ -27,6 +27,9 @@
   "elixirLS.suggestSpecs": false,
   "emmet.includeLanguages": {
     "phoenix-heex": "html"
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
   },
   "files.associations": {
     "Dockerfile*": "dockerfile",
@@ -51,6 +54,12 @@
   "markdown.preview.fontSize": 13,
   "prettier.requireConfig": true,
   "python.formatting.provider": "black",
+  "python.testing.pytestArgs": [
+    "--override-ini",
+    "addopts=--verbose -vv tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
   "search.exclude": {
     "**/.git": true,
     "**/tmp/**": true,
@@ -97,10 +106,8 @@
   "vim.leader": "<space>",
   "window.autoDetectColorScheme": true,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Verdandi",
   "workbench.editor.enablePreview": false,
   "workbench.editor.revealIfOpen": true,
-  "workbench.iconTheme": "verdandi",
   "workbench.preferredDarkColorTheme": "Verdandi Alter",
   "workbench.preferredLightColorTheme": "Verdandi",
   "workbench.sideBar.location": "right",
@@ -121,5 +128,16 @@
   "[python]": {
     "editor.wordBasedSuggestions": false,
     "editor.defaultFormatter": "ms-python.python"
-  }
+  },
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "redhat.telemetry.enabled": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.colorTheme": "Verdandi",
+  "terminal.integrated.customGlyphs": false
 }
