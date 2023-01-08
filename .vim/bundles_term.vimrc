@@ -150,13 +150,13 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
   let g:jsx_ext_required = 0
 
 Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'elmcast/elm-vim', { 'for': ['elm'] }
-  let g:elm_setup_keybindings = 0
-Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
+" Plug 'elmcast/elm-vim', { 'for': ['elm'] }
+"   let g:elm_setup_keybindings = 0
+" Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
+" Plug 'autozimu/LanguageClient-neovim', {
+"       \ 'branch': 'next',
+"       \ 'do': 'bash install.sh',
+"       \ }
 " let g:LanguageClient_serverCommands = {
 "       \ 'reason': ['/absolute/path/to/reason-language-server.exe']
 "       \ }

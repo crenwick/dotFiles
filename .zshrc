@@ -1,3 +1,6 @@
+# Setup homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # ZSH_THEME="blinks"
@@ -5,12 +8,6 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="af-magic"
 
 plugins=(git asdf docker)
-#   git
-#   osx
-#   docker
-#   terraform
-# )
-
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -18,6 +15,13 @@ SAVEHIST=10000
 export KEYTIMEOUT=1
 
 source $ZSH/oh-my-zsh.sh
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # Open tmux_chooser on launch
 # https://cedaei.com/posts/ideas-from-my-dev-setup-always-tmux/
@@ -27,14 +31,15 @@ fi
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# # Load aliases
+# Load aliases
 if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
+
 alias ec='$EDITOR $HOME/.zshrc'
 
 # Add cargo to the PATH
-source $HOME/.cargo/env
+# source $HOME/.cargo/env
 
 # Use nvim as the default editor
 export EDITOR=nvim
@@ -52,24 +57,10 @@ export ELIXIR_EDITOR="code +__LINE__ __FILE__"
 # if which pyenv >/dev/null; then
 #   eval "$(pyenv init - zsh --no-rehash)"
 # fi
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # Integrate fzf into the terminal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-## Prompt
-
-# ZSH_THEME_CLOUD_PREFIX='☁🚀 ☁'
-# ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{blue}%}"
-# ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%k%b%B%F{green}%}]"
-# ZSH_THEME_GIT_PROMPT_DIRTY=" %{%F{red}%}*%{%f%k%b%}"
-# ZSH_THEME_GIT_PROMPT_CLEAN=""
-# PROMPT='%{%f%k%b%}
-# %{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
-# %{%B%F{cyan}%}$ZSH_THEME_CLOUD_PREFIX %{%f%k%b%}› '
-
-# RPROMPT=''
-# RPROMPT2=''
 
 set t_Co=256
 

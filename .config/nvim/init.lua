@@ -23,13 +23,13 @@ require('packer').startup(function()
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'unblevable/quick-scope'
-	use 'kassio/neoterm'
-	use 'sbdchd/neoformat'
-	use 'neovim/nvim-lspconfig'
-	use 'hrsh7th/nvim-compe'
-	use { 'nvim-treesitter/nvim-treesitter',run = ':TSUpdate' }
-	use 'nvim-lua/popup.nvim'
-	use 'folke/zen-mode.nvim'
+  use 'kassio/neoterm'
+  use 'sbdchd/neoformat'
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-compe'
+  use { 'nvim-treesitter/nvim-treesitter',run = ':TSUpdate' }
+  use 'nvim-lua/popup.nvim'
+--  use 'folke/zen-mode.nvim'
 end)
 
 -- default options
@@ -69,14 +69,14 @@ map('n', '<leader>L', ':bp<CR>')
 map('n', '<leader>F', ':Neoformat prettier<CR>')
 
 -- neovim/nvim-lspconfig
-require'lspconfig'.tsserver.setup{}
-map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
-map('n', 'gh', ':lua vim.lsp.buf.hover()<CR>')
-map('n', 'gH', ':Telescope lsp_code_actions<CR>')
-map('n', 'gD', ':lua vim.lsp.buf.implementation()<CR>')
-map('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>')
-map('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
-map('n', 'gR', ':lua vim.lsp.buf.rename()<CR>')
+-- require'lspconfig'.tsserver.setup{}
+-- map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
+-- map('n', 'gh', ':lua vim.lsp.buf.hover()<CR>')
+-- map('n', 'gH', ':Telescope lsp_code_actions<CR>')
+-- map('n', 'gD', ':lua vim.lsp.buf.implementation()<CR>')
+-- map('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>')
+-- map('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
+-- map('n', 'gR', ':lua vim.lsp.buf.rename()<CR>')
 
 -- hrsh7th/nvim-compe
 require'compe'.setup {
@@ -96,5 +96,5 @@ map('i', '<C-Space>', 'compe#complete()', { expr = true })
 map('i', '<CR>', 'compe#confirm("<CR>")', { expr = true })
 
 -- folke/zen-mode.nvim
-require("zen-mode").setup {}
-map('n', '<leader>z', ':ZenMode<CR>')
+-- require("zen-mode").setup {}
+-- map('n', '<leader>z', ':ZenMode<CR>')
