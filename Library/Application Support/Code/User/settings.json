@@ -138,6 +138,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "diffEditor.ignoreTrimWhitespace": false,
-  "workbench.colorTheme": "Verdandi",
+  "workbench.colorTheme": "Verdandi Alter",
   "terminal.integrated.customGlyphs": false
 }
