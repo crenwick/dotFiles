@@ -127,17 +127,18 @@
   },
   "[python]": {
     "editor.wordBasedSuggestions": false,
-    "editor.defaultFormatter": "ms-python.python"
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnType": true
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "redhat.telemetry.enabled": false,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "diffEditor.ignoreTrimWhitespace": false,
-  "workbench.colorTheme": "Verdandi Alter",
+  "workbench.colorTheme": "Verdandi",
   "terminal.integrated.customGlyphs": false
 }

@@ -12,8 +12,6 @@ alias psg='ps aux | grep -v grep | grep -i -e USER -e'
 alias ..='cd ..'
 alias myp='ps -fjH -u $USER'
 
-alias awsv='aws-vault exec order-poweruser'
-
 alias npmlist='npm list -g --depth=0'
 
 alias hideDesktopFiles='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'

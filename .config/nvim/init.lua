@@ -78,22 +78,6 @@ map('n', '<leader>F', ':Neoformat prettier<CR>')
 -- map('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
 -- map('n', 'gR', ':lua vim.lsp.buf.rename()<CR>')
 
--- hrsh7th/nvim-compe
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  min_length = 1;
-  preselect = 'always';
-  source = {
-    path = true;
-    buffer = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    -- treesitter = true;
-  };
-}
-map('i', '<C-Space>', 'compe#complete()', { expr = true })
-map('i', '<CR>', 'compe#confirm("<CR>")', { expr = true })
 
 -- folke/zen-mode.nvim
 -- require("zen-mode").setup {}

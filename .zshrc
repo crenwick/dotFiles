@@ -1,5 +1,5 @@
 # Setup homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -25,9 +25,9 @@ fi
 
 # Open tmux_chooser on launch
 # https://cedaei.com/posts/ideas-from-my-dev-setup-always-tmux/
-if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
-  ./tmux_chooser.sh && exit
-fi
+# if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
+#   ./tmux_chooser.sh && exit
+# fi
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
