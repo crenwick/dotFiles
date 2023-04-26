@@ -1,5 +1,8 @@
 # Setup homebrew
-# eval "$(/opt/homebrew/bin/brew shellenv)"
+
+if [[ "$(uname -m)" == "arm64" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
