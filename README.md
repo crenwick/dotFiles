@@ -11,6 +11,10 @@ v6.0
 
 ## Install
 
+$ ssh someothermachine
+$ git clone <remote-info> ./.dotfiles
+$ git --git-dir ~/.dotfiles/.git --work-tree=$HOME reset --hard
+
 ## Vim Setup (outdated?)
 
 1. Install plugins:
