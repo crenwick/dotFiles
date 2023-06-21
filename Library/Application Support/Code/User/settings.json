@@ -1,0 +1,146 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "beancount.mainBeanFile": "ledger.beancount",
+  "breadcrumbs.enabled": true,
+  "cSpell.enableFiletypes": [
+    "html-eex"
+  ],
+  "debug.console.fontSize": 13,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingOvertype": "never",
+  "editor.autoClosingQuotes": "never",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "SF Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.minimap.enabled": false,
+  "editor.parameterHints.enabled": false,
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "elixirLS.dialyzerEnabled": false,
+  "elixirLS.suggestSpecs": false,
+  "emmet.includeLanguages": {
+    "phoenix-heex": "html"
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "files.associations": {
+    "Dockerfile*": "dockerfile",
+    "*.heex": "phoenix-heex"
+  },
+  "files.exclude": {
+    "**/_build": true,
+    "**/deps": true,
+    "tags": true,
+    "**/.elixir_ls": true,
+    "**/*.beam": true
+  },
+  "files.insertFinalNewline": true,
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "git.branchWhitespaceChar": "_",
+  "git.confirmSync": false,
+  "git.suggestSmartCommit": false,
+  "githubPullRequests.pullBranch": "never",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "markdown.preview.fontSize": 13,
+  "prettier.requireConfig": true,
+  "python.formatting.provider": "black",
+  "python.testing.pytestArgs": [
+    "--override-ini",
+    "addopts=--verbose -vv tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "search.exclude": {
+    "**/.git": true,
+    "**/tmp/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/*.beam": true,
+    "**/node_modules": true,
+    "**/.elixir_ls": true
+  },
+  "tailwindCSS.includeLanguages": {
+    "elixir": "html",
+    "phoenix-heex": "html"
+  },
+  "terminal.integrated.fontSize": 13,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "leader",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "F"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "leader"
+      ],
+      "after": [
+        "V"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "window.autoDetectColorScheme": true,
+  "workbench.activityBar.visible": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.revealIfOpen": true,
+  "workbench.preferredDarkColorTheme": "Verdandi Alter",
+  "workbench.preferredLightColorTheme": "Verdandi",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "welcomePage",
+  "yaml.schemas": {
+    "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "zenMode.centerLayout": false,
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideTabs": false,
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[python]": {
+    "editor.wordBasedSuggestions": false,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "redhat.telemetry.enabled": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.colorTheme": "Verdandi",
+  "terminal.integrated.customGlyphs": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
