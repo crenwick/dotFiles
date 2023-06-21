@@ -5,15 +5,15 @@ v6.0
 
 - bashrc configuration
 - git configuration
-- vim configuration (neovim + vim)
-- node install + npm globals (via nvm)
-- homebrew + cask setup
+- vim configuration (neovim + vim) (TODO)
+- node install + npm globals (via nvm) (TODO?)
+- homebrew + cask setup (TODO?)
 
 ## Install
 
-$ ssh someothermachine
-$ git clone <remote-info> ./.dotfiles
-$ git --git-dir ~/.dotfiles/.git --work-tree=$HOME reset --hard
+> `git clone <remote-info> ./.dotfiles`
+
+> `git --git-dir ~/.dotfiles/.git --work-tree=$HOME reset --hard`
 
 ## Vim Setup (outdated?)
 
