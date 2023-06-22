@@ -11,9 +11,9 @@ v6.0
 
 ## Install
 
-> `git clone <remote-info> ./.dotfiles`
-
-> `git --git-dir ~/.dotfiles/.git --work-tree=$HOME reset --hard`
+- `git clone <remote-info> ./.dotfiles`
+- `git --git-dir ~/.dotfiles/.git --work-tree=$HOME config --local status.showUntrackedFiles no`
+- `git --git-dir ~/.dotfiles/.git --work-tree=$HOME reset --hard`
 
 ## Vim Setup (outdated?)
 
