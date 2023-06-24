@@ -29,7 +29,8 @@
     "phoenix-heex": "html"
   },
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
+    "asvetliakov.vscode-neovim": 1
   },
   "files.associations": {
     "Dockerfile*": "dockerfile",
@@ -142,5 +143,6 @@
   "terminal.integrated.customGlyphs": false,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim"
 }

@@ -10,7 +10,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="agnoster"
 ZSH_THEME="af-magic"
 
-plugins=(git asdf docker)
+plugins=(git asdf docker tmux)
+
+# Open tmux on startup, requires tmux plugin
+ZSH_TMUX_AUTOSTART=true
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -25,12 +28,6 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
-
-# Open tmux_chooser on launch
-# https://cedaei.com/posts/ideas-from-my-dev-setup-always-tmux/
-# if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
-#   ./tmux_chooser.sh && exit
-# fi
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -55,12 +52,6 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export ELIXIR_EDITOR="code +__LINE__ __FILE__"
-
-# setup pyenv
-# if which pyenv >/dev/null; then
-#   eval "$(pyenv init - zsh --no-rehash)"
-# fi
-# eval "$(pyenv init -)"
 
 # Integrate fzf into the terminal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

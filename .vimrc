@@ -121,12 +121,12 @@ let g:mapleader = "\<Space>"
 " Plugins
 " -----------------------------------------------------
 
-call plug#begin()
-
-source $HOME/.vim/bundles_core.vimrc
-source $HOME/.vim/bundles_term.vimrc
-
-call plug#end()
+" call plug#begin()
+"
+" source $HOME/.vim/bundles_core.vimrc
+" source $HOME/.vim/bundles_term.vimrc
+"
+" call plug#end()
 
 " -----------------------------------------------------
 " Key Maps
@@ -197,7 +197,7 @@ filetype plugin indent on
 
 " UndoDir:
 let s:homeFolder = $HOME
-let s:undoDir = s:homeFolder . '/vimUndo'
+let s:undoDir = s:homeFolder . '/.vimUndo'
 set undofile
 set undolevels=500
 set undoreload=500
@@ -215,7 +215,7 @@ let g:netrw_dirhistmax=0
 " -----------------------------------------------------
 
 " let g:despacio_Midnight = 1
-colorscheme apprentice
+" colorscheme apprentice
 let g:nord_cursor_line_number_background = 1
 
 syntax on             " enable syntax highlighting
