@@ -1,7 +1,4 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
+--[[ ===================================================================== ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
 
 Kickstart.nvim is *not* a distribution.
@@ -17,7 +14,7 @@ Kickstart.nvim is a template for your own configuration.
   a guide. One possible example:
   - https://learnxinyminutes.com/docs/lua/
 
-  And then you can explore or search through `:help lua-guide`
+  And then you can explore or search through `help lua-guide`
 
 
 Kickstart Guide:
@@ -64,8 +61,6 @@ if vim.g.vscode then
     'tpope/vim-surround',
     { 'numToStr/Comment.nvim', opts = {} },
   }, {})
-
-  -- workbench.action.files.save
 
   vim.keymap.set('n', "<leader>w", "<Cmd>call VSCodeCall('workbench.action.files.save')<CR>", { noremap = true })
 
@@ -136,7 +131,10 @@ else
     },
 
     -- Useful plugin to show you pending keybinds.
-    { 'folke/which-key.nvim',          opts = {} },
+    {
+      'folke/which-key.nvim',
+      opts = {}
+    },
     {
       -- Adds git releated signs to the gutter, as well as utilities for managing changes
       'lewis6991/gitsigns.nvim',
@@ -195,10 +193,17 @@ else
     },
 
     -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim',         opts = {} },
+    {
+      'numToStr/Comment.nvim',
+      opts = {}
+    },
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {
+      'nvim-telescope/telescope.nvim',
+      branch = '0.1.x',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
     -- Only load if `make` is available. Make sure you have the system
@@ -238,10 +243,6 @@ else
 
   -- [[ Setting options ]]
   -- See `:help vim.o`
-  -- NOTE: You can change these options as you wish!
-
-  -- Set highlight on search
-  vim.o.hlsearch = false
 
   -- Make line numbers default
   vim.wo.number = true
@@ -263,6 +264,9 @@ else
   -- Case-insensitive searching UNLESS \C or capital in search
   vim.o.ignorecase = true
   vim.o.smartcase = true
+
+  -- Set highlight on search
+  vim.o.hlsearch = true
 
   -- Keep signcolumn on by default
   vim.wo.signcolumn = 'yes'
@@ -340,8 +344,8 @@ else
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
-      'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'elixir',
-      'dockerfile', 'dot', 'erlang', 'heex', 'ruby', 'swift', 'terraform', 'yaml', 'vue'
+      'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'elixir', 'dockerfile', 'dot',
+      'erlang', 'heex', 'ruby', 'swift', 'terraform', 'yaml', 'vue'
     },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -507,6 +511,7 @@ else
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.mix,
+      null_ls.builtins.diagnostics.credo,
     }
   })
 
@@ -532,7 +537,7 @@ else
       ['<C-Space>'] = cmp.mapping.complete {},
       ['<CR>'] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
+        -- select = true, -- dont auto select the first one
       },
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -554,8 +559,8 @@ else
       end, { 'i', 's' }),
     },
     sources = {
-      { name = 'nvim_lsp' },
       { name = 'luasnip' },
+      { name = 'nvim_lsp' },
     },
   }
 
