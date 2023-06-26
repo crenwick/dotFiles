@@ -38,6 +38,9 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- nvim is slow to start without telling it where to find python
+vim.g.python3_host_prog = vim.fn.expand('~/.asdf/shims/python')
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -352,7 +355,7 @@ else
     auto_install = false,
 
     highlight = { enable = true },
-    indent = { enable = true },
+    -- indent = { enable = true }, -- this breaks python indenting for some reason?
     incremental_selection = {
       enable = true,
       keymaps = {
