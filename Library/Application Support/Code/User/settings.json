@@ -137,7 +137,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Verdandi",
+  "workbench.colorTheme": "Verdandi Alter",
   "terminal.integrated.customGlyphs": false,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
