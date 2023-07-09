@@ -53,7 +53,6 @@
   "gitlens.currentLine.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "markdown.preview.fontSize": 13,
-  "prettier.requireConfig": true,
   "python.formatting.provider": "black",
   "python.testing.pytestArgs": [
     "--override-ini",
@@ -146,5 +145,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "prettier.requireConfig": true
 }

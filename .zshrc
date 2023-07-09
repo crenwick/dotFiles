@@ -58,5 +58,5 @@ export ELIXIR_EDITOR="code +__LINE__ __FILE__"
 
 set t_Co=256
 
-# enable vi mod
+# enable vi mode
 bindkey -v
