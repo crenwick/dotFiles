@@ -12,8 +12,10 @@ ZSH_THEME="af-magic"
 
 plugins=(git asdf docker tmux)
 
-# Open tmux on startup, requires tmux plugin
-ZSH_TMUX_AUTOSTART=true
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+  # Open tmux on startup, requires tmux plugin
+  ZSH_TMUX_AUTOSTART=true
+fi
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -40,6 +42,9 @@ alias ec='$EDITOR $HOME/.zshrc'
 
 # Add cargo to the PATH
 # source $HOME/.cargo/env
+
+# asdf stuff
+. "$HOME/.asdf/asdf.sh"
 
 # Use nvim as the default editor
 export EDITOR=nvim
