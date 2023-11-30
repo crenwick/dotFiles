@@ -47,7 +47,7 @@ vim.g.python3_host_prog = vim.fn.expand('~/.asdf/shims/python')
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     'git',
@@ -58,7 +58,6 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   }
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 if vim.g.vscode then
@@ -82,10 +81,6 @@ else
   --    as they will be available in your neovim runtime.
   require('lazy').setup({
     -- NOTE: First, some plugins that don't require any configuration
-
-    -- Git related plugins
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
 
     -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
@@ -174,8 +169,10 @@ else
     {
       -- Theme inspired by Atom
       'navarasu/onedark.nvim',
-      priority = 1000,
+      lazy = false, -- make sure we load during startup
+      priority = 1000, -- load before all other plugins
       config = function()
+        -- load the colorscheme here
         vim.cmd.colorscheme 'onedark'
       end,
     },

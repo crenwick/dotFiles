@@ -2,9 +2,7 @@
 {
   "beancount.mainBeanFile": "ledger.beancount",
   "breadcrumbs.enabled": true,
-  "cSpell.enableFiletypes": [
-    "html-eex"
-  ],
+  "cSpell.enableFiletypes": ["html-eex"],
   "debug.console.fontSize": 13,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "off",
@@ -36,10 +34,9 @@
   },
   "files.exclude": {
     "**/_build": true,
-    "**/deps": true,
-    "tags": true,
     "**/.elixir_ls": true,
-    "**/*.beam": true
+    "**/*.beam": true,
+    "tags": true
   },
   "files.insertFinalNewline": true,
   "git.autofetch": true,
@@ -74,31 +71,16 @@
   "terminal.integrated.fontSize": 13,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "leader",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save"
-      ]
+      "before": ["leader", "w"],
+      "commands": ["workbench.action.files.save"]
     },
     {
-      "before": [
-        "leader",
-        "F"
-      ],
-      "commands": [
-        "editor.action.formatDocument"
-      ]
+      "before": ["leader", "F"],
+      "commands": ["editor.action.formatDocument"]
     },
     {
-      "before": [
-        "leader",
-        "leader"
-      ],
-      "after": [
-        "V"
-      ]
+      "before": ["leader", "leader"],
+      "after": ["V"]
     }
   ],
   "vim.leader": "<space>",
@@ -142,5 +124,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.requireConfig": true,
-  "diffEditor.ignoreTrimWhitespace": false
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.codeLens": true,
+  "black-formatter.importStrategy": "fromEnvironment",
+  "python.analysis.diagnosticMode": "workspace"
 }
