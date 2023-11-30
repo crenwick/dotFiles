@@ -23,8 +23,6 @@
   "editor.suggestOnTriggerCharacters": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
-  "elixirLS.dialyzerEnabled": false,
-  "elixirLS.suggestSpecs": false,
   "emmet.includeLanguages": {
     "phoenix-heex": "html"
   },
@@ -105,7 +103,6 @@
   ],
   "vim.leader": "<space>",
   "window.autoDetectColorScheme": true,
-  "workbench.activityBar.visible": true,
   "workbench.editor.revealIfOpen": true,
   "workbench.preferredDarkColorTheme": "Verdandi Alter",
   "workbench.preferredLightColorTheme": "Verdandi",
@@ -117,7 +114,6 @@
   "zenMode.centerLayout": false,
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
-  "zenMode.hideTabs": false,
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
@@ -136,15 +132,15 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Verdandi Alter",
+  "workbench.colorTheme": "Verdandi",
   "terminal.integrated.customGlyphs": false,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
-  "diffEditor.ignoreTrimWhitespace": false,
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "diffEditor.ignoreTrimWhitespace": false
 }
