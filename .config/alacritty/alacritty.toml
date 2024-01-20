@@ -1,0 +1,28 @@
+[font]
+size = 14
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+style = "Medium Italic"
+
+[font.normal]
+family = "SF Mono"
+style = "Regular"
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+dynamic_padding = true
+opacity = 0.975
+option_as_alt = "Both"
+
+[window.padding]
+x = 8
+y = 8

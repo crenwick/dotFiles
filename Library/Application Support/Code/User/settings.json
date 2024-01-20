@@ -22,7 +22,6 @@
   "editor.renderWhitespace": "all",
   "editor.suggestOnTriggerCharacters": false,
   "editor.tabSize": 2,
-  "editor.wordWrap": "on",
   "emmet.includeLanguages": {
     "phoenix-heex": "html"
   },
@@ -121,7 +120,7 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[python]": {
-    "editor.wordBasedSuggestions": false,
+    "editor.wordBasedSuggestions": "off",
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
