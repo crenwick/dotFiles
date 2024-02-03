@@ -17,8 +17,20 @@ if [[ "$TERM_PROGRAM" != "vscode" ]]; then
   ZSH_TMUX_AUTOSTART=true
 fi
 
-HISTSIZE=10000
-SAVEHIST=10000
+# History
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt INC_APPEND_HISTORY     # immediatley append to history file
+setopt EXTENDED_HISTORY       # record timestamp in history
+setopt HIST_EXPIRE_DUPS_FIRST # expire duplicate entires first when trimming history
+setopt HIST_FIND_NO_DUPS      # do not display a line previously found
+# setopt HIST_IGNORE_DUPS       # dont record an entry that was just recorded again
+# setopt HIST_IGNORE_ALL_DUPS   # delete old recorded entry if a new entry is a dup
+# setopt HIST_IGNORE_SPACE      # dont record an entry starting with a space
+# setopt HIST_SAVE_NO_DUPS      # dont write dupes in the history file
+setopt SHARE_HISTORY          # share history between all sessions
+unsetopt HIST_VERIFY          # execute cmds using history immediatley
 
 export KEYTIMEOUT=1
 

@@ -141,5 +141,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.requireConfig": true,
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.tree.enableStickyScroll": true,
+  "editor.stickyScroll.enabled": true
 }
