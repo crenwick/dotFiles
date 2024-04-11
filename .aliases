@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# dotfile mgmt (https://mitxela.com/projects/dotfiles_management)
-# alias dotfiles='git --git-dir=$HOME/.dotfiles/.git --work-tree=/'
-alias dotfiles='git --git-dir ~/.dotfiles/.git --work-tree=$HOME'
-alias dt='dotfiles'
-
 alias c=clear
 alias C='clear && printf "\e[3J"'
 

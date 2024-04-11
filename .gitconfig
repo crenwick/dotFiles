@@ -37,6 +37,11 @@
     sub = submodule
     br = branch -v
     dt = difftool --no-prompt
+
+    # dotfile mgmt (https://mitxela.com/projects/dotfiles_management)
+    dotfiles = "!git --git-dir ~/.dotfiles/.git --work-tree=$HOME"
+    df = dotfiles
+
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
     short = log -1 --pretty=format:%h
 
