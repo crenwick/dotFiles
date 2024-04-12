@@ -68,6 +68,16 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 5
+vim.opt.foldnestmax = 4
+vim.opt.foldcolumn = "0"
+
+-- show the first line of the fold
+vim.opt.foldtext = "v:folddashes.substitute(getline(v:foldstart),'/\\*\\|\\*/\\|{{{\\d\\=','','g')"
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -655,23 +665,43 @@ else
 			end,
 		},
 
-		{ -- You can easily change to a different colorscheme.
-			-- Change the name of the colorscheme plugin below, and then
-			-- change the command in the config to whatever the name of that colorscheme is.
-			--
-			-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-			"folke/tokyonight.nvim",
+		{
+			"f-person/auto-dark-mode.nvim",
 			priority = 1000, -- Make sure to load this before all the other start plugins.
-			init = function()
-				-- Load the colorscheme here.
-				-- Like many other themes, this one has different styles, and you could load
-				-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-				vim.cmd.colorscheme("tokyonight-night")
-
-				-- You can configure highlights by doing something like:
-				vim.cmd.hi("Comment gui=none")
-			end,
+			dependencies = {
+				-- "folke/tokyonight.nvim",
+				"rose-pine/neovim",
+			},
+			opts = {
+				update_interval = 1000,
+				set_dark_mode = function()
+					vim.api.nvim_set_option("background", "dark")
+					vim.cmd.colorscheme("rose-pine-moon")
+				end,
+				set_light_mode = function()
+					vim.api.nvim_set_option("background", "light")
+					vim.cmd.colorscheme("rose-pine-dawn")
+				end,
+			},
 		},
+
+		-- { -- You can easily change to a different colorscheme.
+		-- 	-- Change the name of the colorscheme plugin below, and then
+		-- 	-- change the command in the config to whatever the name of that colorscheme is.
+		-- 	--
+		-- 	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+		-- 	"folke/tokyonight.nvim",
+		-- 	priority = 1000, -- Make sure to load this before all the other start plugins.
+		-- 	init = function()
+		-- 		-- Load the colorscheme here.
+		-- 		-- Like many other themes, this one has different styles, and you could load
+		-- 		-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+		-- 		vim.cmd.colorscheme("tokyonight-night")
+		--
+		-- 		-- You can configure highlights by doing something like:
+		-- 		vim.cmd.hi("Comment gui=none")
+		-- 	end,
+		-- },
 
 		-- Highlight todo, notes, etc in comments
 		{
