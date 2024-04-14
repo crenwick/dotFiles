@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -119,6 +119,16 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	desc = "Startup in :Explore mode",
+	pattern = "*",
+	callback = function()
+		if vim.fn.expand("%") == "" then
+			vim.cmd("Explore")
+		end
+	end,
+})
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -746,6 +756,7 @@ else
 
 				-- ... and there is more!
 				--  Check out: https://github.com/echasnovski/mini.nvim
+				require("mini.animate").setup()
 			end,
 		},
 		{ -- Highlight, edit, and navigate code
