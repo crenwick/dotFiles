@@ -1,6 +1,4 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+--  NOTE: Set lead before plugins are loaded.
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -8,37 +6,23 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- See `:help vim.opt` and `:help option-list`
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.inccommand = "split"
 vim.opt.mouse = "a"
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.opt.number = true
+vim.opt.showmode = false -- mode is already show in the status line
+vim.opt.smartcase = true
+vim.opt.undofile = true
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
 vim.opt.wrap = false
-
--- Enable break indent
 vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
@@ -59,12 +43,6 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
@@ -180,27 +158,12 @@ if vim.g.vscode then
 	vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 else
 	require("lazy").setup({
-		-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 		"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 		"tpope/vim-surround",
-
-		-- NOTE: Plugins can also be added by using a table,
-		-- with the first argument being the link and the following
-		-- keys can be used to configure plugin behavior/loading/etc.
-		--
-		-- Use `opts = {}` to force a plugin to be loaded.
-		--
-		--  This is equivalent to:
-		--    require('Comment').setup({})
 
 		-- "gc" to comment visual regions/lines
 		{ "numToStr/Comment.nvim", opts = {} },
 
-		-- Here is a more advanced example where we pass configuration
-		-- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-		--    require('gitsigns').setup({ ... })
-		--
-		-- See `:help gitsigns` to understand what the configuration keys do
 		{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 			"lewis6991/gitsigns.nvim",
 			opts = {
@@ -214,24 +177,9 @@ else
 			},
 		},
 
-		-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-		--
-		-- This is often very useful to both group configuration, as well as handle
-		-- lazy loading plugins that don't need to be loaded immediately at startup.
-		--
-		-- For example, in the following configuration, we use:
-		--  event = 'VimEnter'
-		--
-		-- which loads which-key before all the UI elements are loaded. Events can be
-		-- normal autocommands events (`:help autocmd-events`).
-		--
-		-- Then, because we use the `config` key, the configuration only runs
-		-- after the plugin has been loaded:
-		--  config = function() ... end
-
 		{ -- Useful plugin to show you pending keybinds.
 			"folke/which-key.nvim",
-			event = "VimEnter", -- Sets the loading event to 'VimEnter'
+			event = "VimEnter", -- Sets the loading event to 'VimEnter', which is before all UI elements are loaded.
 			config = function() -- This is the function that runs, AFTER loading
 				require("which-key").setup()
 
@@ -246,18 +194,13 @@ else
 			end,
 		},
 
-		-- NOTE: Plugins can specify dependencies.
-		--
-		-- The dependencies are proper plugin specifications as well - anything
-		-- you do for a plugin at the top level, you can do for a dependency.
-		--
-		-- Use the `dependencies` key to specify the dependencies of a particular plugin
-
 		{ -- Fuzzy Finder (files, lsp, etc)
 			"nvim-telescope/telescope.nvim",
 			event = "VimEnter",
 			branch = "0.1.x",
 			dependencies = {
+				-- The dependencies are proper plugin specifications as well - anything
+				-- you do for a plugin at the top level, you can do for a dependency.
 				"nvim-lua/plenary.nvim",
 				{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 					"nvim-telescope/telescope-fzf-native.nvim",
@@ -275,20 +218,9 @@ else
 				{ "nvim-telescope/telescope-ui-select.nvim" },
 
 				-- Useful for getting pretty icons, but requires a Nerd Font.
-				{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+				-- { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 			},
 			config = function()
-				-- Telescope is a fuzzy finder that comes with a lot of different things that
-				-- it can fuzzy find! It's more than just a "file finder", it can search
-				-- many different aspects of Neovim, your workspace, LSP, and more!
-				--
-				-- The easiest way to use Telescope, is to start by doing something like:
-				--  :Telescope help_tags
-				--
-				-- After running this command, a window will open up and you're able to
-				-- type in the prompt window. You'll see a list of `help_tags` options and
-				-- a corresponding preview of the help.
-				--
 				-- Two important keymaps to use while in Telescope are:
 				--  - Insert mode: <c-/>
 				--  - Normal mode: ?
@@ -304,11 +236,14 @@ else
 					--  All the info you're looking for is in `:help telescope.setup()`
 					--
 					-- defaults = {
+					-- wrap_results = true,
 					--   mappings = {
 					--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 					--   },
 					-- },
-					-- pickers = {}
+					pickers = {
+						find_files = { hidden = true },
+					},
 					extensions = {
 						["ui-select"] = {
 							require("telescope.themes").get_dropdown(),
@@ -415,7 +350,7 @@ else
 						-- Fuzzy find all the symbols in your current workspace.
 						--  Similar to document symbols, except searches over your entire project.
 						map(
-							"<leader>ws",
+							"<leader>dws",
 							require("telescope.builtin").lsp_dynamic_workspace_symbols,
 							"[D]ynamic [W]orkspace [S]ymbols"
 						)
@@ -479,6 +414,8 @@ else
 					pyright = {},
 					black = {},
 					elixirls = {},
+					-- vuels = {},
+					volar = {},
 					-- beancount = {},
 					tailwindcss = {},
 					-- rust_analyzer = {},
@@ -572,8 +509,9 @@ else
 					--
 					-- You can use a sub-list to tell conform to run *until* a formatter
 					-- is found.
-					javascript = { { "prettierd", "prettier" } },
-					json = { { "prettierd", "prettier" } },
+					javascript = { { "prettierd" } },
+					vue = { { "prettierd" } },
+					json = { { "prettierd" } },
 				},
 			},
 		},
@@ -765,12 +703,9 @@ else
 			build = ":TSUpdate",
 			opts = {
 				ensure_installed = {
-					"bash",
 					"c",
-					"html",
 					"lua",
 					"luadoc",
-					"markdown",
 					"vim",
 					"vimdoc",
 					"python",
@@ -785,6 +720,7 @@ else
 					"vue",
 					"javascript",
 				},
+				incremental_selection = { enable = true },
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = {
