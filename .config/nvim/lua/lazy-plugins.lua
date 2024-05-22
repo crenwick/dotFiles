@@ -1,4 +1,4 @@
--- [[ Configure and install plugins ]]laz
+-- [[ Configure and install plugins ]]lazy
 --
 --  To check the current status of your plugins, run
 --    :Lazy
@@ -270,9 +270,9 @@ require("lazy").setup({
 					-- code, if the language server you are using supports them
 					--
 					-- This may be unwanted, since they displace some of your code
-					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 						map("<leader>th", function()
-							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 						end, "[T]oggle Inlay [H]ints")
 					end
 				end,
@@ -299,9 +299,13 @@ require("lazy").setup({
 				-- gopls = {},
 				pyright = {},
 				-- black = {},
-				elixirls = {},
-				-- vuels = {},
-				volar = {},
+				elixirls = {
+					settings = {
+						fetchDeps = false,
+						elixirLS = { fetchDeps = false },
+					},
+				},
+				volar = { filetypes = { "vue" } },
 				-- beancount = {},
 				tailwindcss = {},
 				-- rust_analyzer = {},
@@ -311,7 +315,18 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
-				tsserver = {},
+				tsserver = {
+					-- init_options = {
+					-- 	plugins = {
+					-- 		{
+					-- 			name = "@vue/typescript-plugin",
+					-- 			location = "~/.asdf/installs/nodejs/19.20.2/lib/node_modules/@vue/typescript-plugin",
+					-- 			languages = { "javascript", "typescript", "vue" },
+					-- 		},
+					-- 	},
+					-- },
+					-- filetypes = { "javascript", "typescript", "vue" },
+				},
 				lua_ls = {},
 			}
 
@@ -493,6 +508,7 @@ require("lazy").setup({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
+					{ name = "buffer" },
 				},
 			})
 		end,
@@ -504,6 +520,13 @@ require("lazy").setup({
 		dependencies = {
 			-- "folke/tokyonight.nvim",
 			"rose-pine/neovim",
+			"projekt0n/github-nvim-theme",
+			{
+				"mcchrish/zenbones.nvim",
+				config = function()
+					vim.g.bones_compat = 1
+				end,
+			},
 		},
 		opts = {
 			update_interval = 1000,
@@ -515,7 +538,9 @@ require("lazy").setup({
 			end,
 			set_light_mode = function()
 				vim.api.nvim_set_option("background", "light")
-				vim.cmd.colorscheme("rose-pine-dawn")
+				-- vim.cmd.colorscheme("rose-pine-dawn")
+				vim.cmd.colorscheme("zenbones")
+
 				-- You can configure highlights by doing something like:
 				vim.cmd.hi("Comment gui=none")
 			end,
@@ -546,6 +571,14 @@ require("lazy").setup({
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
+	},
+
+	{
+		"pwntester/octo.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "nvim-tree/nvim-web-devicons" },
+		opts = {
+			suppress_missing_scope = { projects_v2 = true },
+		},
 	},
 
 	{ -- Collection of various small independent plugins/modules
