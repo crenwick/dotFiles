@@ -14,7 +14,7 @@ plugins=(git asdf docker tmux)
 
 if [[ "$TERM_PROGRAM" != "vscode" ]]; then
   # Open tmux on startup, requires tmux plugin
-  # ZSH_TMUX_AUTOSTART=true
+  ZSH_TMUX_AUTOSTART=true
 fi
 
 # History
