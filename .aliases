@@ -34,8 +34,8 @@ docker-postgres() {
   docker run -d \
     --name postgres"$1" \
     --volume postgres_data:/var/lib/postgresql/data \
-    --env postgres_user=postgres \
-    --env postgres_password=postgres \
+    --env POSTGRES_USER=postgres \
+    --env POSTGRES_PASSWORD=postgres \
     --publish 5432:5432 \
     postgres:"$1"
 }

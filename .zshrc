@@ -14,7 +14,7 @@ plugins=(git asdf docker tmux)
 
 if [[ "$TERM_PROGRAM" != "vscode" ]]; then
   # Open tmux on startup, requires tmux plugin
-  ZSH_TMUX_AUTOSTART=true
+  # ZSH_TMUX_AUTOSTART=true
 fi
 
 # History
@@ -62,7 +62,7 @@ alias ec='$EDITOR $HOME/.zshrc'
 export EDITOR=nvim
 
 # makes FZF use ripgrep (rg)
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob=!.git/'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 

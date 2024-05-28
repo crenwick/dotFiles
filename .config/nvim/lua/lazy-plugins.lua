@@ -107,7 +107,10 @@ require("lazy").setup({
 				--   },
 				-- },
 				pickers = {
-					find_files = { hidden = true },
+					-- find_files = { hidden = true }
+					find_files = {
+						find_command = { "rg", "--files", "--color", "never", "--hidden", "--glob", "!.git" },
+					},
 				},
 				extensions = {
 					["ui-select"] = {
@@ -573,13 +576,13 @@ require("lazy").setup({
 		opts = { signs = false },
 	},
 
-	{
-		"pwntester/octo.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "nvim-tree/nvim-web-devicons" },
-		opts = {
-			suppress_missing_scope = { projects_v2 = true },
-		},
-	},
+	-- {
+	--   'pwntester/octo.nvim',
+	--   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'nvim-tree/nvim-web-devicons' },
+	--   opts = {
+	--     suppress_missing_scope = { projects_v2 = true },
+	--   },
+	-- },
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
@@ -590,7 +593,7 @@ require("lazy").setup({
 			--  - va)  - [V]isually select [A]round [)]paren
 			--  - yinq - [Y]ank [I]nside [N]ext [']quote
 			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
+			-- require('mini.ai').setup { n_lines = 500 }
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
@@ -616,7 +619,20 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
-			ensure_installed = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
+			ensure_installed = {
+				"bash",
+				"c",
+				"diff",
+				"html",
+				"lua",
+				"luadoc",
+				"markdown",
+				"vim",
+				"vimdoc",
+				"elixir",
+				"eex",
+				"heex",
+			},
 			auto_install = true,
 			highlight = {
 				enable = true,
@@ -644,6 +660,7 @@ require("lazy").setup({
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
 	},
+	"nvim-treesitter/nvim-treesitter-textobjects",
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
