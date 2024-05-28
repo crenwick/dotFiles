@@ -1,6 +1,6 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- Here is a nerdfont symbol: 
@@ -15,7 +15,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -23,7 +23,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -36,7 +36,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -53,10 +53,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -64,13 +64,13 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 4
-vim.opt.foldcolumn = "0"
+vim.opt.foldcolumn = '0'
 
 -- show the first line of the fold
 vim.opt.foldtext = "v:folddashes.substitute(getline(v:foldstart),'/\\*\\|\\*/\\|{{{\\d\\=','','g')"
@@ -78,25 +78,25 @@ vim.opt.foldtext = "v:folddashes.substitute(getline(v:foldstart),'/\\*\\|\\*/\\|
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>E", vim.cmd.Ex, { desc = "[E]xplore directory" })
+vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>E', vim.cmd.Ex, { desc = '[E]xplore directory' })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<leader><Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set('n', '<leader><Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [q]uickfix list' })
 
 local set = vim.opt_local
 -- set local settings for terminal buffers
-vim.api.nvim_create_autocmd("TermOpen", {
-	group = vim.api.nvim_create_augroup("custom-term-open", {}),
-	callback = function()
-		set.number = false
-		set.scrolloff = 0
-	end,
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', {}),
+  callback = function()
+    set.number = false
+    set.scrolloff = 0
+  end,
 })
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -104,25 +104,25 @@ vim.api.nvim_create_autocmd("TermOpen", {
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Open a terminal at the bottom of the screen with a fixed height.
 -- local term_win_bufnr = nil
 local term_win = nil
-vim.keymap.set("n", ",st", function()
-	-- if term_win then
-	if term_win and vim.api.nvim_win_is_valid(term_win) then
-		print(term_win)
-		vim.api.nvim_set_current_win(term_win)
-		vim.cmd("startinsert")
-	else
-		vim.cmd.new()
-		vim.cmd.wincmd("J")
-		vim.api.nvim_win_set_height(0, 12)
-		vim.wo.winfixheight = true
-		vim.cmd.term()
-		term_win = vim.api.nvim_get_current_win()
-	end
+vim.keymap.set('n', ',st', function()
+  -- if term_win then
+  if term_win and vim.api.nvim_win_is_valid(term_win) then
+    print(term_win)
+    vim.api.nvim_set_current_win(term_win)
+    vim.cmd 'startinsert'
+  else
+    vim.cmd.new()
+    vim.cmd.wincmd 'J'
+    vim.api.nvim_win_set_height(0, 12)
+    vim.wo.winfixheight = true
+    vim.cmd.term()
+    term_win = vim.api.nvim_get_current_win()
+  end
 end)
 
 -- TIP: Disable arrow keys in normal mode
@@ -136,55 +136,55 @@ end)
 --
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
-vim.api.nvim_create_autocmd("VimEnter", {
-	desc = "Startup in :Explore mode",
-	pattern = "*",
-	callback = function()
-		if vim.fn.expand("%") == "" then
-			vim.cmd("Explore")
-		end
-	end,
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Startup in :Explore mode',
+  pattern = '*',
+  callback = function()
+    if vim.fn.expand '%' == '' then
+      vim.cmd 'Explore'
+    end
+  end,
 })
 
-vim.api.nvim_create_autocmd("TermOpen", {
-	desc = "Start :term in insert mode",
-	pattern = "*",
-	command = "startinsert | set winfixheight",
+vim.api.nvim_create_autocmd('TermOpen', {
+  desc = 'Start :term in insert mode',
+  pattern = '*',
+  command = 'startinsert | set winfixheight',
 })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 if vim.g.vscode then
-	require("vscode-plugins")
+  require 'vscode-plugins'
 else
-	require("lazy-plugins")
+  require 'lazy-plugins'
 end
 
 -- vim: ts=2 sts=2 sw=2 et
