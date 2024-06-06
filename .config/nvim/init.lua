@@ -6,6 +6,9 @@ vim.g.maplocalleader = ' '
 -- Here is a nerdfont symbol: 
 vim.g.have_nerd_font = true
 
+-- disable EditorConfig and don't read `.editorconfig` files
+vim.g.editorconfig = false
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -87,6 +90,9 @@ vim.keymap.set('n', '<leader><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Stop highl
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [q]uickfix list' })
 
+-- Tmux style 'zoom'
+vim.keymap.set('n', '<leader>z', ':tab split<CR>', { desc = '[Z]oom window (new tab)' })
+
 local set = vim.opt_local
 -- set local settings for terminal buffers
 vim.api.nvim_create_autocmd('TermOpen', {
@@ -111,8 +117,8 @@ local term_win = nil
 vim.keymap.set('n', ',st', function()
   -- if term_win then
   if term_win and vim.api.nvim_win_is_valid(term_win) then
-    print(term_win)
     vim.api.nvim_set_current_win(term_win)
+    vim.api.nvim_win_set_height(0, 12)
     vim.cmd 'startinsert'
   else
     vim.cmd.new()
