@@ -29,10 +29,7 @@ require('lazy').setup({
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
-    options = {
-      -- config goes here or leave empty to use default
-    },
+    event = 'VeryLazy',
     keys = {
       {
         '<leader>?',
@@ -204,19 +201,8 @@ require('lazy').setup({
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {
-          -- init_options = {
-          --   plugins = {
-          --     {
-          --       name = '@vue/typescript-plugin',
-          --       location = '~/.asdf/installs/nodejs/19.20.2/lib/node_modules/@vue/typescript-plugin',
-          --       languages = { 'javascript', 'typescript', 'vue' },
-          --     },
-          --   },
-          -- },
-          -- filetypes = { 'javascript', 'typescript', 'vue' },
-        },
+        -- But for many setups, the LSP (`ts-ls`) will work just fine
+        -- ts_ls = {}
         lua_ls = {},
       }
 
@@ -243,7 +229,7 @@ require('lazy').setup({
 
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
+            -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
             require('lspconfig')[server_name].setup(server)
@@ -263,8 +249,12 @@ require('lazy').setup({
           --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc)
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, {
+              buffer = event.buf,
+              desc = 'LSP: ' .. desc,
+            })
           end
 
           -- Jump to the definition of the word under your cursor.
@@ -298,7 +288,7 @@ require('lazy').setup({
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -327,7 +317,7 @@ require('lazy').setup({
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format { async = true, lsp_fallback = 'fallback' }
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -340,15 +330,25 @@ require('lazy').setup({
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
+        local lsp_format_opt
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          lsp_format_opt = 'never'
+        else
+          lsp_format_opt = 'fallback'
+        end
+
         return {
           timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          lsp_format = lsp_format_opt,
         }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
+        python = {
+          -- 'isort',
+          'black',
+        },
         -- or just the first one that might be installed
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
@@ -553,6 +553,8 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       { 'nvim-treesitter/nvim-treesitter-context', opts = { max_lines = 5, mode = 'topline' } },
@@ -575,6 +577,8 @@ require('lazy').setup({
         'lua',
         'luadoc',
         'markdown',
+        'markdown_inline',
+        'query',
         'vim',
         'vimdoc',
         'elixir',
@@ -592,21 +596,21 @@ require('lazy').setup({
       -- incremental_selection = { enable = true },
       indent = { enable = true, disable = { 'ruby', 'elixir' } },
     },
-    config = function(_, opts)
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
-      -- Prefer git instead of curl in order to improve connectivity in some environments
-      require('nvim-treesitter.install').prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
-
-      -- There are additional nvim-treesitter modules that you can use to interact
-      -- with nvim-treesitter. You should go explore a few and see what interests you:
-      --
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-    end,
+    -- config = function(_, opts)
+    --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    --
+    --   -- Prefer git instead of curl in order to improve connectivity in some environments
+    --   require('nvim-treesitter.install').prefer_git = true
+    --   ---@diagnostic disable-next-line: missing-fields
+    --   require('nvim-treesitter.configs').setup(opts)
+    --
+    --   -- There are additional nvim-treesitter modules that you can use to interact
+    --   -- with nvim-treesitter. You should go explore a few and see what interests you:
+    --   --
+    --   --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+    --   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+    --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    -- end,
   },
 }, {
   ui = {
