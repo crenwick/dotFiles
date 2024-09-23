@@ -91,7 +91,7 @@ vim.keymap.set('n', '<leader><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Stop highl
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [q]uickfix list' })
 
--- Tmux style 'zoom'
+-- Tmux style 'zoom' (`CTRL-W c` to close)
 vim.keymap.set('n', '<leader>z', ':tab split<CR>', { desc = '[Z]oom window (new tab)' })
 
 local set = vim.opt_local
