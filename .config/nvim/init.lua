@@ -83,6 +83,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[Y]ank into system 
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = '[D]elete without replacing buffer' })
 vim.keymap.set('n', '<leader>E', vim.cmd.Ex, { desc = '[E]xplore directory' })
 
+vim.keymap.set('n', '<leader>/.', ':tabedit %:p:h<CR>')
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<leader><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Stop highlighting search' })
