@@ -81,9 +81,10 @@ vim.opt.foldtext = "v:folddashes.substitute(getline(v:foldstart),'/\\*\\|\\*/\\|
 vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, desc = '[W]rite to file' })
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[Y]ank into system clipboard' })
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = '[D]elete without replacing buffer' })
-vim.keymap.set('n', '<leader>E', vim.cmd.Ex, { desc = '[E]xplore directory' })
+vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = '[e]xplore directory' })
 
-vim.keymap.set('n', '<leader>/.', ':tabedit %:p:h<CR>')
+-- this will open netrw in a new tab in the directory containing the file whose buffer you're in
+vim.keymap.set('n', '<leader>E', ':tabedit %:p:h<CR>', { desc = '[E]xplore directory in a new tab' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<leader><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Stop highlighting search' })
