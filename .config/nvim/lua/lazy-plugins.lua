@@ -160,7 +160,10 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      { 'williamboman/mason.nvim', opts = {} },
+      -- Mason must be loaded before its dependents so we need to set it up here.
+      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -209,13 +212,12 @@ require('lazy').setup({
       }
 
       -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
+      -- To check the current status of installed tools and/or manually install
+      -- other tools, you can run
       --    :Mason
       --
-      --  You can press `g?` for help in this menu.
-      require('mason').setup()
-
+      -- You can press `g?` for help in this menu.
+      --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -233,7 +235,6 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-
             require('lspconfig')[server_name].setup(server)
           end,
         },
@@ -479,12 +480,7 @@ require('lazy').setup({
       -- "folke/tokyonight.nvim",
       'rose-pine/neovim',
       -- 'projekt0n/github-nvim-theme',
-      {
-        'mcchrish/zenbones.nvim',
-        config = function()
-          vim.g.bones_compat = 1
-        end,
-      },
+      'mofiqul/vscode.nvim',
     },
     opts = {
       update_interval = 1000,
@@ -496,11 +492,10 @@ require('lazy').setup({
       end,
       set_light_mode = function()
         vim.api.nvim_set_option('background', 'light')
-        -- vim.cmd.colorscheme 'rose-pine-dawn'
-        vim.cmd.colorscheme 'zenbones'
+        vim.cmd.colorscheme 'vscode'
 
         -- You can configure highlights by doing something like:
-        vim.cmd.hi 'Comment gui=none'
+        -- vim.cmd.hi 'Comment gui=none'
       end,
     },
   },

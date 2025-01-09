@@ -117,20 +117,26 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Open a terminal at the bottom of the screen with a fixed height.
 -- local term_win_bufnr = nil
 local term_win = nil
+local channel_id = 0
 vim.keymap.set('n', ',st', function()
   -- if term_win then
   if term_win and vim.api.nvim_win_is_valid(term_win) then
     vim.api.nvim_set_current_win(term_win)
-    vim.api.nvim_win_set_height(0, 12)
+    -- vim.api.nvim_win_set_height(0, 12)
     vim.cmd 'startinsert'
   else
     vim.cmd.new()
+    -- put it at the bottom
     vim.cmd.wincmd 'J'
     vim.api.nvim_win_set_height(0, 12)
     vim.wo.winfixheight = true
     vim.cmd.term()
     term_win = vim.api.nvim_get_current_win()
+    channel_id = vim.bo.channel
   end
+end)
+vim.keymap.set('n', ',mt', function()
+  vim.fn.chansend(channel_id, { 'mix test\r\n' })
 end)
 
 -- Keybinds to make split navigation easier.
