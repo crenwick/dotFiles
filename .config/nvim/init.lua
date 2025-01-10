@@ -35,6 +35,10 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- `zg` to add the word to the spellfile
+-- `z=` to get spelling suggestions
+vim.opt.spell = true
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
