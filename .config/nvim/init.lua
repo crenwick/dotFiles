@@ -66,7 +66,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
@@ -108,6 +108,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
     set.number = false
     set.relativenumber = false
     set.scrolloff = 0
+    set.spell = false
   end,
 })
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -142,6 +143,19 @@ end)
 vim.keymap.set('n', ',mt', function()
   vim.fn.chansend(channel_id, { 'mix test\r\n' })
 end)
+
+vim.keymap.set('n', ',gf', ':lua OpenFileInPaneAbove()<CR>', { desc = 'Open file in pane above' })
+function OpenFileInPaneAbove()
+  -- get the file path under the cursor
+  local file_path = vim.fn.expand '<cfile>'
+  -- get the file path, line number, and column number under the cursor
+
+  -- move to the window above
+  vim.cmd 'wincmd k'
+
+  vim.cmd 'normal gF'
+  vim.cmd('edit ' .. file_path)
+end
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows

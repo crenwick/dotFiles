@@ -143,5 +143,6 @@
   "prettier.requireConfig": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "workbench.tree.enableStickyScroll": true,
-  "editor.stickyScroll.enabled": true
+  "editor.stickyScroll.enabled": true,
+  "github.copilot.advanced": {}
 }
