@@ -1,7 +1,7 @@
 -- VSCode extentions
 require('lazy').setup({
   'tpope/vim-surround',
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- { 'numToStr/Comment.nvim', opts = {} },
 }, {})
 
 vim.keymap.set('n', '<leader>w', function()
@@ -13,6 +13,5 @@ vim.keymap.set('n', '<leader>f', function()
 end)
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-require 'vscode-plugins'
 
 -- vim: ts=2 sts=2 sw=2 et

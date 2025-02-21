@@ -144,5 +144,7 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "workbench.tree.enableStickyScroll": true,
   "editor.stickyScroll.enabled": true,
-  "github.copilot.advanced": {}
+  "github.copilot.advanced": {},
+  "github.copilot.selectedCompletionModel": "gpt-4o-copilot",
+  "elixirLS.dialyzerEnabled": false
 }

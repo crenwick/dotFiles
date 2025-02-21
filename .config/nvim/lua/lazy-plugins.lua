@@ -196,10 +196,10 @@ require('lazy').setup({
         clangd = {},
         -- gopls = {},
         pyright = {},
-        elixirls = {},
+        -- elixirls = {},
         volar = { filetypes = { 'vue' } },
         -- beancount = {},
-        tailwindcss = {},
+        -- tailwindcss = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -476,10 +476,11 @@ require('lazy').setup({
   {
     'github/copilot.vim',
     init = function()
-      vim.keymap.set('i', '<C-Y>', 'copilot#Accept("//<CR>")', {
+      vim.keymap.set('i', '<C-Y>', 'copilot#AcceptLine("//<CR>")', {
         expr = true,
         replace_keycodes = false,
       })
+      vim.keymap.set('i', '<C-N>', '<Plug>(copilot-next)')
       vim.g.copilot_no_tab_map = true
     end,
   },
@@ -488,40 +489,27 @@ require('lazy').setup({
     'f-person/auto-dark-mode.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     dependencies = {
-      -- "folke/tokyonight.nvim",
-      -- 'rose-pine/neovim',
-      -- 'projekt0n/github-nvim-theme',
-      -- 'mofiqul/vscode.nvim',
-      { 'zenbones-theme/zenbones.nvim', dependencies = 'rktjmp/lush.nvim' },
+      'projekt0n/github-nvim-theme',
+      'loctvl842/monokai-pro.nvim',
+
+      -- 'Th3Whit3Wolf/one-nvim',
+      -- { 'zenbones-theme/zenbones.nvim', dependencies = 'rktjmp/lush.nvim' },
     },
     opts = {
       update_interval = 1000,
       set_dark_mode = function()
+        vim.cmd.colorscheme 'monokai-pro'
         vim.api.nvim_set_option('background', 'dark')
-        -- vim.cmd.colorscheme 'rose-pine-moon'
-        -- You can configure highlights by doing something like:
-        -- vim.cmd.hi 'Comment gui=none'
       end,
       set_light_mode = function()
         vim.api.nvim_set_option('background', 'light')
-        -- vim.cmd.colorscheme 'vscode'
+        vim.cmd.colorscheme 'github_light_default'
 
         -- You can configure highlights by doing something like:
         -- vim.cmd.hi 'Comment gui=none'
       end,
     },
-    init = function()
-      vim.cmd.colorscheme 'zenwritten'
-    end,
   },
-
-  -- {
-  --   'pwntester/octo.nvim',
-  --   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'nvim-tree/nvim-web-devicons' },
-  --   opts = {
-  --     suppress_missing_scope = { projects_v2 = true },
-  --   },
-  -- },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -590,14 +578,15 @@ require('lazy').setup({
       bigfile = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
-      words = { enabled = true },
       terminal = {},
+      words = { enabled = true },
     },
     keys = {
       {
         '<c-/>',
         function()
-          Snacks.terminal()
+          -- local snacks = require 'snacks'
+          require('snacks').terminal()
         end,
         desc = 'Toggle Terminal',
       },
@@ -606,7 +595,7 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('User', {
         pattern = 'VeryLazy',
         callback = function()
-          Snacks.toggle.treesitter():map '<leader>uT'
+          require('snacks').toggle.treesitter():map '<leader>uT'
         end,
       })
     end,
@@ -665,22 +654,26 @@ require('lazy').setup({
       -- incremental_selection = { enable = true },
       indent = { enable = true, disable = { 'ruby', 'elixir' } },
     },
-    -- config = function(_, opts)
-    --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    --
-    --   -- Prefer git instead of curl in order to improve connectivity in some environments
-    --   require('nvim-treesitter.install').prefer_git = true
-    --   ---@diagnostic disable-next-line: missing-fields
-    --   require('nvim-treesitter.configs').setup(opts)
-    --
-    --   -- There are additional nvim-treesitter modules that you can use to interact
-    --   -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --   --
-    --   --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-    -- end,
+    config = function(_, opts)
+      vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+      --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+      --
+      --   -- Prefer git instead of curl in order to improve connectivity in some environments
+      --   require('nvim-treesitter.install').prefer_git = true
+      --   ---@diagnostic disable-next-line: missing-fields
+      --   require('nvim-treesitter.configs').setup(opts)
+      --
+      --   -- There are additional nvim-treesitter modules that you can use to interact
+      --   -- with nvim-treesitter. You should go explore a few and see what interests you:
+      --   --
+      --   --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+      --   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+      --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    end,
   },
+
+  require 'custom.plugins.dap',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -1,7 +1,6 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- Here is a nerdfont symbol: 
 vim.g.have_nerd_font = true
@@ -19,14 +18,16 @@ vim.opt.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
-vim.opt.colorcolumn = '80'
+-- vim.opt.colorcolumn = '80'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 vim.opt.relativenumber = true
 
--- Enable break indent
+-- Line wrap settings
+vim.opt.wrap = true
 vim.opt.breakindent = true
+vim.opt.linebreak = true
 
 -- Save undo history
 vim.opt.undofile = true
@@ -41,6 +42,11 @@ vim.opt.spell = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
+
+vim.opt.swapfile = false
+
+-- Don't have `o` add a comment
+vim.opt.formatoptions:remove 'o'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -69,8 +75,6 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 4
