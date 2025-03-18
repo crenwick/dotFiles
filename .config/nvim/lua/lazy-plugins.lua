@@ -223,6 +223,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'copilot-language-server', -- Used for Copilot
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -239,6 +240,22 @@ require('lazy').setup({
           end,
         },
       }
+
+      -- local lspconfig = require 'lspconfig'
+      -- lspconfig.copilot_ls = {
+      --   default_config = {
+      --     cmd = {
+      --       'node',
+      --       '~/.asdf/shims/copilot-language-server',
+      --       '--stdio',
+      --     },
+      --     filetypes = { '*' },
+      --     root_dir = function(fname)
+      --       return vim.loop.cwd()
+      --     end,
+      --   },
+      -- }
+      -- lspconfig.copilot_ls.setup {}
 
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
@@ -474,15 +491,38 @@ require('lazy').setup({
   -- },
 
   {
-    'github/copilot.vim',
-    init = function()
-      vim.keymap.set('i', '<C-Y>', 'copilot#AcceptLine("//<CR>")', {
-        expr = true,
-        replace_keycodes = false,
-      })
-      vim.keymap.set('i', '<C-N>', '<Plug>(copilot-next)')
-      vim.g.copilot_no_tab_map = true
+    -- 'github/copilot.vim',
+    -- 'zbi
+    'zbirenbaum/copilot.lua',
+    config = function()
+      require('copilot').setup {
+        suggestion = {
+          auto_trigger = true,
+          keymap = {
+            accpet = false,
+            accept_line = '<C-y>',
+            next = '<C-n>',
+          },
+        },
+        filetypes = { ['*'] = true },
+        server_opts_overrides = {
+          cmd = {
+            vim.fn.expand '~/.local/share/nvim/mason/bin/copilot-language-server',
+            '--stdio',
+          },
+        },
+      }
     end,
+    -- init = function()
+    --   vim.keymap.set('i', '<C-Y>', 'copilot#AcceptLine("//<CR>")', {
+    --     expr = true,
+    --     replace_keycodes = false,
+    --   })
+    --   vim.keymap.set('i', '<C-N>', '<Plug>(copilot-next)')
+    --   vim.g.copilot_no_tab_map = true
+    --
+    --
+    -- end,
   },
 
   { -- Colortheme
@@ -591,25 +631,24 @@ require('lazy').setup({
         desc = 'Toggle Terminal',
       },
     },
-    init = function()
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'VeryLazy',
-        callback = function()
-          require('snacks').toggle.treesitter():map '<leader>uT'
-        end,
-      })
-    end,
+    -- init = function()
+    --   vim.api.nvim_create_autocmd('User', {
+    --     pattern = 'VeryLazy',
+    --     callback = function()
+    --       require('snacks').toggle.treesitter():map '<leader>uT'
+    --     end,
+    --   })
+    -- end,
   },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       { 'nvim-treesitter/nvim-treesitter-context', opts = { max_lines = 5, mode = 'topline' } },
-
       { -- highlight other uses of the word under the cursor
         'RRethy/vim-illuminate',
         config = function()
@@ -621,55 +660,49 @@ require('lazy').setup({
         end,
       },
     },
-    opts = {
-      ensure_installed = {
-        'bash',
-        'c',
-        'diff',
-        'html',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'vim',
-        'vimdoc',
-        'elixir',
-        'eex',
-        'heex',
-      },
-      auto_install = true,
-      -- enable = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      disable = true,
-      -- disable = function(lang, bufnr)
-      --   return lang == 'zig' and vim.api.nvim_buf_line_count(bufnr) > 5000
-      -- end,
-      -- incremental_selection = { enable = true },
-      indent = { enable = true, disable = { 'ruby', 'elixir' } },
-    },
+
+    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    --
+    -- There are additional nvim-treesitter modules that you can use to interact
+    -- with nvim-treesitter. You should go explore a few and see what interests you:
+    --
+    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    --
     config = function(_, opts)
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {
+          'bash',
+          'c',
+          'diff',
+          'html',
+          'lua',
+          'luadoc',
+          'markdown',
+          'markdown_inline',
+          'query',
+          'vim',
+          'vimdoc',
+          'elixir',
+          'eex',
+          'heex',
+        },
+        sync_install = false,
+        auto_install = true,
+        -- enable = true,
+        highlight = {
+          enable = true,
+          -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
+          --  If you are experiencing weird indenting issues, add the language to
+          --  the list of additional_vim_regex_highlighting and disabled languages for indent.
+          additional_vim_regex_highlighting = { 'ruby' },
+        },
+        indent = { enable = true, disable = { 'ruby' } },
+      }
+
       vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
       vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
-      --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-      --
-      --   -- Prefer git instead of curl in order to improve connectivity in some environments
-      --   require('nvim-treesitter.install').prefer_git = true
-      --   ---@diagnostic disable-next-line: missing-fields
-      --   require('nvim-treesitter.configs').setup(opts)
-      --
-      --   -- There are additional nvim-treesitter modules that you can use to interact
-      --   -- with nvim-treesitter. You should go explore a few and see what interests you:
-      --   --
-      --   --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
 

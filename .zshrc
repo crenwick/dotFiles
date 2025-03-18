@@ -56,7 +56,9 @@ alias ec='$EDITOR $HOME/.zshrc'
 # source $HOME/.cargo/env
 
 # asdf stuff
-. "$HOME/.asdf/asdf.sh"
+# . "$HOME/.asdf/asdf.sh"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 
 # Use nvim as the default editor
 export EDITOR=nvim
