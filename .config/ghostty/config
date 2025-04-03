@@ -2,3 +2,4 @@ theme = light:AtomOneLight,dark:Japanesque
 font-family = SF Mono
 keybind = global:ctrl+space=toggle_quick_terminal
 font-size = 14
+

@@ -225,9 +225,12 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'copilot-language-server', -- Used for Copilot
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = {},
+        automatic_installation = false,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -350,17 +353,15 @@ require('lazy').setup({
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
-        local lsp_format_opt
+        -- local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
-          lsp_format_opt = 'never'
+          return nil
         else
-          lsp_format_opt = 'fallback'
+          return {
+            timeout_ms = 500,
+            lsp_format = 'fallback',
+          }
         end
-
-        return {
-          timeout_ms = 500,
-          lsp_format = lsp_format_opt,
-        }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -369,6 +370,8 @@ require('lazy').setup({
           -- 'isort',
           'black',
         },
+        html = { 'prettierd', 'prettier' },
+        css = { 'prettierd', 'prettier' },
         -- or just the first one that might be installed
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd', 'prettier', stop_after_first = true },
@@ -505,7 +508,9 @@ require('lazy').setup({
           },
         },
         filetypes = { ['*'] = true },
+        copilot_model = 'gpt-4o-copilot',
         server_opts_overrides = {
+          traces = 'verbose',
           cmd = {
             vim.fn.expand '~/.local/share/nvim/mason/bin/copilot-language-server',
             '--stdio',
