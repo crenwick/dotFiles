@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<C-[><C-[>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Open a terminal at the bottom of the screen with a fixed height.
 -- local term_win_bufnr = nil
