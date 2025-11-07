@@ -106,7 +106,6 @@
   "workbench.preferredDarkColorTheme": "Verdandi Alter",
   "workbench.preferredLightColorTheme": "Verdandi",
   "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "welcomePage",
   "yaml.schemas": {
     "file:///Users/charlol/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
@@ -146,5 +145,43 @@
   "editor.stickyScroll.enabled": true,
   "github.copilot.advanced": {},
   "github.copilot.selectedCompletionModel": "gpt-4o-copilot",
-  "elixirLS.dialyzerEnabled": false
+  "elixirLS.dialyzerEnabled": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true,
+    "windsurf": true,
+    "cursor-global": true,
+    "cursor-workspace": true
+  },
+  "chat.agent.enabled": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "pgsql.serverGroups": [
+    {
+      "name": "Servers",
+      "id": "7E54A8C1-1BB5-4A44-9CC4-406E32295DBB",
+      "isDefault": true
+    }
+  ],
+  "pgsql.connections": [
+    {
+      "id": "711E10D0-A36F-4FAE-8761-6E645EE12B89",
+      "groupId": "7E54A8C1-1BB5-4A44-9CC4-406E32295DBB",
+      "authenticationType": "SqlLogin",
+      "connectTimeout": 15,
+      "applicationName": "vscode-pgsql",
+      "clientEncoding": "utf8",
+      "sslmode": "prefer",
+      "server": "localhost",
+      "user": "postgres",
+      "password": "",
+      "profileName": "local, <default> (postgres)",
+      "expiresOn": 0
+    }
+  ],
+  "github.copilot.nextEditSuggestions.enabled": true,
 }

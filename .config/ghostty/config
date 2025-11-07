@@ -1,5 +1,18 @@
-theme = light:AtomOneLight,dark:Japanesque
+theme = light:CLRS,dark:Japanesque
 font-family = SF Mono
-keybind = global:ctrl+space=toggle_quick_terminal
-font-size = 14
+font-size = 13
 
+background-opacity = 0.9
+background-blur = true
+background-blur-radius = 64
+
+keybind = shift+enter=text:\n
+
+macos-non-native-fullscreen = visible-menu
+mouse-hide-while-typing = true
+
+window-theme = ghostty
+macos-window-shadow = false
+window-padding-x = 20
+quit-after-last-window-closed = true
+mouse-hide-while-typing = true

@@ -4,13 +4,13 @@ if [[ "$(uname -m)" == "arm64" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # ZSH_THEME="blinks"
 # ZSH_THEME="agnoster"
 ZSH_THEME="af-magic"
 
-plugins=(git asdf docker tmux)
+# plugins=(git asdf docker tmux)
 
 if [[ "$TERM_PROGRAM" != "vscode" ]]; then
   # Open tmux on startup, requires tmux plugin
@@ -34,26 +34,22 @@ unsetopt HIST_VERIFY          # execute cmds using history immediatley
 
 export KEYTIMEOUT=1
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+#
+#   autoload -Uz compinit
+#   compinit
+# fi
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Load aliases
 if [ -f ~/.aliases ]; then
   . ~/.aliases
+  alias ec='$EDITOR $HOME/.zshrc'
 fi
-
-alias ec='$EDITOR $HOME/.zshrc'
-
-# Add cargo to the PATH
-# source $HOME/.cargo/env
 
 # asdf stuff
 # . "$HOME/.asdf/asdf.sh"
@@ -68,14 +64,17 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob=!.git/'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Erlang and elixir stuff
 export ERL_AFLAGS="-kernel shell_history enabled"
-
 export ELIXIR_EDITOR="code +__LINE__ __FILE__"
 
 # Integrate fzf into the terminal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-set t_Co=256
+# set t_Co=256
 
 # enable vi mode
 bindkey -v
+
+# run starship
+eval "$(starship init zsh)"

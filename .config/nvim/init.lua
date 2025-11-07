@@ -1,3 +1,6 @@
+vim.cmd [[set mouse=]]
+vim.cmd [[set noswapfile]]
+
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -9,82 +12,81 @@ vim.g.have_nerd_font = true
 vim.g.editorconfig = false
 
 -- [[ Setting options ]]
--- See `:help vim.opt`
+-- See `:help vim.o.
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = true
+vim.o.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
--- vim.opt.colorcolumn = '80'
+vim.o.mouse = 'a'
+-- vim.o.colorcolumn = '80'
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-vim.opt.relativenumber = true
+vim.o.showmode = false
+vim.o.relativenumber = true
+
+vim.o.winborder = 'rounded'
 
 -- Line wrap settings
-vim.opt.wrap = true
-vim.opt.breakindent = true
-vim.opt.linebreak = true
+vim.o.wrap = true
+vim.o.breakindent = true
+vim.o.linebreak = true
 
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- `zg` to add the word to the spellfile
 -- `z=` to get spelling suggestions
-vim.opt.spell = true
+vim.o.spell = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
-vim.opt.swapfile = false
-
--- Don't have `o` add a comment
-vim.opt.formatoptions:remove 'o'
+vim.o.swapfile = false
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 5
+vim.o.scrolloff = 5
 
 -- See `:help 'confirm'`
-vim.opt.confirm = true
+vim.o.confirm = true
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldnestmax = 4
-vim.opt.foldcolumn = '0'
+vim.o.foldmethod = 'expr'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldnestmax = 4
+vim.o.foldcolumn = '0'
 
 -- show the first line of the fold
-vim.opt.foldtext = "v:folddashes.substitute(getline(v:foldstart),'/\\*\\|\\*/\\|{{{\\d\\=','','g')"
+vim.o.foldtext = "v:folddashes.substitute(getline(v:foldstart),'/\\*\\|\\*/\\|{{{\\d\\=','','g')"
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -97,7 +99,7 @@ vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = '[e]xplore directory' })
 -- this will open netrw in a new tab in the directory containing the file whose buffer you're in
 vim.keymap.set('n', '<leader>E', ':tabedit %:p:h<CR>', { desc = '[E]xplore directory in a new tab' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+vim.o.hlsearch = true
 vim.keymap.set('n', '<leader><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Stop highlighting search' })
 
 -- Diagnostic keymaps
@@ -200,6 +202,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- Don't have `o` add a comment
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  command = 'set formatoptions-=cro',
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]

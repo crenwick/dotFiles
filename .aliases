@@ -24,10 +24,10 @@ alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 alias tpbcopy='tmux saveb - | pbcopy'
 alias start_sp='cd ~/Documents/elixir/silver_post; ~/dotFiles/tmux/sp.sh'
-alias qvi="~/.config/nvim/vimanywhere.sh"
+alias qvim="~/.config/nvim/vimanywhere.sh"
 
 alias spleet="spleeter separate -o ~/Music/spleeter_output -p spleeter:4stems-16kHz"
-alias youtubeDL="youtube-dl -x --audio-format \"mp3\" --audio-quality 0"
+alias youtubeDL="yt-dlp -x --audio-format \"mp3\" --audio-quality 0"
 
 docker-postgres() {
   # Example: `docker-postgres 9.5"
