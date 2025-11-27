@@ -220,7 +220,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 if vim.g.vscode then
-  require 'vscode-plugins'
+  -- require 'vscode-plugins'
 else
   require 'lazy-plugins'
 end

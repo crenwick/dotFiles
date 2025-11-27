@@ -10,12 +10,11 @@ fi
 # ZSH_THEME="agnoster"
 ZSH_THEME="af-magic"
 
-# plugins=(git asdf docker tmux)
-
 if [[ "$TERM_PROGRAM" != "vscode" ]]; then
   # Open tmux on startup, requires tmux plugin
   # ZSH_TMUX_AUTOSTART=true
 fi
+
 
 # History
 HISTFILE=$HOME/.zsh_history
@@ -25,23 +24,31 @@ setopt INC_APPEND_HISTORY     # immediatley append to history file
 setopt EXTENDED_HISTORY       # record timestamp in history
 setopt HIST_EXPIRE_DUPS_FIRST # expire duplicate entires first when trimming history
 setopt HIST_FIND_NO_DUPS      # do not display a line previously found
-# setopt HIST_IGNORE_DUPS       # dont record an entry that was just recorded again
-# setopt HIST_IGNORE_ALL_DUPS   # delete old recorded entry if a new entry is a dup
-# setopt HIST_IGNORE_SPACE      # dont record an entry starting with a space
+setopt HIST_IGNORE_DUPS       # dont record an entry that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS   # delete old recorded entry if a new entry is a dup
+setopt HIST_IGNORE_SPACE      # dont record an entry starting with a space
 # setopt HIST_SAVE_NO_DUPS      # dont write dupes in the history file
 setopt SHARE_HISTORY          # share history between all sessions
 unsetopt HIST_VERIFY          # execute cmds using history immediatley
 
 export KEYTIMEOUT=1
 
-# source $ZSH/oh-my-zsh.sh
+# Tab completion for zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
 
-# if type brew &>/dev/null; then
-#   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-#
-#   autoload -Uz compinit
-#   compinit
-# fi
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+
+autoload -Uz compinit
+compinit
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -70,8 +77,6 @@ export ELIXIR_EDITOR="code +__LINE__ __FILE__"
 
 # Integrate fzf into the terminal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# set t_Co=256
 
 # enable vi mode
 bindkey -v

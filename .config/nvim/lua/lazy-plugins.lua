@@ -226,6 +226,11 @@ require('lazy').setup({
           --   },
           -- },
         },
+        expert = {
+          cmd = { 'expert', '--stdio' },
+          root_markers = { 'mix.exs', '.git' },
+          filetypes = { 'elixir', 'eelixir', 'heex' },
+        },
       }
 
       -- Now setup those configurations
@@ -533,6 +538,7 @@ require('lazy').setup({
     'f-person/auto-dark-mode.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     dependencies = {
+      'p00f/alabaster.nvim',
       'projekt0n/github-nvim-theme',
       'loctvl842/monokai-pro.nvim',
 
@@ -542,13 +548,15 @@ require('lazy').setup({
     opts = {
       update_interval = 1000,
       set_dark_mode = function()
-        vim.cmd.colorscheme 'monokai-pro-default'
+        -- vim.cmd.colorscheme 'monokai-pro-default'
+        vim.cmd.colorscheme 'alabaster'
         vim.api.nvim_set_option('background', 'dark')
       end,
       set_light_mode = function()
         vim.api.nvim_set_option('background', 'light')
         -- vim.cmd.colorscheme 'monokai-pro-light'
-        vim.cmd.colorscheme 'github_light_default'
+        -- vim.cmd.colorscheme 'github_light_default'
+        vim.cmd.colorscheme 'alabaster'
 
         -- You can configure highlights by doing something like:
         -- vim.cmd.hi 'Comment gui=none'
