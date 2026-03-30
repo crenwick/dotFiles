@@ -26,6 +26,9 @@ alias tpbcopy='tmux saveb - | pbcopy'
 alias start_sp='cd ~/Documents/elixir/silver_post; ~/dotFiles/tmux/sp.sh'
 alias qvim="~/.config/nvim/vimanywhere.sh"
 
+# use this with git or lazygit (`g dotfiles status`)
+alias -g dotfiles='--git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
 alias spleet="spleeter separate -o ~/Music/spleeter_output -p spleeter:4stems-16kHz"
 alias youtubeDL="yt-dlp -x --audio-format \"mp3\" --audio-quality 0"
 
