@@ -85,7 +85,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export ELIXIR_EDITOR="code +__LINE__ __FILE__"
 
 # Integrate fzf into the terminal
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # run starship
 eval "$(starship init zsh)"
