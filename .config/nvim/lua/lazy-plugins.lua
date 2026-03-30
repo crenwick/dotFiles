@@ -657,6 +657,51 @@ require('lazy').setup {
         --  Check out: https://github.com/echasnovski/mini.nvim
       end,
     },
+    {
+      'nvim-mini/mini.indentscope',
+      branch = 'main',
+      opts = {
+        -- object_scope = 'ii',
+        -- object_scope_with_border = 'ai',
+        -- goto_top = '[i',
+
+        -- symbol = "▏",
+        -- symbol = '│',
+        options = {
+          indent_at_cursor = false,
+        },
+      },
+      init = function()
+        require('mini.indentscope').gen_animation.none()
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = {
+            'Trouble',
+            'alpha',
+            'dashboard',
+            'fzf',
+            'help',
+            'lazy',
+            'mason',
+            'neo-tree',
+            'notify',
+            'sidekick_terminal',
+            'snacks_dashboard',
+            'snacks_notif',
+            'snacks_terminal',
+            'snacks_win',
+            'toggleterm',
+            'trouble',
+          },
+          callback = function() vim.b.miniindentscope_disable = true end,
+        })
+
+        vim.api.nvim_create_autocmd('User', {
+          pattern = 'SnacksDashboardOpened',
+          callback = function(data) vim.b[data.buf].miniindentscope_disable = true end,
+        })
+      end,
+    },
 
     {
       'folke/snacks.nvim',
@@ -741,7 +786,7 @@ require('lazy').setup {
 
     require 'custom.plugins.dap',
   },
-  checker = { enabled = true },
+  -- checker = { enabled = true },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table

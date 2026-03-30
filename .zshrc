@@ -50,6 +50,14 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 autoload -Uz compinit
 compinit
 
+autoload edit-command-line
+zle -N edit-command-line
+
+# vim mode
+bindkey -v
+# ctrl+g to enter neovim
+bindkey '^g' edit-command-line
+
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Load aliases
@@ -64,7 +72,8 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 
 # Use nvim as the default editor
-export EDITOR=nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # makes FZF use ripgrep (rg)
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob=!.git/'
@@ -78,8 +87,7 @@ export ELIXIR_EDITOR="code +__LINE__ __FILE__"
 # Integrate fzf into the terminal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# enable vi mode
-bindkey -v
-
 # run starship
 eval "$(starship init zsh)"
+
+export PATH="$HOME/.local/bin:$PATH"
